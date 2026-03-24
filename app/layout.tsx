@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Archivo, Space_Grotesk } from 'next/font/google'
+import MouseGlow from '@/components/MouseGlow'
 import './globals.css'
 
 const archivo = Archivo({
@@ -53,7 +54,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className={`${archivo.variable} ${spaceGrotesk.variable}`}>
-      <body className="font-body antialiased">{children}</body>
+      <body className="font-body antialiased">
+        <MouseGlow />
+        {children}
+      </body>
     </html>
   )
 }

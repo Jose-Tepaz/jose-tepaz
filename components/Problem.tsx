@@ -31,7 +31,7 @@ export default function Problem() {
   return (
     <section
       ref={ref as React.RefObject<HTMLElement>}
-      className="relative py-24 px-6 overflow-hidden"
+      className="relative py-24 px-6 "
     >
       <div className="max-w-6xl mx-auto">
         {/* Header */}

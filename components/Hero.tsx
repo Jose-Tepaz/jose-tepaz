@@ -3,8 +3,9 @@
 import { ArrowRight, Calendar } from 'lucide-react'
 
 export default function Hero() {
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-20 px-6">
+    <section className="relative min-h-screen flex items-center justify-center  pt-24 pb-20 px-6">
       {/* Background orbs */}
       <div
         aria-hidden="true"
@@ -12,7 +13,7 @@ export default function Hero() {
       >
         <div className="animate-glow-pulse absolute -top-40 left-1/4 w-[500px] h-[500px] rounded-full bg-indigo-600/20 blur-[100px]" />
         <div className="animate-glow-pulse absolute top-20 right-1/4 w-[400px] h-[400px] rounded-full bg-violet-600/15 blur-[100px]" style={{ animationDelay: '2s' }} />
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-indigo-900/20 blur-[120px]" />
+        
       </div>
 
       {/* Dot grid */}
@@ -80,11 +81,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Bottom fade */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-zinc-950 to-transparent"
-      />
+    
     </section>
   )
 }
