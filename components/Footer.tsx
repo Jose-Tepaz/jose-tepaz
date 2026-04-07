@@ -11,14 +11,9 @@ const links = [
 const social = [
   {
     label: 'LinkedIn',
-    href: 'https://linkedin.com/in/josetepaz',
+    href: 'https://www.linkedin.com/in/jose-tepaz-b84312145/',
     icon: Linkedin,
-  },
-  {
-    label: 'Instagram',
-    href: 'https://instagram.com/josetepaz',
-    icon: Instagram,
-  },
+  }
 ]
 
 export default function Footer() {

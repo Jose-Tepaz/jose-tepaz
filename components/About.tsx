@@ -49,7 +49,7 @@ export default function About() {
               <div className="w-full aspect-square rounded-3xl bg-gradient-to-br from-indigo-900/40 via-zinc-900 to-violet-900/30 border border-zinc-800 overflow-hidden flex items-center justify-center">
                 {/* Initials avatar */}
                 <div className="text-center flex flex-col items-center justify-center">
-                  <Image src="/img/profile.JPG" alt="José Tepáz" width={500} height={500} className="rounded-full  w-[400px] h-[400px] object-cover mb-4" />
+                  <Image src="/img/profile.JPG" alt="José Tepáz" width={500} height={500} className="rounded-full  w-[250px] h-[250px] object-cover mb-4 md:w-[400px] md:h-[400px]" />
                   <p className="font-heading font-semibold text-zinc-300 text-lg">
                     José Tepáz
                   </p>

@@ -44,7 +44,7 @@ export default function CTA() {
           {/* CTA buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="https://wa.me/+50258627018"
+              href="https://calendly.com/josetepaz28/30min"
               target="_blank"
               rel="noopener noreferrer"
               className="group w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-xl bg-brand hover:bg-brand-light text-white font-semibold text-base transition-all duration-200 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 cursor-pointer"

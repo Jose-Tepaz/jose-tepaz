@@ -56,7 +56,10 @@ export default function RootLayout({
     <html lang="es" className={`${archivo.variable} ${spaceGrotesk.variable}`}>
       <body className="font-body antialiased">
         <MouseGlow />
+        <div className="relative overflow-x-hidden">
         {children}
+        </div>
+       
       </body>
     </html>
   )
