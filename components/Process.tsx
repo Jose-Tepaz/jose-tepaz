@@ -1,134 +1,94 @@
 'use client'
 
 import { Search, Pencil, Code2, Rocket } from 'lucide-react'
-import { useInView } from '@/hooks/useInView'
-import { cn } from '@/lib/utils'
+import { Cell, Grid, SectionHeader, sectionX } from '@/components/Grid'
 
 const steps = [
   {
-    number: '01',
+    label: 'Inmersión',
     icon: Search,
-    title: 'Estrategia y definición',
+    title: 'Inmersión y definición',
     description:
-      'Entendemos el problema real, identificamos oportunidades y trazamos el camino. Salimos con un alcance claro y un plan de acción — sin suposiciones.',
-    tags: ['Research', 'Product definition', 'Roadmap'],
+      'Me integro a tu equipo, entiendo procesos, usuarios y datos. Definimos el problema real y qué significa el éxito, sin suposiciones.',
+    tags: ['Discovery', 'Stakeholders', 'Alcance'],
   },
   {
-    number: '02',
+    label: 'Solución',
     icon: Pencil,
-    title: 'Diseño de experiencia',
+    title: 'Diseño de la solución',
     description:
-      'Creamos la interfaz que conecta con tus usuarios. Iteramos rápido con prototipos hasta que cada flujo se sienta natural e intuitivo.',
-    tags: ['UX/UI Design', 'Prototyping', 'User testing'],
+      'Diseño la arquitectura y prototipo rápido junto a tu equipo, validando sobre tu entorno real antes de comprometer el desarrollo.',
+    tags: ['Arquitectura', 'Prototipo', 'UX'],
   },
   {
-    number: '03',
+    label: 'Construcción',
     icon: Code2,
-    title: 'Desarrollo',
+    title: 'Construcción e integración',
     description:
-      'Construimos con tecnología que escala. Código limpio, arquitectura sólida y entregas incrementales para que puedas ver el progreso en tiempo real.',
-    tags: ['Web App', 'Mobile', 'E-commerce'],
+      'Construyo y conecto la solución con tus sistemas y datos. Aceleramos con IA y automatización, con entregas incrementales para que veas el progreso en tiempo real.',
+    tags: ['Desarrollo', 'Integraciones', 'Automatización'],
   },
   {
-    number: '04',
+    label: 'Producción',
     icon: Rocket,
-    title: 'Lanzamiento y seguimiento',
+    title: 'Producción y resultados',
     description:
-      'Llevamos el producto al mercado con una estrategia de lanzamiento. Medimos lo que importa e iteramos sobre datos reales, no suposiciones.',
-    tags: ['Launch', 'Analytics', 'Iterations'],
+      'Despliego en tu entorno, capacito al equipo y mido resultados. Me quedo hasta que la solución funciona para usuarios reales.',
+    tags: ['Deploy', 'Capacitación', 'Métricas'],
   },
 ]
 
 export default function Process() {
-  const { ref, inView } = useInView()
-
   return (
-    <section
-      id="proceso"
-      ref={ref as React.RefObject<HTMLElement>}
-      className="relative py-24 px-6"
-    >
-      {/* Background accent */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-indigo-900/10 blur-[120px]"
-      />
+    <section id="proceso" className={`relative py-28 bg-sunken ${sectionX}`}>
+      <SectionHeader
+        index="02"
+        eyebrow="Mi proceso"
+        lines={[
+          'Cómo llevo tu problema',
+          <span key="m" className="text-accent">
+            hasta producción
+          </span>,
+        ]}
+      >
+        Embebido en tu equipo, con entregas continuas y visibilidad total en cada etapa.
+      </SectionHeader>
 
-      <div className="relative max-w-6xl mx-auto">
-        {/* Header */}
-        <div
-          className={cn('max-w-2xl mb-20 reveal', inView && 'visible')}
-        >
-          <p className="text-indigo-400 text-sm font-medium tracking-widest uppercase mb-4">
-            Mi proceso
-          </p>
-          <h2 className="font-heading font-bold text-4xl sm:text-5xl text-zinc-50 leading-tight mb-5">
-            Cómo llevo tu idea a las{' '}
-            <span className="gradient-text">manos de tus usuarios</span>
-          </h2>
-          <p className="text-zinc-400 text-lg leading-relaxed">
-            Un proceso probado, sin sorpresas, con visibilidad total en cada
-            etapa.
-          </p>
-        </div>
-
-        {/* Steps */}
-        <div className="relative">
-          {/* Connecting line (desktop) */}
-          <div
-            aria-hidden="true"
-            className="hidden lg:block absolute top-8 left-8 right-8 h-px bg-gradient-to-r from-transparent via-zinc-700 to-transparent"
-          />
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {steps.map((step, i) => {
-              const Icon = step.icon
-              return (
-                <div
-                  key={step.number}
-                  className={cn(
-                    'relative reveal',
-                    inView && 'visible',
-                    i === 0 && 'reveal-delay-1',
-                    i === 1 && 'reveal-delay-2',
-                    i === 2 && 'reveal-delay-3',
-                    i === 3 && 'reveal-delay-4'
-                  )}
-                >
-                  {/* Step number + icon */}
-                  <div className="relative flex items-center gap-3 mb-6">
-                    <div className="w-14 h-14 rounded-2xl bg-indigo-500/10 border border-indigo-500/25 flex items-center justify-center flex-shrink-0 glow-indigo">
-                      <Icon size={22} className="text-indigo-400" />
-                    </div>
-                    <span className="font-heading font-black text-5xl text-zinc-800 select-none">
-                      {step.number}
-                    </span>
-                  </div>
-
-                  <h3 className="font-heading font-bold text-xl text-zinc-100 mb-3">
+      <Grid cols="sm:grid-cols-2 lg:grid-cols-4">
+        {steps.map((step, i) => {
+          const Icon = step.icon
+          return (
+            <Cell key={step.label} label={step.label} index={i + 1}>
+              <div className="flex items-center justify-between px-7 pt-10 pb-8 border-b border-dashed border-line">
+                <span className="font-heading text-7xl leading-none text-ink/15 transition-colors duration-500 group-hover:text-accent/50">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <div className="w-11 h-11 border border-line bg-surface flex items-center justify-center">
+                  <Icon size={18} className="text-ink" strokeWidth={1.6} />
+                </div>
+              </div>
+              <div className="flex flex-1 flex-col justify-between gap-6 p-7">
+                <div>
+                  <h3 className="font-heading text-3xl leading-tight text-ink mb-3">
                     {step.title}
                   </h3>
-                  <p className="text-zinc-400 text-sm leading-relaxed mb-5">
-                    {step.description}
-                  </p>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2">
-                    {step.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2.5 py-1 rounded-md bg-zinc-800 border border-zinc-700 text-zinc-400 text-xs"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                  <p className="text-muted text-sm leading-relaxed">{step.description}</p>
                 </div>
-              )
-            })}
-          </div>
-        </div>
-      </div>
+                <div className="flex flex-wrap gap-2">
+                  {step.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2.5 py-1 border border-line text-muted font-mono text-[11px] uppercase tracking-wide"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </Cell>
+          )
+        })}
+      </Grid>
     </section>
   )
 }

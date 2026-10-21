@@ -1,103 +1,65 @@
 'use client'
 
-import { AlertTriangle, Users, Lightbulb } from 'lucide-react'
-import { useInView } from '@/hooks/useInView'
-import { cn } from '@/lib/utils'
+import { Cell, Grid, SectionHeader, sectionX } from '@/components/Grid'
+import Iso from '@/components/Iso'
 
 const problems = [
   {
-    icon: Lightbulb,
-    title: 'Sin dirección clara',
+    label: 'Brecha',
+    title: 'Negocio y técnica no se hablan',
     description:
-      'Tienes una idea poderosa pero no sabes por dónde empezar, qué construir primero ni cómo validarla antes de invertir.',
+      'Los stakeholders piden una cosa y el equipo construye otra. Sin un puente, el producto se desvía.',
   },
   {
-    icon: Users,
-    title: 'Equipo descoordinado',
+    label: 'Genérico',
+    title: 'Soluciones que no encajan',
     description:
-      'Diseñadores, desarrolladores y stakeholders hablan idiomas distintos. Sin alguien que los conecte, el proyecto se fragmenta.',
+      'Software genérico que no se adapta a tus procesos, sistemas ni datos reales. Termina sin usarse.',
   },
   {
-    icon: AlertTriangle,
-    title: 'Decisiones técnicas sin visión',
+    label: 'Aislado',
+    title: 'Sistemas que no se conectan',
     description:
-      'Se construye lo que se puede, no lo que el negocio necesita. El resultado: retrasos, costos extra y un producto que nadie usa.',
+      'APIs, datos y herramientas sueltas. Sin integración, la solución no funciona en el entorno real del cliente.',
+  },
+  {
+    label: 'Estancado',
+    title: 'Proyectos que no llegan a producción',
+    description:
+      'Prototipos que lucen bien en la demo pero nunca salen: faltan entornos, despliegue y alguien que responda por el resultado.',
   },
 ]
 
 export default function Problem() {
-  const { ref, inView } = useInView()
-
   return (
-    <section
-      ref={ref as React.RefObject<HTMLElement>}
-      className="relative py-24 px-6 "
-    >
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div
-          className={cn(
-            'max-w-2xl mb-16 reveal',
-            inView && 'visible'
-          )}
-        >
-          <p className="text-indigo-400 text-sm font-medium tracking-widest uppercase mb-4">
-            El problema
-          </p>
-          <h2 className="font-heading font-bold text-4xl sm:text-5xl text-zinc-50 leading-tight mb-5">
-            La mayoría de proyectos digitales{' '}
-            <span className="text-zinc-500">nunca llegan a lanzar</span>
-          </h2>
-          <p className="text-zinc-400 text-lg leading-relaxed">
-            No es falta de talento ni de presupuesto. Es falta de alguien que
-            conecte la visión de negocio con la ejecución técnica.
-          </p>
-        </div>
+    <section className={`relative pt-28 pb-10 ${sectionX}`}>
+      <SectionHeader
+        index="01"
+        eyebrow="El problema"
+        lines={[
+          'La mayoría de proyectos técnicos',
+          <span key="n" className="text-accent">
+            se pierden entre negocio y código
+          </span>,
+        ]}
+      >
+        No es falta de talento. Es falta de alguien que entienda el problema del cliente y la
+        tecnología, y lleve la solución hasta producción.
+      </SectionHeader>
 
-        {/* Problem cards */}
-        <div className="grid md:grid-cols-3 gap-6">
-          {problems.map((problem, i) => {
-            const Icon = problem.icon
-            return (
-              <div
-                key={problem.title}
-                className={cn(
-                  'glass rounded-2xl p-8 reveal',
-                  inView && 'visible',
-                  i === 0 && 'reveal-delay-1',
-                  i === 1 && 'reveal-delay-2',
-                  i === 2 && 'reveal-delay-3'
-                )}
-              >
-                <div className="w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-5">
-                  <Icon size={20} className="text-red-400" />
-                </div>
-                <h3 className="font-heading font-semibold text-xl text-zinc-100 mb-3">
-                  {problem.title}
-                </h3>
-                <p className="text-zinc-400 text-base leading-relaxed">
-                  {problem.description}
-                </p>
-              </div>
-            )
-          })}
-        </div>
-
-        {/* Transition statement */}
-        <div
-          className={cn(
-            'mt-16 pt-16 border-t border-zinc-800/60 text-center reveal reveal-delay-4',
-            inView && 'visible'
-          )}
-        >
-          <p className="text-4xl sm:text-5xl font-heading font-semibold text-zinc-200 max-w-2xl mx-auto leading-snug">
-            Para eso existo yo.{' '}
-            <span className="gradient-text">
-              El puente entre tu visión y el producto que tus usuarios van a usar.
-            </span>
-          </p>
-        </div>
-      </div>
+      <Grid cols="sm:grid-cols-2 lg:grid-cols-4">
+        {problems.map((p, i) => (
+          <Cell key={p.label} label={p.label} index={i + 1}>
+            <div className="flex items-center justify-center h-72 border-b border-dashed border-line">
+              <Iso variant={i} />
+            </div>
+            <div className="flex flex-1 flex-col justify-between gap-6 p-7">
+              <h3 className="font-heading text-3xl leading-[1.1] text-ink">{p.title}</h3>
+              <p className="text-muted text-sm leading-relaxed">{p.description}</p>
+            </div>
+          </Cell>
+        ))}
+      </Grid>
     </section>
   )
 }

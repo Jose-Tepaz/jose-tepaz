@@ -1,130 +1,62 @@
 'use client'
 
+import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
-import { useInView } from '@/hooks/useInView'
-import { cn } from '@/lib/utils'
-
-const projects = [
-  {
-    name: 'Teknergy',
-    category: 'Web App',
-    description:
-      'Plataforma de gestión energética para empresas industriales. Dashboards en tiempo real, alertas inteligentes y reportes automatizados.',
-    tags: ['Webflow', 'Web App', 'Dashboard'],
-    gradient: 'from-indigo-900/60 to-blue-900/30',
-    accent: 'bg-indigo-500',
-    span: 'sm:col-span-2',
-  },
-  {
-    name: 'Winkelmann',
-    category: 'Sitio Web & E-commerce',
-    description:
-      'Rediseño completo de identidad digital y tienda online para empresa de insumos industriales en Europa.',
-    tags: ['Diseño', 'Desarrollo', 'E-commerce'],
-    gradient: 'from-zinc-800/80 to-zinc-900/60',
-    accent: 'bg-violet-500',
-    span: '',
-  },
-  {
-    name: 'Tienda Borgatta',
-    category: 'E-commerce',
-    description:
-      'Tienda de moda construida en Shopify con diseño custom y estrategia de conversión optimizada para mobile.',
-    tags: ['Shopify', 'E-commerce', 'Mobile-first'],
-    gradient: 'from-rose-900/40 to-zinc-900/60',
-    accent: 'bg-rose-500',
-    span: '',
-  },
-  {
-    name: 'Bales Hay',
-    category: 'UX/UI & App',
-    description:
-      'Aplicación para gestión agrícola. Diseño UX completo y desarrollo en Shopify para conectar productores con compradores.',
-    tags: ['UX/UI Design', 'Shopify', 'Mobile'],
-    gradient: 'from-emerald-900/40 to-zinc-900/60',
-    accent: 'bg-emerald-500',
-    span: 'sm:col-span-2',
-  },
-]
+import { Cell, Grid, SectionHeader, sectionX } from '@/components/Grid'
+import Iso from '@/components/Iso'
+import { projects } from '@/lib/content'
 
 export default function Portfolio() {
-  const { ref, inView } = useInView()
-
   return (
-    <section
-      id="trabajo"
-      ref={ref as React.RefObject<HTMLElement>}
-      className="relative py-24 px-6"
-    >
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div
-          className={cn(
-            'flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16 reveal',
-            inView && 'visible'
-          )}
-        >
-          <div className="max-w-xl">
-            <p className="text-indigo-400 text-sm font-medium tracking-widest uppercase mb-4">
-              Trabajo selecto
-            </p>
-            <h2 className="font-heading font-bold text-4xl sm:text-5xl text-zinc-50 leading-tight">
-              Proyectos que{' '}
-              <span className="gradient-text">llegaron al mercado</span>
-            </h2>
-          </div>
-          <p className="text-zinc-500 text-sm max-w-xs">
-            Cada proyecto tiene una historia distinta. Lo que los une: ideas que
-            se convirtieron en productos reales.
-          </p>
-        </div>
+    <section id="trabajo" className={`relative py-28 ${sectionX}`}>
+      <SectionHeader
+        index="05"
+        eyebrow="Trabajo selecto"
+        lines={[
+          'Proyectos que',
+          <span key="l" className="text-accent">
+            llegaron a producción
+          </span>,
+        ]}
+      >
+        Cada proyecto tiene una historia distinta. Lo que los une: software real, en producción y
+        usado por personas reales.
+      </SectionHeader>
 
-        {/* Grid */}
-        <div className="grid sm:grid-cols-2 gap-5">
-          {projects.map((project, i) => (
-            <div
-              key={project.name}
-              className={cn(
-                `group relative overflow-hidden rounded-2xl border border-zinc-800 bg-gradient-to-br ${project.gradient} cursor-pointer reveal`,
-                inView && 'visible',
-                project.span,
-                i === 0 && 'reveal-delay-1',
-                i === 1 && 'reveal-delay-2',
-                i === 2 && 'reveal-delay-3',
-                i === 3 && 'reveal-delay-4'
-              )}
-              style={{ minHeight: '240px' }}
-            >
-              {/* Hover overlay */}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-
-              <div className="relative p-8 flex flex-col h-full justify-between" style={{ minHeight: '240px' }}>
-                {/* Top */}
-                <div className="flex items-start justify-between">
-                  <div>
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-zinc-900/60 border border-zinc-700/60 text-zinc-400 text-xs mb-4">
-                      <span className={`w-1.5 h-1.5 rounded-full ${project.accent}`} />
-                      {project.category}
-                    </span>
-                    <h3 className="font-heading font-bold text-3xl text-zinc-50">
-                      {project.name}
-                    </h3>
-                  </div>
-                  <div className="w-10 h-10 rounded-full border border-zinc-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex-shrink-0 cursor-pointer">
-                    <ArrowUpRight size={16} className="text-zinc-300" />
-                  </div>
+      <Grid cols="sm:grid-cols-2">
+        {projects.map((p, i) => {
+          const body = (
+            <>
+              <div className="relative flex h-72 items-center justify-center overflow-hidden border-b border-dashed border-line bg-sunken/60">
+                {p.image ? (
+                  <Image
+                    src={p.image}
+                    alt={`Proyecto ${p.name}`}
+                    fill
+                    sizes="(min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                ) : (
+                  <Iso variant={i} />
+                )}
+              </div>
+              <div className="flex flex-1 flex-col justify-between gap-8 p-7 sm:p-9">
+                <div className="flex items-start justify-between gap-4">
+                  <h3 className="font-heading text-3xl sm:text-4xl text-ink">
+                    {p.name}
+                  </h3>
+                  <ArrowUpRight
+                    size={22}
+                    className="shrink-0 text-subtle transition-all duration-500 group-hover:text-accent group-hover:translate-x-1 group-hover:-translate-y-1"
+                  />
                 </div>
-
-                {/* Bottom */}
-                <div className="mt-6">
-                  <p className="text-zinc-400 text-sm leading-relaxed mb-4">
-                    {project.description}
-                  </p>
+                <div>
+                  <p className="text-muted leading-relaxed mb-6 max-w-xl">{p.description}</p>
                   <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
+                    {p.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-2.5 py-1 rounded-md bg-zinc-900/70 border border-zinc-700/50 text-zinc-400 text-xs"
+                        className="px-2.5 py-1 border border-line text-muted font-mono text-[11px] uppercase tracking-wide"
                       >
                         {tag}
                       </span>
@@ -132,10 +64,26 @@ export default function Portfolio() {
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </div>
+            </>
+          )
+          return (
+            <Cell key={p.name} label={p.category} index={i + 1}>
+              {p.url ? (
+                <a
+                  href={p.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-1 flex-col"
+                >
+                  {body}
+                </a>
+              ) : (
+                body
+              )}
+            </Cell>
+          )
+        })}
+      </Grid>
     </section>
   )
 }

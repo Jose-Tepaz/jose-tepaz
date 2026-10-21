@@ -1,40 +1,42 @@
 import type { Metadata } from 'next'
-import { Archivo, Space_Grotesk } from 'next/font/google'
-import MouseGlow from '@/components/MouseGlow'
+import { Inter_Tight, Geist_Mono } from 'next/font/google'
+import { MotionProvider, ScrollProgress } from '@/components/motion'
+import { IntroProvider } from '@/components/intro-context'
+import Loader from '@/components/Loader'
 import './globals.css'
 
-const archivo = Archivo({
+const sans = Inter_Tight({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800', '900'],
-  variable: '--font-archivo',
+  variable: '--font-sans',
   display: 'swap',
 })
 
-const spaceGrotesk = Space_Grotesk({
+const mono = Geist_Mono({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-space-grotesk',
+  variable: '--font-mono',
   display: 'swap',
 })
 
 export const metadata: Metadata = {
-  title: 'José Tepáz — Consultor de Proyectos Digitales',
+  title: 'José Tepáz — Forward Deployed Engineer',
   description:
-    'Orquesto diseño, desarrollo y estrategia para llevar tu idea al producto digital que tus usuarios van a usar. Web apps, mobile, ecommerce y UX.',
+    'Me integro a tu equipo, entiendo el problema de negocio y construyo, integro y lanzo la solución en producción. Web apps, integraciones y e-commerce.',
   keywords: [
-    'consultor digital',
-    'desarrollo web',
+    'forward deployed engineer',
+    'ingeniero de software',
+    'integraciones',
+    'inteligencia artificial',
+    'automatización de procesos',
+    'CI/CD',
+    'despliegue de software',
     'web app',
-    'app mobile',
-    'UX design',
     'ecommerce',
-    'proyectos digitales',
     'José Tepáz',
   ],
   authors: [{ name: 'José Tepáz', url: 'https://josetepaz.com' }],
   openGraph: {
-    title: 'José Tepáz — Consultor de Proyectos Digitales',
-    description: 'De la idea al producto digital. Yo orquesto todo el proceso.',
+    title: 'José Tepáz — Forward Deployed Engineer',
+    description: 'Del problema a producción.',
     url: 'https://josetepaz.com',
     siteName: 'José Tepáz',
     locale: 'es_GT',
@@ -42,8 +44,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'José Tepáz — Consultor de Proyectos Digitales',
-    description: 'De la idea al producto digital. Yo orquesto todo el proceso.',
+    title: 'José Tepáz — Forward Deployed Engineer',
+    description: 'Del problema a producción.',
   },
 }
 
@@ -53,13 +55,19 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es" className={`${archivo.variable} ${spaceGrotesk.variable}`}>
-      <body className="font-body antialiased">
-        <MouseGlow />
-        <div className="relative overflow-x-hidden">
-        {children}
-        </div>
-       
+    <html lang="es" className={`${sans.variable} ${mono.variable}`}>
+      <body className="font-body antialiased bg-paper text-ink">
+        <MotionProvider>
+          <IntroProvider>
+            <Loader />
+            <ScrollProgress />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none fixed inset-3 sm:inset-7 z-40 border border-line"
+            />
+            <div className="relative overflow-x-clip">{children}</div>
+          </IntroProvider>
+        </MotionProvider>
       </body>
     </html>
   )

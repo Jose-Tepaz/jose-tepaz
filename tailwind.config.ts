@@ -9,37 +9,35 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        heading: ['var(--font-archivo)', 'sans-serif'],
-        body: ['var(--font-space-grotesk)', 'sans-serif'],
+        heading: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        body: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
       },
       colors: {
-        brand: '#6366F1',
-        'brand-light': '#818CF8',
-        'brand-violet': '#8B5CF6',
+        paper: '#F5F5ED',
+        surface: '#FBFBF7',
+        sunken: '#EAEAE1',
+        ink: '#282828',
+        muted: '#626260',
+        subtle: '#8F8F8B',
+        line: '#D0D0C8',
+        accent: {
+          DEFAULT: '#FA3600',
+          soft: '#FFE9E2',
+        },
       },
       animation: {
-        'fade-up': 'fadeUp 0.7s ease forwards',
-        'fade-in': 'fadeIn 0.7s ease forwards',
-        'glow-pulse': 'glowPulse 6s ease-in-out infinite alternate',
-        'float': 'float 8s ease-in-out infinite',
+        marquee: 'marquee 40s linear infinite',
       },
       keyframes: {
-        fadeUp: {
-          from: { opacity: '0', transform: 'translateY(24px)' },
-          to: { opacity: '1', transform: 'translateY(0)' },
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-25%)' },
         },
-        fadeIn: {
-          from: { opacity: '0' },
-          to: { opacity: '1' },
-        },
-        glowPulse: {
-          '0%': { opacity: '0.3', transform: 'scale(1)' },
-          '100%': { opacity: '0.6', transform: 'scale(1.1)' },
-        },
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-12px)' },
-        },
+      },
+      boxShadow: {
+        card: '0 1px 2px rgba(40,40,40,0.04), 0 8px 24px -12px rgba(40,40,40,0.08)',
+        lift: '0 2px 4px rgba(40,40,40,0.04), 0 24px 48px -20px rgba(40,40,40,0.18)',
       },
     },
   },

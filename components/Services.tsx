@@ -1,128 +1,94 @@
 'use client'
 
-import { Monitor, Smartphone, ShoppingBag, MousePointerClick } from 'lucide-react'
-import { useInView } from '@/hooks/useInView'
-import { cn } from '@/lib/utils'
+import { Monitor, Smartphone, ShoppingBag, MousePointerClick, ArrowUpRight } from 'lucide-react'
+import { Cell, Grid, SectionHeader, sectionX } from '@/components/Grid'
 
 const services = [
   {
     icon: Monitor,
-    title: 'Web App',
+    title: 'Soluciones a la medida',
     description:
-      'Aplicaciones web para procesos internos, B2B y B2C. Desde un MVP para validar tu idea hasta sistemas complejos que escalan con tu negocio.',
-    features: ['SaaS', 'Plataformas B2B', 'Dashboards', 'MVPs'],
-    gradient: 'from-indigo-500/20 to-violet-500/5',
-    border: 'border-indigo-500/20',
-    iconBg: 'bg-indigo-500/10 border-indigo-500/25',
-    iconColor: 'text-indigo-400',
+      'Web apps, plataformas internas y herramientas hechas para tu operación. Desde un MVP hasta sistemas complejos que escalan con tu negocio.',
+    features: ['Web App', 'Plataformas', 'MVPs', 'Dashboards'],
   },
   {
     icon: Smartphone,
-    title: 'App Mobile',
+    title: 'Integración de sistemas',
     description:
-      'Apps iOS y Android con experiencia nativa. Tu producto en el bolsillo de tus usuarios, construido para rendimiento y facilidad de uso.',
-    features: ['iOS & Android', 'React Native', 'UX nativa', 'App Store'],
-    gradient: 'from-violet-500/20 to-purple-500/5',
-    border: 'border-violet-500/20',
-    iconBg: 'bg-violet-500/10 border-violet-500/25',
-    iconColor: 'text-violet-400',
+      'Conecto APIs, bases de datos y herramientas existentes para que tu producto viva dentro de tu ecosistema real, no al margen.',
+    features: ['APIs', 'Datos', 'IA', 'Automatizaciones'],
   },
   {
     icon: ShoppingBag,
-    title: 'Sitio Web & E-commerce',
+    title: 'Despliegue a producción',
     description:
-      'Presencia digital que convierte. Desde landing pages hasta tiendas online completas en Shopify o Webflow, con diseño que refleja tu marca.',
-    features: ['Shopify', 'Webflow', 'Landing pages', 'E-commerce'],
-    gradient: 'from-emerald-500/15 to-teal-500/5',
-    border: 'border-emerald-500/20',
-    iconBg: 'bg-emerald-500/10 border-emerald-500/25',
-    iconColor: 'text-emerald-400',
+      'Entornos, CI/CD, hosting y lanzamiento. Todo el camino de "funciona" a "funcionando para usuarios reales", con monitoreo y rollback.',
+    features: ['CI/CD', 'Cloud', 'Staging', 'Monitoring'],
   },
   {
     icon: MousePointerClick,
-    title: 'Mejora de UX',
+    title: 'Liderazgo técnico',
     description:
-      'Auditoría y rediseño de productos existentes. Identifico dónde pierdes usuarios y propongo mejoras que aumentan la conversión y reducen la fricción.',
-    features: ['UX Audit', 'Rediseño', 'Prototipos', 'A/B testing'],
-    gradient: 'from-orange-500/15 to-amber-500/5',
-    border: 'border-orange-500/20',
-    iconBg: 'bg-orange-500/10 border-orange-500/25',
-    iconColor: 'text-orange-400',
+      'Dirijo equipos o trabajo dentro del tuyo: decisiones de arquitectura y coordinación entre diseño, desarrollo y negocio.',
+    features: ['Arquitectura', 'Equipos', 'Roadmap', 'UX'],
   },
 ]
 
 export default function Services() {
-  const { ref, inView } = useInView()
-
   return (
-    <section
-      id="servicios"
-      ref={ref as React.RefObject<HTMLElement>}
-      className="relative py-24 px-6"
-    >
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className={cn('max-w-2xl mb-16 reveal', inView && 'visible')}>
-          <p className="text-indigo-400 text-sm font-medium tracking-widest uppercase mb-4">
-            Servicios
-          </p>
-          <h2 className="font-heading font-bold text-4xl sm:text-5xl text-zinc-50 leading-tight mb-5">
-            Lo que puedo{' '}
-            <span className="gradient-text">construir contigo</span>
-          </h2>
-          <p className="text-zinc-400 text-lg leading-relaxed">
-            No elijo tecnología por moda — la elijo en función de lo que tu
-            proyecto necesita para llegar al mercado de la manera correcta.
-          </p>
-        </div>
+    <section id="servicios" className={`relative py-28 ${sectionX}`}>
+      <SectionHeader
+        index="03"
+        eyebrow="Servicios"
+        lines={[
+          'Lo que hago',
+          <span key="c" className="text-accent">
+            dentro de tu equipo
+          </span>,
+        ]}
+      >
+        Trabajo embebido contigo: desde entender el problema hasta mantener la solución viva en
+        producción.
+      </SectionHeader>
 
-        {/* Service cards */}
-        <div className="grid sm:grid-cols-2 gap-6">
-          {services.map((service, i) => {
-            const Icon = service.icon
-            return (
-              <div
-                key={service.title}
-                className={cn(
-                  `relative overflow-hidden rounded-2xl border ${service.border} bg-gradient-to-br ${service.gradient} p-8 cursor-pointer group reveal transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20`,
-                  inView && 'visible',
-                  i === 0 && 'reveal-delay-1',
-                  i === 1 && 'reveal-delay-2',
-                  i === 2 && 'reveal-delay-3',
-                  i === 3 && 'reveal-delay-4'
-                )}
-                style={{ background: 'rgba(24,24,27,0.4)', backdropFilter: 'blur(12px)' }}
-              >
-                {/* Icon */}
-                <div
-                  className={`w-12 h-12 rounded-xl ${service.iconBg} border flex items-center justify-center mb-6`}
-                >
-                  <Icon size={22} className={service.iconColor} />
+      <Grid cols="sm:grid-cols-2">
+        {services.map((s, i) => {
+          const Icon = s.icon
+          return (
+            <Cell key={s.title} label={s.title} index={i + 1}>
+              <div className="flex flex-1 flex-col justify-between gap-12 p-9">
+                <div className="flex items-start justify-between">
+                  <div className="w-12 h-12 border border-line bg-surface flex items-center justify-center transition-colors duration-500 group-hover:bg-accent group-hover:border-accent">
+                    <Icon
+                      size={22}
+                      strokeWidth={1.6}
+                      className="text-ink transition-colors duration-500 group-hover:text-white"
+                    />
+                  </div>
+                  <ArrowUpRight
+                    size={20}
+                    className="text-subtle transition-all duration-500 group-hover:text-ink group-hover:translate-x-1 group-hover:-translate-y-1"
+                  />
                 </div>
-
-                <h3 className="font-heading font-bold text-2xl text-zinc-50 mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-zinc-400 text-base leading-relaxed mb-6">
-                  {service.description}
-                </p>
-
-                {/* Feature tags */}
-                <div className="flex flex-wrap gap-2">
-                  {service.features.map((f) => (
-                    <span
-                      key={f}
-                      className="px-2.5 py-1 rounded-md bg-zinc-900/60 border border-zinc-700/60 text-zinc-400 text-xs"
-                    >
-                      {f}
-                    </span>
-                  ))}
+                <div>
+                  <h3 className="font-heading text-3xl text-ink mb-3">{s.title}</h3>
+                  <p className="text-muted leading-relaxed mb-8 max-w-xl">{s.description}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {s.features.map((f) => (
+                      <span
+                        key={f}
+                        className="px-2.5 py-1 border border-line text-muted font-mono text-[11px] uppercase tracking-wide"
+                      >
+                        {f}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
-            )
-          })}
-        </div>
-      </div>
+            </Cell>
+          )
+        })}
+      </Grid>
     </section>
   )
 }

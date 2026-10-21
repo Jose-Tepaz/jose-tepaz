@@ -1,71 +1,74 @@
 'use client'
 
-import { Calendar, MessageCircle, ArrowRight } from 'lucide-react'
-import { useInView } from '@/hooks/useInView'
-import { cn } from '@/lib/utils'
+import { motion } from 'motion/react'
+import { Calendar, ArrowRight } from 'lucide-react'
+import { MaskLines, Reveal, ease } from '@/components/motion'
 
 export default function CTA() {
-  const { ref, inView } = useInView()
-
   return (
-    <section
-      id="contacto"
-      ref={ref as React.RefObject<HTMLElement>}
-      className="relative py-24 px-6 overflow-hidden"
-    >
-      {/* Background */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
+    <section id="contacto" className="relative py-28 px-6 sm:px-[60px]">
+      <motion.div
+        initial={{ opacity: 0, y: 40, scale: 0.98 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 1.1, ease }}
+        className="relative w-full overflow-hidden bg-ink px-6 py-24 sm:py-28 text-center"
       >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full bg-indigo-600/15 blur-[100px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[300px] rounded-full bg-violet-600/10 blur-[80px]" />
-      </div>
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-accent/40 blur-[120px]" />
+        </div>
 
-      <div className="relative max-w-3xl mx-auto text-center">
-        <div className={cn('reveal', inView && 'visible')}>
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-xs font-medium mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-            Disponible para nuevos proyectos
-          </div>
+        <div className="relative max-w-3xl mx-auto">
+          <Reveal>
+            <div className="inline-flex items-center gap-2.5 px-4 py-2 border border-white/15 bg-white/5 text-white/70 text-xs font-medium mb-10">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60 animate-ping" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+              </span>
+              Disponible para nuevos proyectos
+            </div>
+          </Reveal>
 
-          <h2 className="font-heading font-black text-5xl sm:text-6xl md:text-7xl text-zinc-50 leading-[1.05] mb-6">
-            ¿Tienes una idea?
-            <br />
-            <span className="gradient-text">Hablemos.</span>
+          <h2 className="font-heading text-5xl sm:text-6xl md:text-7xl text-white mb-8">
+            <MaskLines
+              lines={[
+                '¿Tienes un problema',
+                <span key="h" className="text-[#FF7A57]">
+                  por resolver?
+                </span>,
+              ]}
+            />
           </h2>
 
-          <p className="text-zinc-400 text-xl leading-relaxed mb-12 max-w-xl mx-auto">
-            Una llamada de 30 minutos es suficiente para entender tu proyecto y
-            decirte con honestidad si puedo ayudarte — y cómo.
-          </p>
+          <Reveal delay={0.15}>
+            <p className="text-white/65 text-lg sm:text-xl leading-relaxed mb-12 max-w-xl mx-auto">
+              Una llamada de 30 minutos basta para entender tu caso y decirte con honestidad si
+              puedo ayudarte, y cómo.
+            </p>
 
-          {/* CTA buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="https://calendly.com/josetepaz28/30min"
               target="_blank"
               rel="noopener noreferrer"
-              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-xl bg-brand hover:bg-brand-light text-white font-semibold text-base transition-all duration-200 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 cursor-pointer"
+              className="group inline-flex items-center gap-3 pl-7 pr-3 py-3 bg-white text-ink font-medium text-base hover:bg-paper transition-colors duration-300"
             >
               <Calendar size={18} />
               Agenda una llamada gratuita
-              <ArrowRight
-                size={16}
-                className="group-hover:translate-x-1 transition-transform duration-200"
-              />
+              <span className="flex h-9 w-9 items-center justify-center bg-ink text-white">
+                <ArrowRight
+                  size={16}
+                  className="transition-transform duration-300 group-hover:translate-x-0.5"
+                />
+              </span>
             </a>
-          
-          </div>
 
-          {/* Reassurance */}
-          <p className="mt-8 text-zinc-600 text-sm">
-            Sin compromisos. Si no soy la persona correcta para tu proyecto, te
-            lo digo y te ayudo a encontrar quién sí lo es.
-          </p>
+            <p className="mt-10 text-white/45 text-sm max-w-md mx-auto">
+              Sin compromisos. Si no soy la persona correcta para tu proyecto, te lo digo y te
+              ayudo a encontrar quién sí lo es.
+            </p>
+          </Reveal>
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

@@ -1,89 +1,100 @@
 'use client'
 
+import type { CSSProperties, ReactNode } from 'react'
 import { ArrowRight, Calendar } from 'lucide-react'
+import { Counter } from '@/components/motion'
+
+const stats = [
+  { to: 6, suffix: '+', label: 'años de experiencia' },
+  { to: 60, suffix: '+', label: 'proyectos lanzados' },
+  { to: 3, suffix: '', label: 'continentes atendidos' },
+]
+
+const titleLines: ReactNode[] = [
+  'De la idea ,',
+  <span key="p" className="text-accent">
+    al producto digital
+  </span>,
+]
+
+// La entrada es CSS puro (ver .intro-* en globals.css): no depende de que React hidrate.
+const delay = (d: number) => ({ '--d': `${d}s` }) as CSSProperties
 
 export default function Hero() {
-
   return (
-    <section className="relative min-h-screen flex items-center justify-center  pt-24 pb-20 px-6">
-      {/* Background orbs */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 overflow-hidden"
-      >
-        <div className="animate-glow-pulse absolute -top-40 left-1/4 w-[500px] h-[500px] rounded-full bg-indigo-600/20 blur-[100px]" />
-        <div className="animate-glow-pulse absolute top-20 right-1/4 w-[400px] h-[400px] rounded-full bg-violet-600/15 blur-[100px]" style={{ animationDelay: '2s' }} />
-        
+    <section className="relative min-h-screen flex items-center justify-center pt-36 pb-24 px-6 sm:px-[60px] overflow-hidden">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <div className="grid-lines absolute inset-0" />
+        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[900px] h-[520px] bg-accent/[0.09] blur-[120px]" />
       </div>
 
-      {/* Dot grid */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage:
-            'radial-gradient(circle, rgba(99,102,241,0.08) 1px, transparent 1px)',
-          backgroundSize: '40px 40px',
-        }}
-      />
-
-      <div className="relative z-10 max-w-4xl mx-auto text-center">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-xs font-medium tracking-wide mb-8">
-          <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
-          Consultor de Proyectos Digitales
+      <div className="relative z-10 w-full text-center">
+        <div
+          style={delay(0.1)}
+          className="intro-fade inline-flex items-center gap-2.5 px-4 py-2 border border-line bg-surface/70 backdrop-blur text-muted font-mono text-xs uppercase tracking-[0.14em] mb-10 shadow-card"
+        >
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full rounded-full bg-accent opacity-60 animate-ping" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+          </span>
+          Forward Deployed Engineer
         </div>
 
-        {/* Headline */}
-        <h1 className="font-heading font-black text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.05] tracking-tight text-zinc-50 mb-6">
-          De la idea al
-          <br />
-          <span className="gradient-text">producto digital</span>
+        <h1 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-[7.5rem] text-ink mb-8">
+          {titleLines.map((line, i) => (
+            <span key={i} className="block overflow-hidden py-[0.12em] -my-[0.12em]">
+              <span className="intro-line block" style={{ '--i': i } as CSSProperties}>
+                {line}
+              </span>
+            </span>
+          ))}
         </h1>
 
-        {/* Subheadline */}
-        <p className="max-w-3x2 mx-auto text-lg sm:text-xl text-zinc-400 leading-relaxed mb-10">
-          Como consultor orquesto la experiencia digital completa, desde la idea hasta el lanzamiento, sin que tengas que preocuparte por los detalles técnicos, la gestión delproyecto y la comunicación con el equipo.
+        <p
+          style={delay(0.5)}
+          className="intro-fade max-w-[600px] mx-auto text-lg sm:text-xl text-muted leading-relaxed mb-12"
+        >
+          Me integro a tu equipo, entiendo el problema de negocio y llevo la solución a
+          producción: construida, conectada a tus sistemas y funcionando en tu entorno real.
         </p>
 
-        {/* CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div
+          style={delay(0.65)}
+          className="intro-fade flex flex-col sm:flex-row items-center justify-center gap-4"
+        >
           <a
             href="https://calendly.com/josetepaz28/30min"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-brand hover:bg-brand-light text-white font-semibold text-base transition-all duration-200 shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 cursor-pointer"
+            className="group inline-flex items-center gap-3 pl-6 pr-3 py-3 bg-ink text-paper font-medium text-base hover:bg-accent transition-colors duration-300 shadow-lift"
           >
             <Calendar size={18} />
             Agenda una llamada gratuita
-            <ArrowRight
-              size={16}
-              className="group-hover:translate-x-1 transition-transform duration-200"
-            />
+            <span className="flex h-9 w-9 items-center justify-center bg-paper/15 group-hover:bg-paper/25 transition-colors">
+              <ArrowRight
+                size={16}
+                className="transition-transform duration-300 group-hover:translate-x-0.5"
+              />
+            </span>
           </a>
-          
         </div>
 
-        {/* Social proof */}
-        <div className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-8 text-sm text-zinc-500">
-          <div className="flex items-center gap-2">
-            <span className="font-heading font-bold text-2xl text-zinc-200">6+</span>
-            <span>años de experiencia</span>
-          </div>
-          <div className="hidden sm:block w-px h-8 bg-zinc-800" />
-          <div className="flex items-center gap-2">
-            <span className="font-heading font-bold text-2xl text-zinc-200">60+</span>
-            <span>proyectos lanzados</span>
-          </div>
-          <div className="hidden sm:block w-px h-8 bg-zinc-800" />
-          <div className="flex items-center gap-2">
-            <span className="font-heading font-bold text-2xl text-zinc-200">3</span>
-            <span>continentes atendidos</span>
-          </div>
-        </div>
+        <dl
+          style={delay(0.8)}
+          className="intro-fade mt-24 w-full grid grid-cols-3 border-t border-l border-line text-left"
+        >
+          {stats.map((s) => (
+            <div key={s.label} className="border-r border-b border-line px-4 py-6 sm:px-7 sm:py-8">
+              <dt className="font-heading text-5xl sm:text-6xl text-ink tabular-nums">
+                <Counter to={s.to} suffix={s.suffix} startAt={2800} />
+              </dt>
+              <dd className="mt-2 font-mono text-[11px] sm:text-xs uppercase tracking-[0.12em] text-muted">
+                {s.label}
+              </dd>
+            </div>
+          ))}
+        </dl>
       </div>
-
-    
     </section>
   )
 }

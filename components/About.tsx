@@ -1,106 +1,95 @@
 'use client'
 
-import { CheckCircle2, MapPin, Music } from 'lucide-react'
-import { useInView } from '@/hooks/useInView'
-import { cn } from '@/lib/utils'
 import Image from 'next/image'
-
-const highlights = [
-  'Conecto la visión de negocio con la ejecución técnica',
-  'Coordino diseñadores, desarrolladores y stakeholders',
-  'Tomo decisiones técnicas informadas por el negocio',
-  'Entrego proyectos con estructura, no con improvisación',
-]
+import { motion } from 'motion/react'
+import { MapPin } from 'lucide-react'
+import { Eyebrow, Reveal, Stagger, StaggerItem, MaskLines, ease } from '@/components/motion'
 
 const skills = [
-  'Product Strategy',
-  'UX/UI Design',
-  'Web Development',
-  'Mobile Apps',
-  'E-commerce',
-  'Automatizaciones',
-  'Figma',
+  'Next.js',
+  'React',
+  'MongoDB',
+  'IA & LLMs',
+  'Agentes',
+  'n8n',
+  'APIs',
+  'CI/CD',
+  'Vercel',
   'Shopify',
   'Webflow',
-  'React / Next.js',
+  'Automatizaciones',
+  'Figma',
+  'Product Strategy',
 ]
 
 export default function About() {
-  const { ref, inView } = useInView()
-
   return (
-    <section
-      id="sobre-mi"
-      ref={ref as React.RefObject<HTMLElement>}
-      className="relative py-24 px-6"
-    >
-      {/* Background */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-violet-900/10 blur-[120px]"
-      />
-
-      <div className="relative max-w-6xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left: visual */}
-          <div className={cn('reveal', inView && 'visible')}>
-            {/* Avatar placeholder */}
-            <div className="relative w-full  mx-auto lg:mx-0">
-              <div className="w-full aspect-square rounded-3xl bg-gradient-to-br from-indigo-900/40 via-zinc-900 to-violet-900/30 border border-zinc-800 overflow-hidden flex items-center justify-center">
-                {/* Initials avatar */}
-                <div className="text-center flex flex-col items-center justify-center">
-                  <Image src="/img/profile.JPG" alt="José Tepáz" width={500} height={500} className="rounded-full  w-[250px] h-[250px] object-cover mb-4 md:w-[400px] md:h-[400px]" />
-                  <p className="font-heading font-semibold text-zinc-300 text-lg">
-                    José Tepáz
-                  </p>
-                  <p className="text-zinc-500 text-sm mt-1 flex items-center justify-center gap-1.5">
-                    <MapPin size={12} />
-                    Guatemala
-                  </p>
-                </div>
+    <section id="sobre-mi" className="relative py-28 px-6 sm:px-[60px] bg-sunken">
+      <div className="w-full">
+        <div className="grid lg:grid-cols-[5fr_6fr] gap-16 lg:gap-24 items-center">
+          <motion.div
+            initial={{ clipPath: 'inset(12% 12% 12% 12%)', opacity: 0 }}
+            whileInView={{ clipPath: 'inset(0% 0% 0% 0%)', opacity: 1 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 1.3, ease }}
+            className="relative"
+          >
+            <div className="relative aspect-[4/5] w-full overflow-hidden bg-surface shadow-lift">
+              <Image
+                src="/img/profile.jpeg"
+                alt="José Tepáz"
+                fill
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-ink/70 to-transparent">
+                <p className="font-heading text-3xl text-white">José Tepáz</p>
+                <p className="mt-1 flex items-center gap-1.5 text-sm text-white/80">
+                  <MapPin size={13} />
+                  Guatemala
+                </p>
               </div>
-
-              {/* Floating badge */}
-              
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right: content */}
-          <div className={cn('reveal reveal-delay-2', inView && 'visible')}>
-            <p className="text-indigo-400 text-sm font-medium tracking-widest uppercase mb-4">
-              Sobre mí
-            </p>
-            <h2 className="font-heading font-bold text-4xl sm:text-5xl text-zinc-50 leading-tight mb-6">
-              No soy solo un consultor.{' '}
-              <span className="gradient-text">Soy tu socio estratégico.</span>
+          <div>
+            <Reveal>
+              <Eyebrow index="06">Sobre mí</Eyebrow>
+            </Reveal>
+            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl text-ink mb-8">
+              <MaskLines
+                lines={[
+                  'Me integro a tu equipo',
+                  <span key="s" className="text-accent">
+                    hasta que funciona.
+                  </span>,
+                ]}
+              />
             </h2>
 
-            <p className="text-zinc-400 text-lg leading-relaxed mb-6">
-              Soy José Tepáz, consultor de proyectos digitales con más de 6 años
-              llevando ideas al mercado. He trabajado con empresas en Guatemala,
-              Latinoamérica, Estados Unidos y Europa — desde startups en etapa temprana hasta
-              empresas consolidadas transformando su presencia digital.
-            </p>
+            <Reveal delay={0.1}>
+              <p className="text-ink/80 text-lg leading-relaxed mb-5">
+                Soy José Tepáz, Forward Deployed Engineer con más de 6 años llevando soluciones a
+                producción dentro de los equipos de mis clientes. He trabajado con empresas en
+                Guatemala, Latinoamérica, Estados Unidos y Europa, desde startups en etapa
+                temprana hasta empresas consolidadas.
+              </p>
+              <p className="text-muted leading-relaxed mb-10">
+                Diseño, desarrollo y dirijo equipos, solo o acompañando al tuyo, apoyándome en IA y automatización para acelerar cada etapa. Mi valor está en
+                entender a la vez el problema del negocio y la tecnología, y en responder por el
+                resultado en producción.
+              </p>
+            </Reveal>
 
-            <p className="text-zinc-400 text-base leading-relaxed mb-8">
-              Mi valor no está solo en saber diseñar o programar — está en saber
-              qué construir, cuándo, y por qué. Soy el punto de convergencia
-              entre tu equipo, tu tecnología y tus usuarios.
-            </p>
-
-            
-
-            {/* Skills */}
-            <div className="flex flex-wrap gap-2">
+            <Stagger className="flex flex-wrap gap-2">
               {skills.map((skill) => (
-                <span
-                  key={skill}
-                  className="px-3 py-1.5 rounded-lg bg-zinc-800 border border-zinc-700 text-zinc-300 text-sm"
-                >
-                  {skill}
-                </span>
+                <StaggerItem key={skill}>
+                  <span className="inline-block px-4 py-2 bg-surface border border-line text-ink/80 text-sm transition-colors duration-300 hover:border-ink/30">
+                    {skill}
+                  </span>
+                </StaggerItem>
               ))}
-            </div>
+            </Stagger>
           </div>
         </div>
       </div>
