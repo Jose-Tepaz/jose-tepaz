@@ -42,7 +42,7 @@ export default function ScrollPhrase() {
 
   return (
     <div ref={ref} className="relative h-[260vh]">
-      <div className="sticky top-0 h-screen flex items-center justify-center px-6">
+      <div className="sticky top-0 h-dvh flex items-center justify-center px-6">
         <p className="font-heading text-4xl sm:text-5xl lg:text-6xl max-w-5xl text-center">
           {words.map((item, i) => (
             <Word

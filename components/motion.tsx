@@ -100,24 +100,27 @@ export function MaskLines({
   immediate?: boolean
 }) {
   const introDone = useIntroDone()
+  // El disparador va en el contenedor (sin recorte). Si se observara el texto, que está
+  // desplazado fuera de su máscara con overflow:hidden, WebKit lo daría por no visible.
   const trigger = immediate
-    ? { animate: { y: introDone ? '0%' : '110%' } }
-    : { whileInView: { y: '0%' }, viewport: { once: true, margin: '-80px' } }
+    ? { animate: introDone ? 'show' : 'hidden' }
+    : { whileInView: 'show', viewport: { once: true, margin: '-80px' } }
   return (
-    <span className={className}>
+    <motion.span className={`block ${className ?? ''}`} initial="hidden" {...trigger}>
       {lines.map((line, i) => (
         <span key={i} className="block overflow-hidden py-[0.12em] -my-[0.12em]">
           <motion.span
             className="block"
-            initial={{ y: '110%' }}
-            {...trigger}
-            transition={{ duration: 1.1, ease, delay: delay + i * 0.12 }}
+            variants={{
+              hidden: { y: '110%' },
+              show: { y: '0%', transition: { duration: 1.1, ease, delay: delay + i * 0.12 } },
+            }}
           >
             {line}
           </motion.span>
         </span>
       ))}
-    </span>
+    </motion.span>
   )
 }
 

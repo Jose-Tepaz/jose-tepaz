@@ -73,7 +73,7 @@ function Tile({ def, index, p }: { def: TileDef; index: number; p: MotionValue<n
   const end = 0.5 + index * 0.004
   const o = { ease: easeInOut }
   const x = useTransform(p, [0.02, end], [`${def.x}vw`, '0vw'], o)
-  const y = useTransform(p, [0.02, end], [`${def.y}vh`, '14vh'], o)
+  const y = useTransform(p, [0.02, end], [`${def.y}dvh`, '14dvh'], o)
   const rotate = useTransform(p, [0.02, end], [def.rot, 0], o)
   const rotateY = useTransform(p, [0.02, end], [def.rotY, 0], o)
   const scale = useTransform(p, [0.02, end], [1, 0.3], o)
@@ -84,7 +84,7 @@ function Tile({ def, index, p }: { def: TileDef; index: number; p: MotionValue<n
     <motion.div
       aria-hidden="true"
       style={{ x, y, rotate, rotateY, scale, opacity, filter, transformPerspective: 900 }}
-      className={`absolute left-1/2 top-[36vh] -ml-10 -mt-10 sm:-ml-16 sm:-mt-16 h-20 w-20 sm:h-32 sm:w-32 items-center justify-center border border-line bg-surface shadow-lift ${
+      className={`absolute left-1/2 top-[36dvh] -ml-10 -mt-10 sm:-ml-16 sm:-mt-16 h-20 w-20 sm:h-32 sm:w-32 items-center justify-center border border-line bg-surface shadow-lift ${
         def.mobile ? 'flex' : 'hidden sm:flex'
       }`}
     >
@@ -110,7 +110,7 @@ export default function ToolStack() {
 
   const titleA = useTransform(p, [0.26, 0.4], [1, 0])
   const titleAy = useTransform(p, [0.26, 0.4], [0, -24])
-  const windowY = useTransform(p, [0.3, 0.8], ['58vh', '0vh'], { ease: easeInOut })
+  const windowY = useTransform(p, [0.3, 0.8], ['58dvh', '0dvh'], { ease: easeInOut })
   const sideOpacity = useTransform(p, [0.6, 0.7], [0, 1])
   const mainOpacity = useTransform(p, [0.66, 0.76], [0, 1])
 
@@ -120,14 +120,14 @@ export default function ToolStack() {
       aria-label="Herramientas que domino"
       className="relative h-[340vh] border-t border-line"
     >
-      <div className="sticky top-0 h-screen overflow-hidden">
+      <div className="sticky top-0 h-dvh overflow-hidden">
         {tiles.map((t, i) => (
           <Tile key={t.icon.slug} def={t} index={i} p={p} />
         ))}
 
         <motion.div
           style={{ opacity: titleA, y: titleAy }}
-          className="absolute inset-x-6 top-[36vh] -translate-y-1/2 text-center"
+          className="absolute inset-x-6 top-[36dvh] -translate-y-1/2 text-center"
         >
           <p className="font-mono text-xs uppercase tracking-[0.16em] text-accent mb-5">
             [ Stack tecnológico ]
@@ -143,7 +143,7 @@ export default function ToolStack() {
         <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
         <motion.div
           style={{ y: windowY }}
-          className="pointer-events-auto h-[56vh] w-[min(1040px,92vw)] border border-ink/25 bg-surface shadow-lift"
+          className="pointer-events-auto h-[56dvh] w-[min(1040px,92vw)] border border-ink/25 bg-surface shadow-lift"
         >
           <div className="flex items-center justify-between border-b border-line px-4 py-3 font-mono text-xs">
             <span className="flex items-center gap-2 text-ink">

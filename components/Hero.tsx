@@ -22,7 +22,7 @@ const delay = (d: number) => ({ '--d': `${d}s` }) as CSSProperties
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-36 pb-24 px-6 sm:px-[60px] overflow-hidden">
+    <section className="relative min-h-svh flex items-center justify-center pt-36 pb-24 px-6 sm:px-[60px] overflow-hidden">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <div className="grid-lines absolute inset-0" />
         <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[900px] h-[520px] bg-accent/[0.09] blur-[120px]" />

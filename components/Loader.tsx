@@ -65,9 +65,17 @@ export default function Loader() {
               <span className="font-mono text-xs uppercase tracking-[0.16em] text-muted">
                 Cargando portafolio
               </span>
-              <span className="font-heading text-8xl sm:text-9xl leading-none tabular-nums">
-                <span className="loader-count" />
-                <span className="text-accent text-5xl sm:text-6xl align-top">%</span>
+              <span className="font-heading text-7xl sm:text-9xl leading-none tabular-nums whitespace-nowrap shrink-0">
+                <span className="loader-digits" aria-hidden="true">
+                  <span className="loader-digits-col">
+                    {Array.from({ length: 101 }, (_, n) => (
+                      <span key={n} className="loader-digit">
+                        {n}
+                      </span>
+                    ))}
+                  </span>
+                </span>
+                <span className="text-accent text-4xl sm:text-6xl align-top">%</span>
               </span>
             </div>
             <div className="h-px w-full bg-line">

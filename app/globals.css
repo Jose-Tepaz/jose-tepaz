@@ -65,21 +65,126 @@ body {
   -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 75%);
 }
 
-/* Pantalla de carga: todo corre en CSS para arrancar en el primer paint, sin esperar al JS */
-@property --loader-p {
-  syntax: '<integer>';
-  inherits: false;
-  initial-value: 0;
+/* Pantalla de carga: todo corre en CSS para arrancar en el primer paint, sin esperar al JS.
+   El número es una columna 0–100 que salta con step-end (Safari no anima counter()). */
+.loader-digits {
+  display: inline-block;
+  height: 1em;
+  overflow: hidden;
+  vertical-align: top;
+  text-align: right;
 }
-.loader-count {
-  animation: loader-p 2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
-  counter-reset: loader-p var(--loader-p);
+.loader-digits-col {
+  display: block;
+  animation: loader-digits 2s forwards;
 }
-.loader-count::before {
-  content: counter(loader-p);
+.loader-digit {
+  display: block;
+  height: 1em;
+  line-height: 1;
 }
-@keyframes loader-p {
-  to { --loader-p: 100; }
+@keyframes loader-digits {
+  0.0% { transform: translateY(-0em); animation-timing-function: step-end; }
+  10.54% { transform: translateY(-1em); animation-timing-function: step-end; }
+  14.49% { transform: translateY(-2em); animation-timing-function: step-end; }
+  17.36% { transform: translateY(-3em); animation-timing-function: step-end; }
+  19.68% { transform: translateY(-4em); animation-timing-function: step-end; }
+  21.64% { transform: translateY(-5em); animation-timing-function: step-end; }
+  23.36% { transform: translateY(-6em); animation-timing-function: step-end; }
+  24.89% { transform: translateY(-7em); animation-timing-function: step-end; }
+  26.26% { transform: translateY(-8em); animation-timing-function: step-end; }
+  27.52% { transform: translateY(-9em); animation-timing-function: step-end; }
+  28.68% { transform: translateY(-10em); animation-timing-function: step-end; }
+  29.75% { transform: translateY(-11em); animation-timing-function: step-end; }
+  30.76% { transform: translateY(-12em); animation-timing-function: step-end; }
+  31.69% { transform: translateY(-13em); animation-timing-function: step-end; }
+  32.58% { transform: translateY(-14em); animation-timing-function: step-end; }
+  33.41% { transform: translateY(-15em); animation-timing-function: step-end; }
+  34.2% { transform: translateY(-16em); animation-timing-function: step-end; }
+  34.95% { transform: translateY(-17em); animation-timing-function: step-end; }
+  35.66% { transform: translateY(-18em); animation-timing-function: step-end; }
+  36.34% { transform: translateY(-19em); animation-timing-function: step-end; }
+  36.99% { transform: translateY(-20em); animation-timing-function: step-end; }
+  37.62% { transform: translateY(-21em); animation-timing-function: step-end; }
+  38.22% { transform: translateY(-22em); animation-timing-function: step-end; }
+  38.79% { transform: translateY(-23em); animation-timing-function: step-end; }
+  39.35% { transform: translateY(-24em); animation-timing-function: step-end; }
+  39.89% { transform: translateY(-25em); animation-timing-function: step-end; }
+  40.41% { transform: translateY(-26em); animation-timing-function: step-end; }
+  40.91% { transform: translateY(-27em); animation-timing-function: step-end; }
+  41.4% { transform: translateY(-28em); animation-timing-function: step-end; }
+  41.87% { transform: translateY(-29em); animation-timing-function: step-end; }
+  42.34% { transform: translateY(-30em); animation-timing-function: step-end; }
+  42.78% { transform: translateY(-31em); animation-timing-function: step-end; }
+  43.22% { transform: translateY(-32em); animation-timing-function: step-end; }
+  43.65% { transform: translateY(-33em); animation-timing-function: step-end; }
+  44.07% { transform: translateY(-34em); animation-timing-function: step-end; }
+  44.48% { transform: translateY(-35em); animation-timing-function: step-end; }
+  44.88% { transform: translateY(-36em); animation-timing-function: step-end; }
+  45.28% { transform: translateY(-37em); animation-timing-function: step-end; }
+  45.66% { transform: translateY(-38em); animation-timing-function: step-end; }
+  46.05% { transform: translateY(-39em); animation-timing-function: step-end; }
+  46.42% { transform: translateY(-40em); animation-timing-function: step-end; }
+  46.79% { transform: translateY(-41em); animation-timing-function: step-end; }
+  47.16% { transform: translateY(-42em); animation-timing-function: step-end; }
+  47.52% { transform: translateY(-43em); animation-timing-function: step-end; }
+  47.88% { transform: translateY(-44em); animation-timing-function: step-end; }
+  48.24% { transform: translateY(-45em); animation-timing-function: step-end; }
+  48.6% { transform: translateY(-46em); animation-timing-function: step-end; }
+  48.95% { transform: translateY(-47em); animation-timing-function: step-end; }
+  49.3% { transform: translateY(-48em); animation-timing-function: step-end; }
+  49.65% { transform: translateY(-49em); animation-timing-function: step-end; }
+  50.0% { transform: translateY(-50em); animation-timing-function: step-end; }
+  50.35% { transform: translateY(-51em); animation-timing-function: step-end; }
+  50.7% { transform: translateY(-52em); animation-timing-function: step-end; }
+  51.05% { transform: translateY(-53em); animation-timing-function: step-end; }
+  51.4% { transform: translateY(-54em); animation-timing-function: step-end; }
+  51.76% { transform: translateY(-55em); animation-timing-function: step-end; }
+  52.12% { transform: translateY(-56em); animation-timing-function: step-end; }
+  52.48% { transform: translateY(-57em); animation-timing-function: step-end; }
+  52.84% { transform: translateY(-58em); animation-timing-function: step-end; }
+  53.21% { transform: translateY(-59em); animation-timing-function: step-end; }
+  53.58% { transform: translateY(-60em); animation-timing-function: step-end; }
+  53.95% { transform: translateY(-61em); animation-timing-function: step-end; }
+  54.34% { transform: translateY(-62em); animation-timing-function: step-end; }
+  54.72% { transform: translateY(-63em); animation-timing-function: step-end; }
+  55.12% { transform: translateY(-64em); animation-timing-function: step-end; }
+  55.52% { transform: translateY(-65em); animation-timing-function: step-end; }
+  55.93% { transform: translateY(-66em); animation-timing-function: step-end; }
+  56.35% { transform: translateY(-67em); animation-timing-function: step-end; }
+  56.78% { transform: translateY(-68em); animation-timing-function: step-end; }
+  57.22% { transform: translateY(-69em); animation-timing-function: step-end; }
+  57.66% { transform: translateY(-70em); animation-timing-function: step-end; }
+  58.13% { transform: translateY(-71em); animation-timing-function: step-end; }
+  58.6% { transform: translateY(-72em); animation-timing-function: step-end; }
+  59.09% { transform: translateY(-73em); animation-timing-function: step-end; }
+  59.59% { transform: translateY(-74em); animation-timing-function: step-end; }
+  60.11% { transform: translateY(-75em); animation-timing-function: step-end; }
+  60.65% { transform: translateY(-76em); animation-timing-function: step-end; }
+  61.21% { transform: translateY(-77em); animation-timing-function: step-end; }
+  61.78% { transform: translateY(-78em); animation-timing-function: step-end; }
+  62.38% { transform: translateY(-79em); animation-timing-function: step-end; }
+  63.01% { transform: translateY(-80em); animation-timing-function: step-end; }
+  63.66% { transform: translateY(-81em); animation-timing-function: step-end; }
+  64.34% { transform: translateY(-82em); animation-timing-function: step-end; }
+  65.05% { transform: translateY(-83em); animation-timing-function: step-end; }
+  65.8% { transform: translateY(-84em); animation-timing-function: step-end; }
+  66.59% { transform: translateY(-85em); animation-timing-function: step-end; }
+  67.42% { transform: translateY(-86em); animation-timing-function: step-end; }
+  68.31% { transform: translateY(-87em); animation-timing-function: step-end; }
+  69.24% { transform: translateY(-88em); animation-timing-function: step-end; }
+  70.25% { transform: translateY(-89em); animation-timing-function: step-end; }
+  71.32% { transform: translateY(-90em); animation-timing-function: step-end; }
+  72.48% { transform: translateY(-91em); animation-timing-function: step-end; }
+  73.74% { transform: translateY(-92em); animation-timing-function: step-end; }
+  75.11% { transform: translateY(-93em); animation-timing-function: step-end; }
+  76.64% { transform: translateY(-94em); animation-timing-function: step-end; }
+  78.36% { transform: translateY(-95em); animation-timing-function: step-end; }
+  80.32% { transform: translateY(-96em); animation-timing-function: step-end; }
+  82.64% { transform: translateY(-97em); animation-timing-function: step-end; }
+  85.51% { transform: translateY(-98em); animation-timing-function: step-end; }
+  89.46% { transform: translateY(-99em); animation-timing-function: step-end; }
+  100.0% { transform: translateY(-100em); animation-timing-function: step-end; }
 }
 .loader-bar {
   transform-origin: left;
