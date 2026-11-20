@@ -1,28 +1,37 @@
 'use client'
 
 import { Cell, Grid, SectionHeader, sectionX } from '@/components/Grid'
-import Iso from '@/components/Iso'
+import HairlineFigure, { type HairlineName } from '@/components/HairlineFigure'
 
-const problems = [
+const problems: {
+  figure: HairlineName
+  label: string
+  title: string
+  description: string
+}[] = [
   {
+    figure: 'brecha',
     label: 'Brecha',
     title: 'Negocio y técnica no se hablan',
     description:
       'Los stakeholders piden una cosa y el equipo construye otra. Sin un puente, el producto se desvía.',
   },
   {
+    figure: 'generico',
     label: 'Genérico',
     title: 'Soluciones que no encajan',
     description:
       'Software genérico que no se adapta a tus procesos, sistemas ni datos reales. Termina sin usarse.',
   },
   {
+    figure: 'aislado',
     label: 'Aislado',
     title: 'Sistemas que no se conectan',
     description:
       'APIs, datos y herramientas sueltas. Sin integración, la solución no funciona en el entorno real del cliente.',
   },
   {
+    figure: 'estancado',
     label: 'Estancado',
     title: 'Proyectos que no llegan a producción',
     description:
@@ -32,7 +41,7 @@ const problems = [
 
 export default function Problem() {
   return (
-    <section className={`relative pt-28 pb-10 ${sectionX}`}>
+    <section id="problema" className={`relative pt-28 pb-10 ${sectionX}`}>
       <SectionHeader
         index="01"
         eyebrow="El problema"
@@ -51,7 +60,7 @@ export default function Problem() {
         {problems.map((p, i) => (
           <Cell key={p.label} label={p.label} index={i + 1}>
             <div className="flex items-center justify-center h-72 border-b border-dashed border-line">
-              <Iso variant={i} />
+              <HairlineFigure name={p.figure} />
             </div>
             <div className="flex flex-1 flex-col justify-between gap-6 p-7">
               <h3 className="font-heading text-3xl leading-[1.1] text-ink">{p.title}</h3>

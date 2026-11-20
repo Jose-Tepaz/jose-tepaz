@@ -2,8 +2,9 @@ import type { Metadata } from 'next'
 import { Inter_Tight, Geist_Mono } from 'next/font/google'
 import { MotionProvider, ScrollProgress } from '@/components/motion'
 import { IntroProvider } from '@/components/intro-context'
-import Loader from '@/components/Loader'
 import './globals.css'
+import './studio-reference.css'
+import './studio-adapter.css'
 
 const sans = Inter_Tight({
   subsets: ['latin'],
@@ -59,12 +60,7 @@ export default function RootLayout({
       <body className="font-body antialiased bg-paper text-ink">
         <MotionProvider>
           <IntroProvider>
-            <Loader />
             <ScrollProgress />
-            <div
-              aria-hidden="true"
-              className="pointer-events-none fixed inset-3 sm:inset-7 z-40 border border-line"
-            />
             <div className="relative overflow-x-clip">{children}</div>
           </IntroProvider>
         </MotionProvider>

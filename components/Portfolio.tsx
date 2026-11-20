@@ -8,7 +8,7 @@ import { projects } from '@/lib/content'
 
 export default function Portfolio() {
   return (
-    <section id="trabajo" className={`relative py-28 ${sectionX}`}>
+    <section id="trabajo" className={`vst-work relative py-28 ${sectionX}`}>
       <SectionHeader
         index="05"
         eyebrow="Trabajo selecto"
@@ -27,7 +27,7 @@ export default function Portfolio() {
         {projects.map((p, i) => {
           const body = (
             <>
-              <div className="relative flex h-72 items-center justify-center overflow-hidden border-b border-dashed border-line bg-sunken/60">
+              <div className="project-cover relative flex items-center justify-center overflow-hidden bg-sunken/60">
                 {p.image ? (
                   <Image
                     src={p.image}
@@ -40,7 +40,7 @@ export default function Portfolio() {
                   <Iso variant={i} />
                 )}
               </div>
-              <div className="flex flex-1 flex-col justify-between gap-8 p-7 sm:p-9">
+              <div className="project-copy flex flex-1 flex-col justify-between gap-8">
                 <div className="flex items-start justify-between gap-4">
                   <h3 className="font-heading text-3xl sm:text-4xl text-ink">
                     {p.name}

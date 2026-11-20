@@ -24,31 +24,43 @@ export const clients: Client[] = [
 
 export const projects: Project[] = [
   {
-    name: 'Teknergy',
-    category: 'Web App',
-    description:
-      'Plataforma de gestión energética para empresas industriales. Dashboards en tiempo real, alertas inteligentes y reportes automatizados.',
-    tags: ['Webflow', 'Web App', 'Dashboard'],
+    "name": "Eppigo",
+    "category": "Marketplace de seguros",
+    "description": "Marketplace de seguros para cotizar, comparar y contratar pólizas en línea en Estados Unidos, en pocos pasos.",
+    "tags": [
+      "Marketplace",
+      "Seguros"
+    ],
+    "image": "/images/projects/eppigo-4.png"
   },
   {
-    name: 'Winkelmann',
-    category: 'Sitio Web & E-commerce',
-    description:
-      'Rediseño completo de identidad digital y tienda online para empresa de insumos industriales en Europa.',
-    tags: ['Diseño', 'Desarrollo', 'E-commerce'],
+    "name": "Winkelman",
+    "category": "Sitio web",
+    "description": "Sitio web renovado para presentar con claridad los servicios de ingeniería civil y topografía de Winkelman y facilitar el contacto con sus clientes en Estados Unidos.",
+    "tags": [
+      "Diseño web",
+      "Desarrollo"
+    ],
+    "image": "/images/projects/winkelman-1.png"
   },
   {
-    name: 'Tienda Borgatta',
-    category: 'E-commerce',
-    description:
-      'Tienda de moda construida en Shopify con diseño custom y estrategia de conversión optimizada para mobile.',
-    tags: ['Shopify', 'E-commerce', 'Mobile-first'],
+    "name": "GoAMS",
+    "category": "Plataforma de gestión",
+    "description": "Plataforma de gestión para agencias y agentes de seguros, con un panel para consultar pólizas, clientes, citas y comisiones.",
+    "tags": [
+      "Web App",
+      "Seguros"
+    ],
+    "image": "/images/projects/go-ams.png"
   },
   {
-    name: 'Bales Hay',
-    category: 'UX/UI & App',
-    description:
-      'Aplicación para gestión agrícola. Diseño UX completo y desarrollo en Shopify para conectar productores con compradores.',
-    tags: ['UX/UI Design', 'Shopify', 'Mobile'],
-  },
+    "name": "VSTCONTROL",
+    "category": "Plataforma con IA",
+    "description": "Plataforma de gestión interna para dar seguimiento a facturas vencidas, cuentas por pagar y por cobrar, y al avance de los proyectos. Incluye un asistente de inteligencia artificial para interactuar con la plataforma.",
+    "tags": [
+      "Web App",
+      "IA"
+    ],
+    "image": "/images/projects/plataforma-de-control.png"
+  }
 ]

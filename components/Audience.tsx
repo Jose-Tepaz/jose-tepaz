@@ -27,7 +27,7 @@ const audiences = [
 
 export default function Audience() {
   return (
-    <section className={`relative py-28 border-t border-line ${sectionX}`}>
+    <section id="audiencia" className={`relative py-28 border-t border-line ${sectionX}`}>
       <SectionHeader
         index="05"
         eyebrow="Para quién trabajo"

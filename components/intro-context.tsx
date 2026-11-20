@@ -10,7 +10,7 @@ export const useIntro = () => useContext(IntroContext)
 export const useIntroDone = () => useContext(IntroContext).done
 
 export function IntroProvider({ children }: { children: ReactNode }) {
-  const [done, setDone] = useState(false)
+  const [done, setDone] = useState(true)
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) setDone(true)

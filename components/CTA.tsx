@@ -33,7 +33,7 @@ export default function CTA() {
             <MaskLines
               lines={[
                 '¿Tienes un problema',
-                <span key="h" className="text-[#FF7A57]">
+                <span key="h" className="text-[#80bfff]">
                   por resolver?
                 </span>,
               ]}

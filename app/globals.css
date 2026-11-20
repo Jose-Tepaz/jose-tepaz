@@ -2,6 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Native horizontal scrolling on phones; keep the desktop card grids. */
+@media (max-width: 639px) {
+  .card-rail {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: #0080ff #e6e9ee;
+    padding-bottom: 12px;
+  }
+
+  .card-rail::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .card-grid {
+    grid-auto-flow: column;
+    grid-auto-columns: 88%;
+    grid-template-columns: none;
+    align-items: stretch;
+  }
+
+  .card-grid > * {
+    min-width: 0;
+    scroll-snap-align: start;
+  }
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -14,8 +42,8 @@ html {
 }
 
 body {
-  background-color: #f5f5ed;
-  color: #282828;
+  background-color: #f7f8fa;
+  color: #0b0e13;
   font-family: var(--font-sans), system-ui, sans-serif;
   letter-spacing: -0.011em;
   -webkit-font-smoothing: antialiased;
@@ -27,23 +55,23 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #f5f5ed;
+  background: #f7f8fa;
 }
 ::-webkit-scrollbar-thumb {
-  background: #c9c9c0;
+  background: #a8b0bc;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #fa3600;
+  background: #0080ff;
 }
 
 ::selection {
-  background: #fa3600;
+  background: #0080ff;
   color: #fff;
 }
 
 :focus-visible {
-  outline: 2px solid #fa3600;
+  outline: 2px solid #0080ff;
   outline-offset: 3px;
   border-radius: 6px;
 }
@@ -203,10 +231,10 @@ body {
   animation-delay: inherit;
 }
 @keyframes loader-step {
-  to { color: #282828; }
+  to { color: #0b0e13; }
 }
 @keyframes loader-step-num {
-  to { color: #fa3600; }
+  to { color: #0080ff; }
 }
 
 .loader-overlay {
@@ -249,7 +277,7 @@ body {
 }
 @keyframes flow-node {
   0%, 30%, 100% { background-color: transparent; }
-  8%, 22% { background-color: #ffe9e2; }
+  8%, 22% { background-color: #e5f2ff; }
 }
 .marquee:hover .marquee-track {
   animation-play-state: paused;

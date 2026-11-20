@@ -1,0 +1,91 @@
+/* Patch bay: the Anatomy kit's light theme mapped onto the site's cream, with the site's orange as
+   the one lit accent. Everything is scoped to .pb; the site's own tokens are untouched. */
+.pb{
+  --anatomy-paper:#f5f5ed;--anatomy-face:#fbfbf7;--anatomy-top:#fdfdf9;
+  --anatomy-shade-0:#d2cfc3;--anatomy-shade-1:#dddacf;--anatomy-shade-2:#e8e5db;--anatomy-shade-3:#f1efe6;
+  --anatomy-lit-top:#ffe9e2;--anatomy-lit-shade:#f7e2da;
+  --anatomy-hi:#282828;--anatomy-mid:#73736c;--anatomy-lo:#a3a399;--anatomy-faint:#ceccc1;--anatomy-lit:#fa3600;
+  --anatomy-halo:#8a8a7c;--anatomy-halo-opacity:.28;--anatomy-dot:#3a3a36;
+  --anatomy-weight:.75px;
+  --lamp:0;
+}
+.pb-box{display:block;position:relative;aspect-ratio:1/1;width:100%;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.pb-box:focus-visible{outline:1px solid #8c8c85;outline-offset:6px}
+.pb-art,.pb-live{position:absolute;inset:0;display:block;width:100%;height:100%;overflow:visible}
+.pb-art{pointer-events:none;-webkit-user-drag:none}
+.pb .iso-fill{fill:var(--anatomy-paper);stroke:none}
+.pb .iso-solid[data-lit]>.iso-fill{fill:var(--anatomy-face)}
+.pb .iso-shade,.pb .iso-top{stroke:none}
+.pb .iso-shade[data-shade="0"]{fill:var(--anatomy-shade-0)}
+.pb .iso-shade[data-shade="1"]{fill:var(--anatomy-shade-1)}
+.pb .iso-shade[data-shade="2"]{fill:var(--anatomy-shade-2)}
+.pb .iso-shade[data-shade="3"]{fill:var(--anatomy-shade-3)}
+.pb .iso-top{fill:var(--anatomy-top)}
+.pb .iso-solid[data-lit]>.iso-top{fill:var(--anatomy-lit-top)}
+.pb .iso-solid[data-lit]>.iso-shade{fill:var(--anatomy-lit-shade)}
+.pb .iso-solid[data-seamless]>.iso-shade,.pb .iso-solid[data-seamless]>.iso-top{stroke-width:.4;stroke-linejoin:round}
+.pb .iso-solid[data-seamless]>.iso-shade[data-shade="0"]{stroke:var(--anatomy-shade-0)}
+.pb .iso-solid[data-seamless]>.iso-shade[data-shade="1"]{stroke:var(--anatomy-shade-1)}
+.pb .iso-solid[data-seamless]>.iso-shade[data-shade="2"]{stroke:var(--anatomy-shade-2)}
+.pb .iso-solid[data-seamless]>.iso-shade[data-shade="3"]{stroke:var(--anatomy-shade-3)}
+.pb .iso-solid[data-seamless]>.iso-top{stroke:var(--anatomy-top)}
+.pb .iso-solid[data-seamless][data-lit]>.iso-top{stroke:var(--anatomy-lit-top)}
+.pb .iso-solid[data-seamless][data-lit]>.iso-shade{stroke:var(--anatomy-lit-shade)}
+.pb .iso-solid[data-lit]>.iso-edge{stroke:var(--anatomy-lit)}
+.pb .iso-halo{fill:var(--anatomy-halo);stroke:none;filter:blur(9px);opacity:var(--anatomy-halo-opacity);transform:translateY(3px)}
+.pb .iso-line{fill:none;stroke:var(--anatomy-lo);stroke-width:var(--anatomy-weight);stroke-linecap:round;stroke-linejoin:round}
+.pb .iso-line[data-tone="hi"]{stroke:var(--anatomy-hi)}
+.pb .iso-line[data-tone="mid"]{stroke:var(--anatomy-mid)}
+.pb .iso-line[data-tone="lo"]{stroke:var(--anatomy-lo)}
+.pb .iso-line[data-tone="faint"]{stroke:var(--anatomy-faint)}
+.pb .iso-line[data-tone="lit"]{stroke:var(--anatomy-lit)}
+.pb .iso-line[data-tone="red"]{stroke:var(--anatomy-red)}
+.pb .iso-line[data-tone="green"]{stroke:var(--anatomy-green)}
+.pb .iso-line[data-tone="blue"]{stroke:var(--anatomy-blue)}
+.pb .iso-line[data-dotted]{stroke-dasharray:.01 3.5;stroke-width:1}
+.pb .iso-line[data-dashed]{stroke-dasharray:3 3}
+.pb .iso-line[data-flow]{stroke-dasharray:2 6}
+.pb .iso-wire-end{fill:var(--anatomy-paper);stroke:var(--anatomy-lo);stroke-width:var(--anatomy-weight)}
+.pb .iso-wire[data-tone="hi"] .iso-wire-end{stroke:var(--anatomy-hi)}
+.pb .iso-wire[data-tone="mid"] .iso-wire-end{stroke:var(--anatomy-mid)}
+.pb .iso-wire[data-tone="faint"] .iso-wire-end{stroke:var(--anatomy-faint)}
+.pb .iso-wire[data-tone="lit"] .iso-wire-end{stroke:var(--anatomy-lit)}
+.pb .iso-dots circle{fill:var(--anatomy-dot);stroke:none;opacity:.32}
+.pb .iso-dots[data-tone="hi"] circle{opacity:.85}
+.pb .iso-dots[data-tone="mid"] circle{opacity:.45}
+.pb .iso-dots[data-tone="lo"] circle{opacity:.22}
+.pb .iso-dots[data-tone="faint"] circle{opacity:.12}
+.pb .iso-face-text{fill:var(--anatomy-mid);font-family:var(--anatomy-mono);letter-spacing:.04em}
+.pb .iso-face-text[data-tone="hi"]{fill:var(--anatomy-hi)}
+.pb .iso-face-text[data-tone="lo"]{fill:var(--anatomy-lo)}
+.pb .iso-face-text[data-tone="faint"]{fill:var(--anatomy-faint)}
+.pb .tb-body{fill:var(--anatomy-shade-2);stroke:none}
+.pb .tb-shine{fill:var(--anatomy-top);stroke:none}
+.pb .tb-shade{fill:var(--anatomy-shade-0);stroke:none}
+.pb .tb-ring{fill:none;stroke:var(--anatomy-lo);stroke-width:.45;stroke-linecap:butt;stroke-linejoin:round}
+.pb .tb-ring[data-tone="mid"]{stroke:var(--anatomy-mid)}
+.pb .tb-ring[data-tone="faint"]{stroke:var(--anatomy-faint)}
+.pb .tb-ring[data-tone="hi"]{stroke:var(--anatomy-hi)}
+.pb .iso-line[data-flow]{animation:iso-flow 1600ms linear infinite}
+.pb .iso-dots circle[data-pulse]{animation:iso-pulse 1600ms steps(1,end) infinite;animation-delay:var(--pulse-at,0ms)}
+
+/* the console's payoff: lamp, glow, meter glass and needle follow --lamp (0 to 1) */
+.pb .pb-lens{
+  --anatomy-shade-0:color-mix(in srgb,#dedcd2,#ff7a52 calc(var(--lamp)*100%));
+  --anatomy-shade-1:color-mix(in srgb,#e6e4db,#ff9672 calc(var(--lamp)*100%));
+  --anatomy-shade-2:color-mix(in srgb,#edebe3,#ffb396 calc(var(--lamp)*100%));
+  --anatomy-shade-3:color-mix(in srgb,#f3f1e9,#ffcdb8 calc(var(--lamp)*100%));
+  --anatomy-top:color-mix(in srgb,#fdfdf9,#ffe3d6 calc(var(--lamp)*100%));
+}
+.pb .pb-lens>.iso-edge{stroke:color-mix(in srgb,#282828,#fa3600 calc(var(--lamp)*100%))}
+.pb .pb-glow{fill:url(#pb-glow);stroke:none;opacity:var(--lamp)}
+.pb .pb-glass>.iso-fill{fill:color-mix(in srgb,#fbfbf7,#ffe9e2 calc(var(--lamp)*85%))}
+.pb .pb-glass>.iso-top{fill:color-mix(in srgb,#fdfdf9,#ffe9e2 calc(var(--lamp)*85%))}
+.pb .iso-line.pb-needle[data-tone]{stroke:color-mix(in srgb,#282828,#fa3600 calc(var(--lamp)*100%));stroke-width:1.1}
+@media (prefers-reduced-motion:reduce){.pb *{transition:none!important}}
+
+/* the desk the figure stands on reads a little darker than the page */
+.pb .pb-desk{
+  --anatomy-paper:#e7e4d9;--anatomy-top:#ebe8de;
+  --anatomy-shade-0:#c6c3b6;--anatomy-shade-1:#d1cec2;--anatomy-shade-2:#dcd9ce;--anatomy-shade-3:#e4e1d6;
+}

@@ -1,0 +1,10 @@
+.git
+.agents
+.claude
+.codex
+.impeccable
+.taste-skill
+node_modules
+.next
+.env*
+*.tsbuildinfo

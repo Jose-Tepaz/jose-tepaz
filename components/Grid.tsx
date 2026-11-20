@@ -17,7 +17,7 @@ export function SectionHeader({
   children?: ReactNode
 }) {
   return (
-    <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16">
+    <div className="section-intro flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16">
       <div>
         <Reveal>
           <Eyebrow index={index}>{eyebrow}</Eyebrow>
@@ -37,7 +37,16 @@ export function SectionHeader({
 
 export function Grid({ cols, children }: { cols: string; children: ReactNode }) {
   return (
-    <Stagger className={`grid ${cols} border-t border-l border-line`}>{children}</Stagger>
+    <div
+      className="card-rail"
+      role="region"
+      aria-label="Tarjetas desplazables"
+      tabIndex={0}
+    >
+      <Stagger className={`card-grid grid ${cols} border-t border-l border-line`}>
+        {children}
+      </Stagger>
+    </div>
   )
 }
 
