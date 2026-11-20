@@ -560,14 +560,17 @@ body { background: var(--canvas); color: var(--fg); }
   .work-in .scroll-hint { color: #fff; border-color: rgba(255,255,255,.4); background: rgba(11,14,19,.55); }
 
   /* Trabajo selecto en celular: más compacto y sin saturar la fila de arriba */
-  .work-grid { grid-template-rows: auto auto auto; align-content: center; gap: 12px; padding: 16px 16px 22px; }
+  .work-grid { grid-template-rows: auto auto auto; align-content: center; gap: 18px; padding: 20px 18px 26px; }
   .work-top { order: -2; font-size: .78rem; gap: 10px; }
   .work-top-long { display: none; }
   .work-top .mono { white-space: nowrap; }
-  .work-stage { order: -1; width: min(100%, calc((100svh - 560px) * 1.327)); min-width: 220px; }
-  .work-title { font-size: 2.3rem; margin-bottom: 6px; }
-  .work-meta { margin-bottom: 6px; }
-  .work-text { font-size: .92rem; margin-bottom: 10px; }
+  .work-stage { order: -1; width: min(100%, calc((100svh - 470px) * 1.327)); min-width: 220px; }
+  .work-shot { border-radius: 14px; }
+  .work-title { font-size: 2.3rem; margin: 2px 0 10px; }
+  .work-meta { margin-bottom: 12px; }
+  .work-text { font-size: .95rem; line-height: 1.45; margin-bottom: 16px; }
+  .work-info .chips { gap: 8px; }
+  .sticky-in.work-in { padding-top: 80px; padding-bottom: 90px; }
   .work-also { display: none; }
   .work-info { justify-content: flex-start; gap: 0; }
 
@@ -588,4 +591,73 @@ body { background: var(--canvas); color: var(--fg); }
   .problem-grid .problem-card { border: 1px solid color-mix(in srgb, var(--fg) 14%, transparent) !important; background: color-mix(in srgb, var(--fg) 4%, transparent); border-radius: 22px; padding: 20px 20px 22px !important; gap: 8px; }
   .problem-grid .problem-fig { max-width: 92px; margin-bottom: 4px; }
   .problem-grid .problem-card h3 { font-size: 1.35rem; }
+}
+
+/* ---------- Celular: botones del hero ---------- */
+@media (max-width: 900px) {
+  .hero-cta { flex-direction: column; align-items: stretch; gap: 14px; width: 100%; }
+  .hero-cta .btn { width: 100%; white-space: nowrap; padding: 16px 22px; }
+  .hero-cta .t-link { justify-content: center; white-space: nowrap; padding: 6px 0; font-size: 1rem; }
+  .hero-row { gap: 22px; }
+  .contact-actions .btn { white-space: nowrap; }
+}
+
+/* ---------- Celular: la frase "Para eso existo yo" va fija y completa, sin animación ni tramo largo de scroll ---------- */
+@media (max-width: 900px) {
+  #propuesta { height: auto !important; }
+  #propuesta .phrase-in { position: static; height: auto; min-height: 0; padding-top: 96px; padding-bottom: 96px; }
+  #propuesta .phrase-text span { opacity: 1 !important; transform: none !important; }
+}
+
+/* ---------- Celular: Proceso sin animación, con los 4 pasos abiertos ---------- */
+@media (max-width: 900px) {
+  #proceso { height: auto !important; }
+  #proceso .process-in { position: static; height: auto; padding-top: 96px; padding-bottom: 96px; justify-content: flex-start; gap: 28px; overflow: visible; }
+  #proceso .process-top { flex: none; }
+  #proceso .pulse-line { stroke-dashoffset: 0 !important; }
+  #proceso .pulse-dot, #proceso .scroll-hint { display: none !important; }
+  #proceso .tabs { gap: 22px; }
+  #proceso .tab { opacity: 1 !important; pointer-events: none; }
+  #proceso .tab .tab-bar { background: var(--blue); opacity: 1; }
+  #proceso .tab .tab-d { display: block !important; opacity: .75; }
+  #proceso .tab .tab-tags { display: block !important; }
+}
+
+/* ---------- Celular: IA como tarjetas normales (sin acordeón ni animación de scroll) ---------- */
+@media (max-width: 900px) {
+  #ia { height: auto !important; }
+  #ia .ai-in { position: static; height: auto; padding-top: 96px; padding-bottom: 96px; justify-content: flex-start; overflow: visible; }
+  #ia .scroll-hint { display: none !important; }
+  #ia .aa-row { flex-direction: column; height: auto; gap: 14px; margin-top: 24px; }
+  #ia .aa-card, #ia .aa-card.is-active { flex: none; height: auto; overflow: visible; display: grid; grid-template-columns: 1fr auto; grid-template-areas: "num icon" "title icon" "body body"; gap: 8px 16px; padding: 22px; color: var(--fg); background: color-mix(in srgb, var(--fg) 5%, transparent); border: 1px solid color-mix(in srgb, var(--fg) 14%, transparent); border-radius: 22px; cursor: default; transition: none; }
+  #ia .aa-num { grid-area: num; position: static; opacity: .6; }
+  #ia .aa-dot { display: none; }
+  #ia .aa-card .aa-title, #ia .aa-card.is-active .aa-title { grid-area: title; position: static; transform: none; width: auto; max-width: none; white-space: normal; font-size: 1.55rem; letter-spacing: -.04em; text-wrap: balance; transition: none; }
+  #ia .aa-card .aa-icon, #ia .aa-card.is-active .aa-icon { grid-area: icon; position: static; opacity: 1; width: 44px; height: 44px; stroke: var(--blue); align-self: start; transition: none; }
+  #ia .aa-card .aa-body, #ia .aa-card.is-active .aa-body { grid-area: body; position: static; opacity: 1; transform: none; max-width: none; pointer-events: auto; gap: 14px; margin-top: 6px; transition: none; }
+  #ia .aa-desc { font-size: .98rem; opacity: .8; }
+  #ia .aa-tags { gap: 8px; opacity: 1; }
+  #ia .aa-tags span { padding: 4px 11px; border: 1px solid color-mix(in srgb, var(--fg) 22%, transparent); border-radius: 999px; }
+}
+
+/* ---------- Celular: menos espacio entre "Para quién trabajo" y la caja de contacto ---------- */
+@media (max-width: 900px) {
+  #audiencia { padding-bottom: 40px; }
+  #contacto { padding-top: 0; }
+}
+
+/* ---------- Celular: pie de página centrado ---------- */
+@media (max-width: 900px) {
+  .foot { flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 18px; }
+  .foot nav { justify-content: center; }
+  .foot .mono { text-align: center; }
+}
+
+/* ---------- Celular: el panel de Trabajo selecto se ajusta a su contenido (sin vacíos arriba y abajo) ---------- */
+@media (max-width: 900px) {
+  .sticky-in.work-in { justify-content: flex-start; padding-top: 88px; padding-bottom: 96px; }
+  .work-panel { flex: none; min-height: min(560px, calc(100svh - 232px)); }
+  .work-grid { flex: none; align-content: start; padding: 22px 18px 30px; gap: 20px; }
+  .work-title { font-size: 2.6rem; }
+  .work-text { font-size: 1rem; }
 }
