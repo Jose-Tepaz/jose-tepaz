@@ -6,7 +6,7 @@ export default function Problem() {
   return (
     <section id="problema" data-theme="light" data-section="problema" className="sec sec-light problem">
       <div className="wrap">
-        <SecHead n="03" label="EL PROBLEMA" note="Entre negocio y código" />
+        <SecHead n="04" label="EL PROBLEMA" note="Entre negocio y código" />
 
         <Reveal as="h2" className="display big problem-title">
           La mayoría de proyectos técnicos <span className="blue">se pierden entre negocio y código</span>

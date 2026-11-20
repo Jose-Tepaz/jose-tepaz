@@ -1,5 +1,4 @@
 import { CALENDLY, LINKEDIN, navLinks } from '@/lib/site-content'
-import Smoke from './Smoke'
 import { Reveal, SecHead } from './ui'
 
 export default function Contact() {
@@ -7,8 +6,7 @@ export default function Contact() {
 
   return (
     <section id="contacto" data-theme="dark" data-section="contacto" className="sec sec-dark contact">
-      <Smoke className="smoke" strength={0.7} />
-      <div className="wrap">
+      <div className="contact-panel">
         <SecHead n="11" label="CONTACTO" note="Disponible para nuevos proyectos" />
 
         <div className="contact-center">
@@ -22,8 +20,8 @@ export default function Contact() {
             <a className="btn btn-blue" href={CALENDLY} target="_blank" rel="noopener noreferrer">
               Agenda una llamada gratuita
             </a>
-            <a className="link-arrow" href={LINKEDIN} target="_blank" rel="noopener noreferrer">
-              LinkedIn <span aria-hidden="true">↗</span>
+            <a className="t-link" href={LINKEDIN} target="_blank" rel="noopener noreferrer">
+              <span className="link-text">LinkedIn</span> <span className="t-arrow t-arrow--out" aria-hidden="true">↗</span>
             </a>
           </Reveal>
           <Reveal as="p" className="contact-note" delay={0.2}>

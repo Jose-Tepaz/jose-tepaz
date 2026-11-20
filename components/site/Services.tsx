@@ -20,7 +20,7 @@ export default function Services() {
     >
       <div className="sticky-in services-in">
         <div className="wrap">
-          <SecHead n="06" label="SERVICIOS" note="Lo que hago dentro de tu equipo" />
+          <SecHead n="07" label="SERVICIOS" note="Lo que hago dentro de tu equipo" />
         </div>
 
         <div className="wrap services-body">

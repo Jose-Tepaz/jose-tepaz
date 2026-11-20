@@ -1,12 +1,13 @@
 import Image from 'next/image'
-import { skills } from '@/lib/site-content'
+import { skills, stats } from '@/lib/site-content'
+import DotFigures from './DotFigures'
 import { Reveal, SecHead } from './ui'
 
 export default function About() {
   return (
     <section id="sobre-mi" data-theme="light" data-section="sobre-mi" className="sec sec-light about">
       <div className="wrap">
-        <SecHead n="10" label="SOBRE MÍ" note="Guatemala" />
+        <SecHead n="02" label="SOBRE MÍ" note="Guatemala" />
 
         <div className="about-grid">
           <Reveal className="about-photo">
@@ -42,6 +43,8 @@ export default function About() {
             </Reveal>
           </div>
         </div>
+
+        <DotFigures stats={stats} />
       </div>
     </section>
   )

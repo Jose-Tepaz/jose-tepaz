@@ -6,11 +6,10 @@ import { CALENDLY, navLinks, sectionsIndex } from '@/lib/site-content'
 /**
  * Elementos fijos de la página: barra superior, etiqueta vertical de sección,
  * botón flotante de menú y el menú a pantalla completa.
- * El tema (claro/oscuro) sigue a la sección que está bajo la barra.
+ * También fija el tema global (claro/oscuro) según la sección que cruza el 45% de la pantalla.
  */
 export default function Chrome() {
   const [open, setOpen] = useState(false)
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark')
   const [active, setActive] = useState(sectionsIndex[0])
 
   useEffect(() => {
@@ -22,8 +21,10 @@ export default function Chrome() {
           .elementsFromPoint(x, y)
           .map((el) => el.closest<HTMLElement>(sel))
           .find(Boolean) ?? null
-      const sec = under(window.innerWidth / 2, 36, '[data-theme]')
-      if (sec) setTheme(sec.dataset.theme === 'light' ? 'light' : 'dark')
+      // Tema global: manda la sección que cruza el 45% de la pantalla. Los colores de toda la
+      // página se mezclan con una transición (ver :root en site.css).
+      const sec = under(window.innerWidth / 2, window.innerHeight * 0.45, '[data-theme]')
+      if (sec) document.documentElement.dataset.theme = sec.dataset.theme === 'light' ? 'light' : 'dark'
 
       const cur = under(window.innerWidth / 2, window.innerHeight / 2, '[data-section]')
       if (cur) {
@@ -55,7 +56,7 @@ export default function Chrome() {
   }, [open])
 
   return (
-    <div className="chrome" data-chrome={open ? 'dark' : theme}>
+    <div className="chrome" data-chrome={open ? 'dark' : undefined}>
       <header className="topbar">
         <a href="#inicio" className="brand" aria-label="José Tepáz — inicio">
           José Tepáz <span className="brand-dots" aria-hidden="true"><i /><i /></span>
@@ -81,14 +82,18 @@ export default function Chrome() {
         ({active.n}) {active.label}
       </div>
 
-      <button type="button" className="fab" onClick={() => setOpen((o) => !o)} aria-label={open ? 'Cerrar menú' : 'Abrir menú'}>
-        <span className={`fab-bars ${open ? 'is-open' : ''}`}>
-          <i />
-          <i />
-        </span>
-      </button>
+      <a className="fab" href={CALENDLY} target="_blank" rel="noopener noreferrer" aria-label="Agenda una llamada gratuita">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <rect x="3" y="4.5" width="18" height="16.5" rx="3" />
+          <path d="M8 2.5v4M16 2.5v4M3 10h18" />
+        </svg>
+        <span className="fab-label">Agenda una llamada</span>
+      </a>
 
       <div className={`menu ${open ? 'is-open' : ''}`} role="dialog" aria-modal="true" aria-label="Menú" aria-hidden={!open}>
+        <button type="button" className="menu-close" onClick={() => setOpen(false)} tabIndex={open ? 0 : -1}>
+          Cerrar <span aria-hidden="true">✕</span>
+        </button>
         <ol className="menu-list">
           {sectionsIndex.map((s) => (
             <li key={s.id}>

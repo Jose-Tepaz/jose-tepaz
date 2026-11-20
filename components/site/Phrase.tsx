@@ -1,7 +1,6 @@
 'use client'
 
 import { phrase } from '@/lib/site-content'
-import Smoke from './Smoke'
 import { useStickyProgress } from './ui'
 
 const words = [
@@ -23,7 +22,6 @@ export default function Phrase() {
       style={{ height: '260vh' }}
     >
       <div className="sticky-in phrase-in">
-        <Smoke className="smoke" strength={0.55} />
         <p className="display big phrase-text">
           {words.map((x, i) => {
             const start = 0.08 + (i / words.length) * 0.72

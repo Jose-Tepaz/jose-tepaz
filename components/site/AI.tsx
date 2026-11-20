@@ -5,7 +5,7 @@ export default function AI() {
   return (
     <section id="ia" data-theme="dark" data-section="ia" className="sec sec-dark ai">
       <div className="wrap">
-        <SecHead n="07" label="IA Y AUTOMATIZACIÓN" note="Menos trabajo manual" />
+        <SecHead n="08" label="IA Y AUTOMATIZACIÓN" note="Menos trabajo manual" />
 
         <Reveal as="h2" className="display big ai-title">
           Acelero cada etapa <span className="blue">con IA y automatización</span>

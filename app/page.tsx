@@ -18,6 +18,7 @@ export default function Home() {
       <Chrome />
       <Hero />
       <Clients />
+      <About />
       <Work />
       <Problem />
       <Phrase />
@@ -26,7 +27,6 @@ export default function Home() {
       <AI />
       <Stack />
       <Audience />
-      <About />
       <Contact />
     </main>
   )

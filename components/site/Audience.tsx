@@ -5,7 +5,7 @@ export default function Audience() {
   return (
     <section id="audiencia" data-theme="dark" data-section="audiencia" className="sec sec-dark audience">
       <div className="wrap">
-        <SecHead n="09" label="PARA QUIÉN TRABAJO" note="Quienes necesitan resultados reales" />
+        <SecHead n="10" label="PARA QUIÉN TRABAJO" note="Quienes necesitan resultados reales" />
         <Reveal as="h2" className="display big">
           Hecho para quienes <span className="blue">necesitan resultados reales</span>
         </Reveal>

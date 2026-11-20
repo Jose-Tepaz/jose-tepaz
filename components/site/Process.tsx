@@ -46,7 +46,7 @@ export default function Process() {
             <circle cx={dot.x} cy={dot.y} r="9" className="pulse-dot" />
           </svg>
           <div>
-            <p className="eyebrow">(05) Mi proceso</p>
+            <p className="eyebrow">(06) Mi proceso</p>
             <h2 className="display big">
               Cómo llevo tu problema <span className="blue">hasta producción</span>
             </h2>

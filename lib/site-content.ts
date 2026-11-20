@@ -14,22 +14,23 @@ export const navLinks = [
 export const sectionsIndex = [
   { id: 'inicio', n: '00', label: 'Inicio' },
   { id: 'clientes', n: '01', label: 'Clientes' },
-  { id: 'trabajo', n: '02', label: 'Trabajo selecto' },
-  { id: 'problema', n: '03', label: 'El problema' },
-  { id: 'propuesta', n: '04', label: 'Mi propuesta' },
-  { id: 'proceso', n: '05', label: 'Mi proceso' },
-  { id: 'servicios', n: '06', label: 'Servicios' },
-  { id: 'ia', n: '07', label: 'IA y automatización' },
-  { id: 'stack', n: '08', label: 'Stack tecnológico' },
-  { id: 'audiencia', n: '09', label: 'Para quién trabajo' },
-  { id: 'sobre-mi', n: '10', label: 'Sobre mí' },
+  { id: 'sobre-mi', n: '02', label: 'Sobre mí' },
+  { id: 'trabajo', n: '03', label: 'Trabajo selecto' },
+  { id: 'problema', n: '04', label: 'El problema' },
+  { id: 'propuesta', n: '05', label: 'Mi propuesta' },
+  { id: 'proceso', n: '06', label: 'Mi proceso' },
+  { id: 'servicios', n: '07', label: 'Servicios' },
+  { id: 'ia', n: '08', label: 'IA y automatización' },
+  { id: 'stack', n: '09', label: 'Stack tecnológico' },
+  { id: 'audiencia', n: '10', label: 'Para quién trabajo' },
   { id: 'contacto', n: '11', label: 'Contacto' },
 ]
 
 export const stats = [
-  { to: 6, suffix: '+', label: 'años de experiencia' },
-  { to: 60, suffix: '+', label: 'proyectos lanzados' },
-  { to: 3, suffix: '', label: 'continentes atendidos' },
+  { value: '6+', label: 'años de experiencia' },
+  { value: '60+', label: 'proyectos lanzados' },
+  { value: '3', label: 'continentes atendidos' },
+  { value: '12', label: 'herramientas en mi stack' },
 ]
 
 export const clients = ['Teknergy', 'Winkelmann', 'Tienda Borgatta', 'Bales Hay']

@@ -1,10 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { CALENDLY, stats } from '@/lib/site-content'
-import Smoke from './Smoke'
-import DotPortrait from './DotPortrait'
-import { CountUp } from './ui'
+import { CALENDLY } from '@/lib/site-content'
 
 function Globe() {
   return (
@@ -41,8 +38,27 @@ export default function Hero() {
 
   return (
     <section id="inicio" data-theme="dark" data-section="inicio" className="hero">
-      <Smoke className="smoke" strength={0.9} />
-      <DotPortrait src="/img/profile.jpeg" className="hero-portrait" />
+      <div className="hero-in">
+      <div className="hero-copy">
+        <h1 className="display">
+          <span className="line"><span>Desarrollo productos</span></span>
+          <span className="line"><span>digitales para empresas</span></span>
+          <span className="line"><span className="blue">de alto nivel</span></span>
+        </h1>
+        <div className="hero-row">
+        <p className="hero-sub">
+          Me integro a tu operación para entender a fondo cómo funciona tu negocio y crear soluciones digitales que resuelvan problemas, mejoren procesos y aporten valor.
+        </p>
+        <div className="hero-cta">
+          <a className="btn btn-blue" href={CALENDLY} target="_blank" rel="noopener noreferrer">
+            Agenda una llamada gratuita
+          </a>
+          <a className="t-link" href="#trabajo">
+            <span className="link-text">Ver proyectos</span> <span className="t-arrow" aria-hidden="true">↘</span>
+          </a>
+        </div>
+        </div>
+      </div>
 
       <div className="hero-loc">
         <Globe />
@@ -52,37 +68,7 @@ export default function Hero() {
           <span>Forward Deployed Engineer</span>
         </div>
       </div>
-
-      <div className="hero-copy">
-        <span className="hero-arrow" aria-hidden="true">↘</span>
-        <h1 className="display">
-          <span className="line"><span>Desarrollo productos</span></span>
-          <span className="line"><span>digitales para empresas</span></span>
-          <span className="line"><span className="blue">de alto nivel</span></span>
-        </h1>
-        <p className="hero-sub">
-          Me integro a tu operación para entender a fondo cómo funciona tu negocio y crear soluciones digitales que resuelvan problemas, mejoren procesos y aporten valor.
-        </p>
-        <div className="hero-cta">
-          <a className="btn btn-blue" href={CALENDLY} target="_blank" rel="noopener noreferrer">
-            Agenda una llamada gratuita
-          </a>
-          <a className="link-arrow" href="#trabajo">
-            Ver proyectos <span aria-hidden="true">↘</span>
-          </a>
-        </div>
       </div>
-
-      <dl className="hero-stats">
-        {stats.map((s) => (
-          <div key={s.label}>
-            <dt>
-              <CountUp to={s.to} suffix={s.suffix} />
-            </dt>
-            <dd>{s.label}</dd>
-          </div>
-        ))}
-      </dl>
     </section>
   )
 }

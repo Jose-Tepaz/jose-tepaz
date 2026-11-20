@@ -1,24 +1,22 @@
 import { clients } from '@/lib/site-content'
+import StippleMarquee from './StippleMarquee'
 
+/**
+ * Nombres de clientes en un marquee gigante hecho de puntos, como en la referencia.
+ * Es una tira de partículas que reacciona al cursor y al sentido del scroll.
+ */
 export default function Clients() {
-  const row = Array.from({ length: 8 }).flatMap(() => clients)
-
   return (
     <section id="clientes" data-theme="dark" data-section="clientes" aria-label="Clientes" className="clients">
-      <div className="wrap clients-in">
-        <span className="clients-label">
-          <i>[ ]</i> Han confiado en mí
-        </span>
-        <div className="clients-marquee">
-          <div className="marquee-track">
-            {row.map((c, i) => (
-              <span key={i} aria-hidden={i >= clients.length || undefined}>
-                {c} <b>•</b>
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
+      <p className="wrap clients-label">
+        <i>[ ]</i> Han confiado en mí
+      </p>
+      <StippleMarquee names={clients} />
+      <ul className="visually-hidden">
+        {clients.map((c) => (
+          <li key={c}>{c}</li>
+        ))}
+      </ul>
     </section>
   )
 }

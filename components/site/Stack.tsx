@@ -41,7 +41,7 @@ export default function Stack() {
   return (
     <section id="stack" data-theme="light" data-section="stack" className="sec sec-light stack">
       <div className="wrap">
-        <SecHead n="08" label="STACK TECNOLÓGICO" note="Herramientas que domino" />
+        <SecHead n="09" label="STACK TECNOLÓGICO" note="Herramientas que domino" />
         <Reveal as="h2" className="display big stack-title">De la herramienta al deploy.</Reveal>
         <Reveal as="p" className="lead" delay={0.1}>
           Figma, Next.js, MongoDB, Claude, n8n y más: el stack con el que llevo soluciones a producción, acelerado con IA.

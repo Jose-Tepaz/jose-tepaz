@@ -45,40 +45,6 @@ export function Reveal({
   )
 }
 
-/** Cuenta de 0 a `to` al entrar al viewport. */
-export function CountUp({ to, suffix = '' }: { to: number; suffix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null)
-  const [v, setV] = useState(0)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const io = new IntersectionObserver(([e]) => {
-      if (!e.isIntersecting) return
-      io.disconnect()
-      if (reduced) return setV(to)
-      const t0 = performance.now()
-      const dur = 1400
-      const tick = (now: number) => {
-        const p = Math.min(1, (now - t0) / dur)
-        setV(Math.round(to * (1 - Math.pow(1 - p, 3))))
-        if (p < 1) requestAnimationFrame(tick)
-      }
-      requestAnimationFrame(tick)
-    })
-    io.observe(el)
-    return () => io.disconnect()
-  }, [to])
-
-  return (
-    <span ref={ref}>
-      {v}
-      {suffix}
-    </span>
-  )
-}
-
 /**
  * Progreso (0–1) de una sección "pegajosa": 0 cuando su tope llega al borde superior,
  * 1 cuando termina de recorrerse. Devuelve también el índice activo para `count` pasos.
