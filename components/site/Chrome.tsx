@@ -5,11 +5,10 @@ import { CALENDLY, navLinks, sectionsIndex } from '@/lib/site-content'
 
 /**
  * Elementos fijos: encabezado arriba (como josetepaz.com) y píldora inferior al hacer scroll,
- * etiqueta vertical de sección, botón flotante para agendar y el menú a pantalla completa.
+ * etiqueta vertical de sección y botón flotante para agendar.
  * También fija el tema global (claro/oscuro) según la sección que cruza el 45% de la pantalla.
  */
 export default function Chrome() {
-  const [open, setOpen] = useState(false)
   const [active, setActive] = useState(sectionsIndex[0])
   const [scrolled, setScrolled] = useState(false)
   const [current, setCurrent] = useState('')
@@ -63,18 +62,8 @@ export default function Chrome() {
     }
   }, [])
 
-  useEffect(() => {
-    document.documentElement.style.overflow = open ? 'hidden' : ''
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false)
-    window.addEventListener('keydown', onKey)
-    return () => {
-      window.removeEventListener('keydown', onKey)
-      document.documentElement.style.overflow = ''
-    }
-  }, [open])
-
   return (
-    <div className="chrome" data-chrome={open ? 'dark' : undefined}>
+    <div className="chrome">
       <header className={`jn-header${scrolled ? '' : ' is-visible'}`} aria-hidden={scrolled} inert={scrolled}>
         <a className="jn-logo" href="#inicio" aria-label="José Tepáz — inicio">
           <span className="jn-monogram">JT</span>
@@ -94,9 +83,6 @@ export default function Chrome() {
           <a className="jn-contact" href="#contacto">
             Hablemos <span aria-hidden="true">↗</span>
           </a>
-          <button type="button" className="menu-pill" onClick={() => setOpen(true)} aria-haspopup="dialog">
-            Menú <span className="brand-dots" aria-hidden="true"><i /><i /></span>
-          </button>
         </nav>
       </header>
 
@@ -106,9 +92,6 @@ export default function Chrome() {
             {l.label}
           </a>
         ))}
-        <button type="button" onClick={() => setOpen(true)} aria-haspopup="dialog">
-          Menú
-        </button>
       </nav>
 
       <div className="sidelabel" aria-hidden="true">
@@ -123,25 +106,6 @@ export default function Chrome() {
         </svg>
         <span className="fab-label">Agenda una llamada</span>
       </a>
-
-      <div className={`menu ${open ? 'is-open' : ''}`} role="dialog" aria-modal="true" aria-label="Menú" aria-hidden={!open}>
-        <button type="button" className="menu-close" onClick={() => setOpen(false)} tabIndex={open ? 0 : -1}>
-          Cerrar <span aria-hidden="true">✕</span>
-        </button>
-        <ol className="menu-list">
-          {sectionsIndex.map((s) => (
-            <li key={s.id}>
-              <a href={`#${s.id}`} tabIndex={open ? 0 : -1} onClick={() => setOpen(false)}>
-                <span>{s.n}</span>
-                {s.label}
-              </a>
-            </li>
-          ))}
-        </ol>
-        <a className="btn btn-blue menu-cta" href={CALENDLY} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1}>
-          Agenda una llamada
-        </a>
-      </div>
     </div>
   )
 }
