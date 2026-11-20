@@ -3,8 +3,7 @@ import { Inter_Tight, Geist_Mono } from 'next/font/google'
 import { MotionProvider, ScrollProgress } from '@/components/motion'
 import { IntroProvider } from '@/components/intro-context'
 import './globals.css'
-import './studio-reference.css'
-import './studio-adapter.css'
+import './site.css'
 
 const sans = Inter_Tight({
   subsets: ['latin'],
@@ -57,7 +56,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className={`${sans.variable} ${mono.variable}`}>
-      <body className="font-body antialiased bg-paper text-ink">
+      <body className="font-body antialiased">
         <MotionProvider>
           <IntroProvider>
             <ScrollProgress />
