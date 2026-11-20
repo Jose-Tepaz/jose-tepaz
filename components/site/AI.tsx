@@ -2,7 +2,7 @@
 
 import { aiCapabilities } from '@/lib/site-content'
 import AICards from './AICards'
-import { useStickyProgress } from './ui'
+import { ScrollHint, useStickyProgress } from './ui'
 
 /** La sección se queda fija y, al hacer scroll, las tarjetas se abren una por una. */
 export default function AI() {
@@ -27,6 +27,7 @@ export default function AI() {
           </p>
           <AICards active={active} onSelect={goTo} />
         </div>
+        <ScrollHint show={active < aiCapabilities.length - 1} />
       </div>
     </section>
   )

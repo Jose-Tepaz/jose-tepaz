@@ -3,7 +3,7 @@
 import { useRef } from 'react'
 import Image from 'next/image'
 import { projects } from '@/lib/site-content'
-import { useStickyProgress } from './ui'
+import { ScrollHint, useStickyProgress } from './ui'
 
 export default function Work() {
   const { ref, active, goTo } = useStickyProgress(projects.length)
@@ -44,7 +44,9 @@ export default function Work() {
 
           <div className="work-grid">
             <div className="work-top">
-              <span>(03) Trabajo selecto · Proyectos que llegaron a producción</span>
+              <span>
+                (03) Trabajo selecto<span className="work-top-long"> · Proyectos que llegaron a producción</span>
+              </span>
               <span className="mono">
                 {String(active + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}
               </span>
@@ -95,6 +97,7 @@ export default function Work() {
             </div>
           </div>
         </div>
+        <ScrollHint show={active < projects.length - 1} />
       </div>
     </section>
   )

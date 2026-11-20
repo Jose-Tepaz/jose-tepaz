@@ -3,7 +3,7 @@
 import type { CSSProperties } from 'react'
 import { services } from '@/lib/site-content'
 import Shape from './Shapes'
-import { useStickyProgress } from './ui'
+import { ScrollHint, useStickyProgress } from './ui'
 
 export default function Services() {
   const { ref, active, goTo } = useStickyProgress(services.length)
@@ -49,6 +49,7 @@ export default function Services() {
             </li>
           ))}
         </ol>
+        <ScrollHint show={active < services.length - 1} />
       </div>
     </section>
   )

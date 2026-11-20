@@ -550,3 +550,42 @@ body { background: var(--canvas); color: var(--fg); }
   .services-shape { flex: 1 1 0; min-height: 0; width: 100%; display: grid; place-items: center; }
   .services-shape .shape { height: 100%; width: auto; max-width: 62vw; max-height: 260px; aspect-ratio: 1; }
 }
+
+/* ---------- Flecha de scroll (solo celular) ---------- */
+.scroll-hint { display: none; }
+@media (max-width: 900px) {
+  .scroll-hint { position: absolute; left: 50%; bottom: 72px; z-index: 30; width: 34px; height: 34px; margin-left: -17px; display: grid; place-items: center; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--fg) 35%, transparent); color: var(--fg); background: color-mix(in srgb, var(--canvas) 70%, transparent); backdrop-filter: blur(6px); opacity: 0; transform: translateY(8px); transition: opacity .4s, transform .4s; pointer-events: none; }
+  .scroll-hint.is-on { opacity: 1; transform: none; }
+  .scroll-hint svg { animation: hint-bob 1.6s ease-in-out infinite; }
+  .work-in .scroll-hint { color: #fff; border-color: rgba(255,255,255,.4); background: rgba(11,14,19,.55); }
+
+  /* Trabajo selecto en celular: más compacto y sin saturar la fila de arriba */
+  .work-grid { grid-template-rows: auto auto auto; align-content: center; gap: 12px; padding: 16px 16px 22px; }
+  .work-top { order: -2; font-size: .78rem; gap: 10px; }
+  .work-top-long { display: none; }
+  .work-top .mono { white-space: nowrap; }
+  .work-stage { order: -1; width: min(100%, calc((100svh - 560px) * 1.327)); min-width: 220px; }
+  .work-title { font-size: 2.3rem; margin-bottom: 6px; }
+  .work-meta { margin-bottom: 6px; }
+  .work-text { font-size: .92rem; margin-bottom: 10px; }
+  .work-also { display: none; }
+  .work-info { justify-content: flex-start; gap: 0; }
+
+  /* Menos aire en las listas largas */
+  .problem-fig { max-width: 104px; margin-bottom: 6px; }
+  .problem-card { padding-top: 16px !important; padding-bottom: 4px !important; gap: 8px; }
+  .problem-grid { margin-top: 28px; }
+  .aud-list li { padding: 18px 0; }
+  .aud-list { margin-top: 24px; }
+  .about-stats { margin-top: 36px; }
+}
+@keyframes hint-bob { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(3px); } }
+@media (prefers-reduced-motion: reduce) { .scroll-hint svg { animation: none; } }
+
+/* ---------- Celular: "El problema" en tarjetas ---------- */
+@media (max-width: 900px) {
+  .problem-grid { border-top: 0; gap: 12px; margin-top: 24px; }
+  .problem-grid .problem-card { border: 1px solid color-mix(in srgb, var(--fg) 14%, transparent) !important; background: color-mix(in srgb, var(--fg) 4%, transparent); border-radius: 22px; padding: 20px 20px 22px !important; gap: 8px; }
+  .problem-grid .problem-fig { max-width: 92px; margin-bottom: 4px; }
+  .problem-grid .problem-card h3 { font-size: 1.35rem; }
+}

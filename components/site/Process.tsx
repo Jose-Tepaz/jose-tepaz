@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { steps } from '@/lib/site-content'
-import { useStickyProgress } from './ui'
+import { ScrollHint, useStickyProgress } from './ui'
 
 const PULSE =
   'M0 120 H110 L128 104 L146 120 H200 L216 150 L246 12 L276 208 L294 120 H356 L372 104 L388 120 H452 L470 96 L488 120 H600'
@@ -69,6 +69,7 @@ export default function Process() {
             </li>
           ))}
         </ol>
+        <ScrollHint show={active < steps.length - 1} />
       </div>
     </section>
   )
