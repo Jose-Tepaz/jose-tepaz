@@ -38,7 +38,7 @@ export default function Work() {
         <div className="work-panel" onPointerMove={onMove} onPointerLeave={onLeave}>
           {projects.map((x, i) => (
             <div key={x.name} className={`work-bg ${i === active ? 'is-on' : ''}`} aria-hidden="true">
-              <Image src={x.image} alt="" fill sizes="100vw" className="work-img" priority={i === 0} />
+              <Image src={x.image} alt="" fill sizes="320px" quality={40} className="work-img" priority={i === 0} />
             </div>
           ))}
 

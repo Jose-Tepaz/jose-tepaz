@@ -36,9 +36,15 @@ export default function Chrome() {
 
       // Encabezado arriba; al hacer scroll aparece la píldora inferior con la sección actual
       setScrolled(window.scrollY > 2)
+      // la sección actual es la más cercana por encima del 40% de la pantalla (no la última de la lista)
       let now = ''
+      let best = -Infinity
       for (const l of navLinks) {
-        if ((document.getElementById(l.id)?.getBoundingClientRect().top ?? Infinity) <= window.innerHeight * 0.4) now = l.id
+        const top = document.getElementById(l.id)?.getBoundingClientRect().top
+        if (top !== undefined && top <= window.innerHeight * 0.4 && top > best) {
+          best = top
+          now = l.id
+        }
       }
       setCurrent(now)
 

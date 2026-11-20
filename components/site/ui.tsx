@@ -82,6 +82,9 @@ export function useStickyProgress(count: number) {
   const goTo = (i: number) => {
     const el = ref.current
     if (!el) return
+    // en celular algunas secciones son estáticas: no hay a dónde saltar
+    const pinned = el.querySelector('.sticky-in, .sticky-sec')
+    if (pinned && getComputedStyle(pinned).position !== 'sticky') return
     const top = el.getBoundingClientRect().top + window.scrollY
     const total = el.offsetHeight - window.innerHeight
     window.scrollTo({ top: top + ((i + 0.5) / count) * total, behavior: 'smooth' })

@@ -53,8 +53,16 @@ export default function StippleMarquee({ names }: { names: string[] }) {
     const build = async () => {
       if (building) return
       building = true
-      await document.fonts.ready
-      if (dead) return
+      try {
+        await document.fonts.ready
+        if (dead) return
+        await buildOnce()
+      } finally {
+        building = false
+      }
+    }
+
+    const buildOnce = async () => {
       const rect = root.getBoundingClientRect()
       W = Math.round(rect.width)
       const F = Math.min(224, Math.max(80, W * 0.15))
@@ -105,7 +113,6 @@ export default function StippleMarquee({ names }: { names: string[] }) {
         })
       }
       parts = list
-      building = false
       if (reduced) frame(performance.now())
     }
 
