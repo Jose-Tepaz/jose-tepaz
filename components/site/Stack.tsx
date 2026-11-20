@@ -5,8 +5,8 @@ import {
   siClaude, siFigma, siGithub, siMongodb, siN8n, siNextdotjs, siReact, siSupabase,
   siTailwindcss, siTypescript, siVercel, siZapier, type SimpleIcon,
 } from 'simple-icons'
-import { moreTools, stackBars, stackStats, tools } from '@/lib/site-content'
-import { Reveal, SecHead } from './ui'
+import { moreTools, tools } from '@/lib/site-content'
+import { Reveal } from './ui'
 
 const registry: Record<string, SimpleIcon> = {
   siClaude, siFigma, siGithub, siMongodb, siN8n, siNextdotjs, siReact, siSupabase,
@@ -26,72 +26,82 @@ function Logo({ k, className }: { k: string; className?: string }) {
 
 export default function Stack() {
   const [open, setOpen] = useState(0)
-  const [shown, setShown] = useState(false)
-  const card = useRef<HTMLDivElement>(null)
+  const items = useRef<(HTMLLIElement | null)[]>([])
   const t = tools[open]
 
+  // La herramienta activa es la más cercana al centro de la pantalla (solo depende del scroll).
   useEffect(() => {
-    const el = card.current
-    if (!el) return
-    const io = new IntersectionObserver(([e]) => e.isIntersecting && (setShown(true), io.disconnect()), { threshold: 0.3 })
-    io.observe(el)
-    return () => io.disconnect()
+    let raf = 0
+    const update = () => {
+      raf = 0
+      const mid = window.innerHeight / 2
+      let best = 0
+      let bestD = Infinity
+      items.current.forEach((el, i) => {
+        if (!el) return
+        const r = el.getBoundingClientRect()
+        const d = Math.abs(r.top + r.height / 2 - mid)
+        if (d < bestD) {
+          bestD = d
+          best = i
+        }
+      })
+      setOpen(best)
+    }
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update)
+    }
+    update()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+      if (raf) cancelAnimationFrame(raf)
+    }
   }, [])
 
   return (
-    <section id="stack" data-theme="light" data-section="stack" className="sec sec-light stack">
+    <section id="stack" data-theme="dark" data-section="stack" className="sec sec-dark stack">
       <div className="wrap">
-        <SecHead n="09" label="STACK TECNOLÓGICO" note="Herramientas que domino" />
         <Reveal as="h2" className="display big stack-title">De la herramienta al deploy.</Reveal>
         <Reveal as="p" className="lead" delay={0.1}>
           Figma, Next.js, MongoDB, Claude, n8n y más: el stack con el que llevo soluciones a producción, acelerado con IA.
         </Reveal>
 
         <div className="stack-grid">
-          <ol className="stack-list">
-            {tools.map((x, i) => (
-              <li key={x.name}>
-                <button
-                  type="button"
-                  className={i === open ? 'is-on' : ''}
-                  onMouseEnter={() => setOpen(i)}
-                  onFocus={() => setOpen(i)}
-                  onClick={() => setOpen(i)}
-                >
-                  <Logo k={x.key} className="stack-logo" />
-                  <span className="stack-name">{x.name}</span>
-                  <span className="mono stack-role">{x.role}</span>
-                </button>
-              </li>
-            ))}
-          </ol>
+          <div className="stack-focus" aria-hidden="true">
+            <div key={t.name} className="stack-focus-inner">
+              <Logo k={t.key} className="stack-focus-logo" />
+              <span className="stack-focus-name">{t.name}</span>
+              <span className="stack-focus-role">
+                {String(open + 1).padStart(2, '0')} · {t.role}
+              </span>
+            </div>
+          </div>
 
-          <div className="stack-card" ref={card}>
-            <div className="stack-card-bar">
-              <span><i className="dot" /> tu-producto.app</span>
-              <span className="mono">— □ ×</span>
-            </div>
-            <div className="stack-card-head" key={t.name}>
-              <Logo k={t.key} className="stack-big" />
-              <div>
-                <h3 className="display">{t.name}</h3>
-                <span className="mono">{t.role}</span>
-              </div>
-              <span className="live mono"><i className="dot" /> En producción</span>
-            </div>
-            <dl className="stack-stats">
-              {stackStats.map((s) => (
-                <div key={s.label}>
-                  <dt className="mono">{s.label}</dt>
-                  <dd>{s.value}</dd>
-                </div>
+          <div className="stack-history">
+            <span className="stack-history-label mono">HERRAMIENTAS</span>
+            <ol className="stack-list">
+              {tools.map((x, i) => (
+                <li
+                  key={x.name}
+                  data-i={i}
+                  ref={(el) => {
+                    items.current[i] = el
+                  }}
+                  className={i === open ? 'is-on' : ''}
+                  onClick={() => items.current[i]?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
+                >
+                  <span className="stack-dot" aria-hidden="true" />
+                  <span className="stack-item-role">{x.role}</span>
+                  <span className="stack-item-name">
+                    <Logo k={x.key} className="stack-logo" />
+                    {x.name}
+                  </span>
+                </li>
               ))}
-            </dl>
-            <div className="stack-bars" aria-hidden="true">
-              {stackBars.map((h, i) => (
-                <span key={i} style={{ height: shown ? `${h}%` : '0%', transitionDelay: `${i * 60}ms` }} />
-              ))}
-            </div>
+            </ol>
           </div>
         </div>
 

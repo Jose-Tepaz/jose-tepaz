@@ -1,5 +1,5 @@
 import { CALENDLY, LINKEDIN, navLinks } from '@/lib/site-content'
-import { Reveal, SecHead } from './ui'
+import { Reveal } from './ui'
 
 export default function Contact() {
   const year = new Date().getFullYear()
@@ -7,7 +7,6 @@ export default function Contact() {
   return (
     <section id="contacto" data-theme="dark" data-section="contacto" className="sec sec-dark contact">
       <div className="contact-panel">
-        <SecHead n="11" label="CONTACTO" note="Disponible para nuevos proyectos" />
 
         <div className="contact-center">
           <Reveal as="h2" className="display huge">

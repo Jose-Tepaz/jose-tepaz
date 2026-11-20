@@ -89,14 +89,3 @@ export function useStickyProgress(count: number) {
 
   return { ref, progress, active, goTo }
 }
-
-/** Cabecera de sección: (nn) ETIQUETA ........ nota */
-export function SecHead({ n, label, note }: { n: string; label: string; note?: string }) {
-  return (
-    <div className="sechead">
-      <span className="sechead-n">({n})</span>
-      <span className="sechead-l">{label}</span>
-      {note && <span className="sechead-note">{note}</span>}
-    </div>
-  )
-}
