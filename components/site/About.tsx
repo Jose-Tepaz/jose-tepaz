@@ -1,12 +1,11 @@
 import Image from 'next/image'
 import { skills } from '@/lib/site-content'
-import { Reveal, SecHead } from './ui'
+import { Reveal } from './ui'
 
 export default function About() {
   return (
     <section id="sobre-mi" data-theme="light" data-section="sobre-mi" className="sec sec-light about">
       <div className="wrap">
-        <SecHead n="10" label="SOBRE MÍ" note="Guatemala" />
 
         <div className="about-grid">
           <Reveal className="about-photo">

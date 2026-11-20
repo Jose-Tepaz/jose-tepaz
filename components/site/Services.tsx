@@ -3,7 +3,7 @@
 import type { CSSProperties } from 'react'
 import { services } from '@/lib/site-content'
 import Shape from './Shapes'
-import { SecHead, useStickyProgress } from './ui'
+import { useStickyProgress } from './ui'
 
 export default function Services() {
   const { ref, active, goTo } = useStickyProgress(services.length)
@@ -20,7 +20,6 @@ export default function Services() {
     >
       <div className="sticky-in services-in">
         <div className="wrap">
-          <SecHead n="06" label="SERVICIOS" note="Lo que hago dentro de tu equipo" />
         </div>
 
         <div className="wrap services-body">
