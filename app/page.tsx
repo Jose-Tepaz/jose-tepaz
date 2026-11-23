@@ -1,35 +1,33 @@
-import Navbar from '@/components/Navbar'
-import Hero from '@/components/Hero'
-import Portfolio from '@/components/Portfolio'
-import Problem from '@/components/Problem'
-import Process from '@/components/Process'
-import Services from '@/components/Services'
-import ClientsMarquee from '@/components/ClientsMarquee'
-import AIAutomation from '@/components/AIAutomation'
-import ToolStack from '@/components/ToolStack'
-import Audience from '@/components/Audience'
-import ScrollPhrase from '@/components/ScrollPhrase'
-import About from '@/components/About'
-import CTA from '@/components/CTA'
-import Footer from '@/components/Footer'
+import Chrome from '@/components/site/Chrome'
+import Hero from '@/components/site/Hero'
+import Clients from '@/components/site/Clients'
+import Work from '@/components/site/Work'
+import Problem from '@/components/site/Problem'
+import Phrase from '@/components/site/Phrase'
+import Process from '@/components/site/Process'
+import Services from '@/components/site/Services'
+import AI from '@/components/site/AI'
+import Stack from '@/components/site/Stack'
+import Audience from '@/components/site/Audience'
+import About from '@/components/site/About'
+import Contact from '@/components/site/Contact'
 
 export default function Home() {
   return (
-    <main className="relative">
-      <Navbar />
+    <main className="site">
+      <Chrome />
       <Hero />
-      <ClientsMarquee />
-      <Portfolio />
+      <Clients />
+      <About />
+      <Work />
       <Problem />
-      <ScrollPhrase />
+      <Phrase />
       <Process />
       <Services />
-      <AIAutomation />
-      <ToolStack />
+      <AI />
+      <Stack />
       <Audience />
-      <About />
-      <CTA />
-      <Footer />
+      <Contact />
     </main>
   )
 }
