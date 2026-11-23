@@ -750,3 +750,6 @@ p, li, dd, figcaption, blockquote, .hero-sub { text-wrap: pretty; }
 
 /* Trabajo selecto (escritorio): el margen superior del panel es igual al de los lados (el inferior deja libre la píldora). */
 @media (min-width: 901px) { .sticky-in.work-in { padding-top: var(--edge); } }
+
+/* Trabajo selecto (escritorio): la imagen se alinea al borde derecho del contenido, mismo padding que el izquierdo. */
+@media (min-width: 901px) { .work-stage { justify-self: end; } }
