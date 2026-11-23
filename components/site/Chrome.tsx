@@ -16,15 +16,25 @@ export default function Chrome() {
   useEffect(() => {
     let raf = 0
     let raf2 = 0
-    const under = (x: number, y: number, sel: string) =>
-      document
-        .elementsFromPoint(x, y)
-        .map((el) => el.closest<HTMLElement>(sel))
-        .find(Boolean) ?? null
+    // Posiciones de las secciones, medidas una vez (y cuando cambia el tamaño), para no leer el
+    // layout ni hacer hit-testing en cada fotograma de scroll.
+    const secs = Array.from(document.querySelectorAll<HTMLElement>('[data-section]'))
+    let tops: number[] = []
+    let bottoms: number[] = []
+    const measure = () => {
+      const y = window.scrollY
+      tops = secs.map((el) => el.getBoundingClientRect().top + y)
+      bottoms = secs.map((el, i) => tops[i] + el.offsetHeight)
+    }
+    const at = (frac: number) => {
+      const py = window.scrollY + window.innerHeight * frac
+      for (let i = 0; i < secs.length; i++) if (py >= tops[i] && py < bottoms[i]) return secs[i]
+      return null
+    }
     // Tema global: manda la sección que cruza el 45% de la pantalla. Los colores de toda la
     // página se mezclan con una transición (ver :root en site.css).
     const syncTheme = () => {
-      const sec = under(window.innerWidth / 2, window.innerHeight * 0.45, '[data-theme]')
+      const sec = at(0.45)
       if (sec) document.documentElement.dataset.theme = sec.dataset.theme === 'light' ? 'light' : 'dark'
     }
     const update = () => {
@@ -37,18 +47,19 @@ export default function Chrome() {
       // Encabezado arriba; al hacer scroll aparece la píldora inferior con la sección actual
       setScrolled(window.scrollY > 2)
       // la sección actual es la más cercana por encima del 40% de la pantalla (no la última de la lista)
+      const line = window.scrollY + window.innerHeight * 0.4
       let now = ''
       let best = -Infinity
       for (const l of navLinks) {
-        const top = document.getElementById(l.id)?.getBoundingClientRect().top
-        if (top !== undefined && top <= window.innerHeight * 0.4 && top > best) {
-          best = top
+        const i = secs.findIndex((el) => el.dataset.section === l.id)
+        if (i >= 0 && tops[i] <= line && tops[i] > best) {
+          best = tops[i]
           now = l.id
         }
       }
       setCurrent(now)
 
-      const cur = under(window.innerWidth / 2, window.innerHeight / 2, '[data-section]')
+      const cur = at(0.5)
       if (cur) {
         const found = sectionsIndex.find((s) => s.id === cur.dataset.section)
         if (found) setActive((p) => (p.id === found.id ? p : found))
@@ -57,14 +68,29 @@ export default function Chrome() {
     const onScroll = () => {
       if (!raf) raf = requestAnimationFrame(update)
     }
+    const onResize = () => {
+      measure()
+      onScroll()
+    }
+    // Las animaciones infinitas de una sección se pausan mientras la sección no se ve (ver site.css).
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => (e.target as HTMLElement).toggleAttribute('data-offscreen', !e.isIntersecting)),
+      { rootMargin: '10% 0px' },
+    )
+    secs.forEach((el) => io.observe(el))
+    measure()
     update()
+    const ro = new ResizeObserver(onResize)
+    ro.observe(document.body)
     window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', onScroll)
+    window.addEventListener('resize', onResize)
     return () => {
       cancelAnimationFrame(raf)
       cancelAnimationFrame(raf2)
+      ro.disconnect()
+      io.disconnect()
       window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onScroll)
+      window.removeEventListener('resize', onResize)
     }
   }, [])
 

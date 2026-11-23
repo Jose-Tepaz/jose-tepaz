@@ -45,13 +45,21 @@ export function Reveal({
   )
 }
 
+/** Cuánto hay que bajar (en alto de pantalla) para pasar al siguiente paso de una sección fija: un solo scroll. */
+export const STEP_VH = 28
+
 /**
  * Progreso (0–1) de una sección "pegajosa": 0 cuando su tope llega al borde superior,
  * 1 cuando termina de recorrerse. Devuelve también el índice activo para `count` pasos.
+ *
+ * Para no re-renderizar la sección en cada fotograma de scroll, `progress` solo se actualiza si
+ * `continuous` es true (frase y pulso del proceso); en el resto solo cambia `active`, que varía
+ * unas pocas veces en todo el recorrido.
  */
-export function useStickyProgress(count: number) {
+export function useStickyProgress(count: number, continuous = false) {
   const ref = useRef<HTMLElement>(null)
   const [progress, setProgress] = useState(0)
+  const [active, setActive] = useState(0)
 
   useEffect(() => {
     const el = ref.current
@@ -62,22 +70,33 @@ export function useStickyProgress(count: number) {
       const r = el.getBoundingClientRect()
       const total = r.height - window.innerHeight
       const p = total > 0 ? Math.min(1, Math.max(0, -r.top / total)) : 0
-      setProgress((prev) => (Math.abs(prev - p) < 0.002 ? prev : p))
+      if (continuous) setProgress((prev) => (Math.abs(prev - p) < 0.002 ? prev : p))
+      const a = Math.min(count - 1, Math.floor(p * count))
+      setActive((prev) => (prev === a ? prev : a))
     }
+    // solo medir mientras la sección está cerca de la pantalla; al entrar o salir se ajusta una vez
+    let near = true
     const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update)
+      if (near && !raf) raf = requestAnimationFrame(update)
     }
+    const io = new IntersectionObserver(
+      ([e]) => {
+        near = e.isIntersecting
+        if (!raf) raf = requestAnimationFrame(update)
+      },
+      { rootMargin: '100% 0px' },
+    )
+    io.observe(el)
     update()
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onScroll)
     return () => {
+      io.disconnect()
       cancelAnimationFrame(raf)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onScroll)
     }
-  }, [])
-
-  const active = Math.min(count - 1, Math.floor(progress * count))
+  }, [count, continuous])
 
   const goTo = (i: number) => {
     const el = ref.current

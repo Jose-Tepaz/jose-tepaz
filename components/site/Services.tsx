@@ -19,9 +19,6 @@ export default function Services() {
       style={{ height: `${services.length * 80 + 20}vh` }}
     >
       <div className="sticky-in services-in">
-        <div className="wrap">
-        </div>
-
         <div className="wrap services-body">
           <div className="services-copy" key={s.title}>
             <p className="eyebrow">Cómo puedo ayudarte</p>

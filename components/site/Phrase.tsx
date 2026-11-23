@@ -11,7 +11,7 @@ const words = [
 
 /** La frase se enciende palabra por palabra con el scroll. */
 export default function Phrase() {
-  const { ref, progress } = useStickyProgress(1)
+  const { ref, progress } = useStickyProgress(1, true)
   // Móvil: la sección no queda fija; el avance depende de dónde está en la pantalla (null = escritorio).
   const [mobileProgress, setMobileProgress] = useState<number | null>(null)
 

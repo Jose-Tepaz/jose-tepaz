@@ -3,7 +3,7 @@
 import { useRef } from 'react'
 import Image from 'next/image'
 import { projects } from '@/lib/site-content'
-import { ScrollHint, useStickyProgress } from './ui'
+import { ScrollHint, STEP_VH, useStickyProgress } from './ui'
 
 export default function Work() {
   const { ref, active, goTo } = useStickyProgress(projects.length)
@@ -32,7 +32,7 @@ export default function Work() {
       data-section="trabajo"
       ref={ref}
       className="sec sec-dark sticky-sec"
-      style={{ height: `${projects.length * 85 + 15}vh` }}
+      style={{ height: `${projects.length * STEP_VH + 100}vh` }}
     >
       <div className="sticky-in work-in">
         <div className="work-panel" onPointerMove={onMove} onPointerLeave={onLeave}>
