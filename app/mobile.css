@@ -32,11 +32,9 @@
 
   /* ---------- 3) Soluciones a la medida: sin ilustración (oculta, no eliminada) y sin flecha de scroll ----------
      El padding inferior deja las 4 pestañas por encima del botón del calendario (flotante, abajo a la derecha). */
-  .services-shape { display: none; }
   #servicios .scroll-hint { display: none !important; }
   .sticky-in.services-in { padding-bottom: calc(var(--m-nav-bottom) + 118px); }
   /* Sin la ilustración, el texto (y los chips) quedaban pegados a las pestañas: 32 px de separación. */
-  .services-body { margin-bottom: 32px; }
 
   /* ---------- 3d) Sobre mí: la foto centrada (antes quedaba pegada a la izquierda) ---------- */
   .about-photo { width: 100%; margin-left: auto; margin-right: auto; }
