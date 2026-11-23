@@ -51,7 +51,7 @@ export default function Process() {
               Cómo llevo tu problema <span className="blue">hasta producción</span>
             </h2>
             <p className="lead process-lead">
-              Embebido en tu equipo, con entregas continuas y visibilidad total en cada etapa.
+              Dentro de tu equipo, con entregas continuas y visibilidad total en cada etapa.
             </p>
           </div>
         </div>

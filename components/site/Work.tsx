@@ -73,7 +73,7 @@ export default function Work() {
                     <li key={t}>{t}</li>
                   ))}
                 </ul>
-                <p className="work-also">Software real, en producción y usado por personas reales.</p>
+                <p className="work-also">En producción y usado por personas reales.</p>
               </div>
             </div>
 

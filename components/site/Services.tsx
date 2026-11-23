@@ -24,7 +24,7 @@ export default function Services() {
 
         <div className="wrap services-body">
           <div className="services-copy" key={s.title}>
-            <p className="eyebrow">Trabajo embebido contigo: de entender el problema a mantener la solución viva.</p>
+            <p className="eyebrow">Trabajo dentro de tu equipo: de entender el problema a mantener la solución viva.</p>
             <h2 className="display big">{s.title}</h2>
             <p className="lead">{s.description}</p>
             <ul className="chips chips-light">

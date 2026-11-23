@@ -20,7 +20,7 @@ const mono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'José Tepáz — Forward Deployed Engineer',
   description:
-    'Me integro a tu equipo, entiendo el problema de negocio y construyo, integro y lanzo la solución en producción. Web apps, integraciones y e-commerce.',
+    'Soy José Tepáz, Forward Deployed Engineer. Me integro a tu equipo y llevo tu solución del problema a producción: web apps, integraciones, IA y e-commerce.',
   keywords: [
     'forward deployed engineer',
     'ingeniero de software',

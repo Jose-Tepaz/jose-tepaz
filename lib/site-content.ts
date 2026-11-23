@@ -27,10 +27,10 @@ export const sectionsIndex = [
 ]
 
 export const stats = [
-  { value: '6+', label: 'años de experiencia' },
+  { value: '6+', label: 'años llevando software a producción' },
   { value: '60+', label: 'proyectos lanzados' },
-  { value: '3', label: 'continentes atendidos' },
-  { value: '12', label: 'herramientas en mi stack' },
+  { value: '3', label: 'continentes donde he trabajado' },
+  { value: '12', label: 'herramientas que domino' },
 ]
 
 export const clients = ['Teknergy', 'Winkelmann', 'Tienda Borgatta', 'Bales Hay']
@@ -40,7 +40,7 @@ export const projects = [
     name: 'Eppigo',
     category: 'Marketplace de seguros',
     description:
-      'Marketplace de seguros para cotizar, comparar y contratar pólizas en línea en Estados Unidos, en pocos pasos.',
+      'Un marketplace para cotizar, comparar y contratar seguros en línea en Estados Unidos, en pocos pasos.',
     tags: ['Marketplace', 'Seguros'],
     image: '/images/projects/eppigo-4.png',
   },
@@ -48,7 +48,7 @@ export const projects = [
     name: 'Winkelman',
     category: 'Sitio web',
     description:
-      'Sitio web renovado para presentar con claridad los servicios de ingeniería civil y topografía de Winkelman y facilitar el contacto con sus clientes en Estados Unidos.',
+      'Un sitio renovado que explica con claridad los servicios de ingeniería civil y topografía de Winkelman y le facilita a sus clientes en Estados Unidos ponerse en contacto.',
     tags: ['Diseño web', 'Desarrollo'],
     image: '/images/projects/winkelman-1.png',
   },
@@ -56,7 +56,7 @@ export const projects = [
     name: 'GoAMS',
     category: 'Plataforma de gestión',
     description:
-      'Plataforma de gestión para agencias y agentes de seguros, con un panel para consultar pólizas, clientes, citas y comisiones.',
+      'Una plataforma para agencias y agentes de seguros: pólizas, clientes, citas y comisiones en un solo panel.',
     tags: ['Web App', 'Seguros'],
     image: '/images/projects/go-ams.png',
   },
@@ -64,7 +64,7 @@ export const projects = [
     name: 'VSTCONTROL',
     category: 'Plataforma con IA',
     description:
-      'Plataforma de gestión interna para dar seguimiento a facturas vencidas, cuentas por pagar y por cobrar, y al avance de los proyectos. Incluye un asistente de inteligencia artificial para interactuar con la plataforma.',
+      'Una plataforma interna para controlar facturas vencidas, cuentas por pagar y por cobrar y el avance de los proyectos, con un asistente de IA para interactuar con ella.',
     tags: ['Web App', 'IA'],
     image: '/images/projects/plataforma-de-control.png',
   },
@@ -76,55 +76,55 @@ export const problems = [
     label: 'Brecha',
     title: 'Negocio y técnica no se hablan',
     description:
-      'Los stakeholders piden una cosa y el equipo construye otra. Sin un puente, el producto se desvía.',
+      'Negocio pide una cosa y el equipo construye otra. Sin un puente, el producto se desvía.',
   },
   {
     shape: 'misfit',
     label: 'Genérico',
     title: 'Soluciones que no encajan',
     description:
-      'Software genérico que no se adapta a tus procesos, sistemas ni datos reales. Termina sin usarse.',
+      'Software genérico que no se adapta a tus procesos, tus sistemas ni tus datos. Termina sin usarse.',
   },
   {
     shape: 'islands',
     label: 'Aislado',
     title: 'Sistemas que no se conectan',
     description:
-      'APIs, datos y herramientas sueltas. Sin integración, la solución no funciona en el entorno real del cliente.',
+      'APIs, datos y herramientas sueltas. Sin integración, la solución no funciona en tu entorno real.',
   },
   {
     shape: 'stuck',
     label: 'Estancado',
     title: 'Proyectos que no llegan a producción',
     description:
-      'Prototipos que lucen bien en la demo pero nunca salen: faltan entornos, despliegue y alguien que responda por el resultado.',
+      'Prototipos que lucen bien en la demo y nunca salen: faltan entornos, despliegue y alguien que responda por el resultado.',
   },
 ] as const
 
 export const phrase = {
   lead: 'Para eso existo yo.',
-  rest: 'El puente que se integra a tu equipo y lleva la solución del problema a producción.',
+  rest: 'Soy el puente que se integra a tu equipo y lleva la solución del problema a producción.',
 }
 
 export const steps = [
   {
     title: 'Inmersión y definición',
-    text: 'Me integro a tu equipo, entiendo procesos, usuarios y datos. Definimos el problema real y qué significa el éxito, sin suposiciones.',
+    text: 'Me integro a tu equipo y entiendo tus procesos, usuarios y datos. Definimos el problema real y qué significa el éxito, sin suposiciones.',
     tags: ['Discovery', 'Stakeholders', 'Alcance'],
   },
   {
     title: 'Diseño de la solución',
-    text: 'Diseño la arquitectura y prototipo rápido junto a tu equipo, validando sobre tu entorno real antes de comprometer el desarrollo.',
+    text: 'Diseño la arquitectura y un prototipo rápido junto a tu equipo, y lo valido en tu entorno real antes de comprometer el desarrollo.',
     tags: ['Arquitectura', 'Prototipo', 'UX'],
   },
   {
     title: 'Construcción e integración',
-    text: 'Construyo y conecto la solución con tus sistemas y datos. Aceleramos con IA y automatización, con entregas incrementales para que veas el progreso en tiempo real.',
+    text: 'Construyo y conecto la solución con tus sistemas y datos. Aceleramos con IA y automatización, con entregas incrementales para que veas el avance en tiempo real.',
     tags: ['Desarrollo', 'Integraciones', 'Automatización'],
   },
   {
     title: 'Producción y resultados',
-    text: 'Despliego en tu entorno, capacito al equipo y mido resultados. Me quedo hasta que la solución funciona para usuarios reales.',
+    text: 'Despliego en tu entorno, capacito a tu equipo y mido resultados. Me quedo hasta que la solución funciona para usuarios reales.',
     tags: ['Deploy', 'Capacitación', 'Métricas'],
   },
 ]
@@ -133,7 +133,7 @@ export const services = [
   {
     title: 'Soluciones a la medida',
     description:
-      'Web apps, plataformas internas y herramientas hechas para tu operación. Desde un MVP hasta sistemas complejos que escalan con tu negocio.',
+      'Web apps, plataformas internas y herramientas hechas para tu operación. Desde un MVP hasta sistemas complejos que crecen con tu negocio.',
     features: ['Web App', 'Plataformas', 'MVPs', 'Dashboards'],
     shape: 'cube',
   },
@@ -154,7 +154,7 @@ export const services = [
   {
     title: 'Liderazgo técnico',
     description:
-      'Dirijo equipos o trabajo dentro del tuyo: decisiones de arquitectura y coordinación entre diseño, desarrollo y negocio.',
+      'Lidero equipos o trabajo dentro del tuyo: decisiones de arquitectura y coordinación entre diseño, desarrollo y negocio.',
     features: ['Arquitectura', 'Equipos', 'Roadmap', 'UX'],
     shape: 'stack',
   },
@@ -231,7 +231,7 @@ export const audiences = [
   },
   {
     title: 'Equipos técnicos',
-    description: 'Equipos que necesitan refuerzo embebido y alguien que conecte negocio, diseño y código.',
+    description: 'Equipos que necesitan un refuerzo que se integre y conecte negocio, diseño y código.',
   },
 ]
 

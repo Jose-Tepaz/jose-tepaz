@@ -17,7 +17,7 @@ export default function Contact() {
           </Reveal>
           <Reveal delay={0.15} className="contact-actions">
             <a className="btn btn-blue" href={CALENDLY} target="_blank" rel="noopener noreferrer">
-              Agenda una llamada gratuita
+              Agenda tu llamada de 30 min
             </a>
             <a className="t-link" href={LINKEDIN} target="_blank" rel="noopener noreferrer">
               <span className="link-text">LinkedIn</span> <span className="t-arrow t-arrow--out" aria-hidden="true">↗</span>

@@ -41,20 +41,20 @@ export default function Hero() {
       <div className="hero-in">
       <div className="hero-copy">
         <h1 className="display">
-          <span className="line"><span>Desarrollo productos</span></span>
-          <span className="line"><span>digitales para empresas</span></span>
-          <span className="line"><span className="blue">de alto nivel</span></span>
+          <span className="line"><span>Convierto problemas</span></span>
+          <span className="line"><span>de negocio en software</span></span>
+          <span className="line"><span className="blue">que funciona de verdad.</span></span>
         </h1>
         <div className="hero-row">
         <p className="hero-sub">
-          Me integro a tu operación para entender a fondo cómo funciona tu negocio y crear soluciones digitales que resuelvan problemas, mejoren procesos y aporten valor.
+          Me integro a tu equipo, entiendo cómo funciona tu negocio y construyo la solución contigo: del primer prototipo hasta que la usan personas reales.
         </p>
         <div className="hero-cta">
           <a className="btn btn-blue" href={CALENDLY} target="_blank" rel="noopener noreferrer">
-            Agenda una llamada gratuita
+            Agenda una llamada de 30 min
           </a>
           <a className="t-link" href="#trabajo">
-            <span className="link-text">Ver proyectos</span> <span className="t-arrow" aria-hidden="true">↘</span>
+            <span className="link-text">Ver mi trabajo</span> <span className="t-arrow" aria-hidden="true">↘</span>
           </a>
         </div>
         </div>
