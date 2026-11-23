@@ -171,25 +171,25 @@ export const aiCapabilities = [
   {
     title: 'Agentes y asistentes de IA',
     description:
-      'Asistentes y agentes conectados a tus datos y herramientas, que responden, investigan y ejecutan tareas por tu equipo.',
-    tags: ['LLMs', 'Agentes', 'RAG'],
+      'Asistentes conectados a tus datos y herramientas que responden, investigan y ejecutan tareas por tu equipo, para que se enfoque en lo que requiere criterio humano.',
+    tags: ['LLMs', 'RAG', 'Tus datos'],
   },
   {
     title: 'Automatización de procesos',
     description:
-      'Flujos que eliminan el trabajo manual repetitivo: del correo al CRM, de los datos a los reportes, sin intervención humana.',
+      'Flujos que eliminan el trabajo manual repetitivo, del correo al CRM y de los datos a los reportes, sin que nadie tenga que moverlos a mano.',
     tags: ['n8n', 'Webhooks', 'APIs', 'Workflows'],
   },
   {
     title: 'IA dentro del producto',
     description:
-      'Integro modelos de lenguaje en tus productos: búsqueda inteligente, clasificación, generación de contenido y copilotos.',
+      'IA dentro de tus productos: búsqueda inteligente, clasificación, generación de contenido y copilotos que ayudan a tus usuarios a hacer más.',
     tags: ['Búsqueda semántica', 'Copilotos', 'Generación'],
   },
   {
     title: 'Desarrollo acelerado con IA',
     description:
-      'Uso IA a lo largo del ciclo de desarrollo (código, revisión, pruebas y documentación) para entregar más rápido sin perder calidad.',
+      'Uso IA en todo el desarrollo (código, revisión, pruebas y documentación) para entregar más rápido sin perder calidad.',
     tags: ['Código', 'Revisión', 'Testing', 'Docs'],
   },
 ]

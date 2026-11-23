@@ -23,7 +23,7 @@ export default function AI() {
             Acelero cada etapa <span className="blue">con IA y automatización</span>
           </h2>
           <p className="lead">
-            Integro herramientas de IA en tus procesos y en tu producto para que tu equipo entregue más, con menos trabajo manual.
+            Integro IA en tus procesos y en tu producto para que tu equipo logre más con menos trabajo manual.
           </p>
           <AICards active={active} onSelect={goTo} />
         </div>
