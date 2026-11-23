@@ -691,7 +691,7 @@ p, li, dd, figcaption, blockquote, .hero-sub { text-wrap: pretty; }
 /* Proceso y Servicios (escritorio): bloque principal + pasos forman un solo grupo, centrado en el espacio libre
    que queda sobre la píldora de navegación (arriba un margen igual al que queda abajo, hasta la píldora). */
 @media (min-width: 901px) {
-  .sticky-in.process-in, .sticky-in.services-in { justify-content: center; gap: clamp(36px, 7vh, 80px); padding-top: max(24px, calc(clamp(96px, 12vh, 120px) - 98px)); }
+  .sticky-in.process-in, .sticky-in.services-in { justify-content: center; gap: clamp(28px, 5vh, 80px); padding-top: max(24px, calc(clamp(96px, 12vh, 120px) - 98px)); }
   .process-top, .services-body { flex: none; }
 }
 
@@ -722,3 +722,72 @@ p, li, dd, figcaption, blockquote, .hero-sub { text-wrap: pretty; }
 
 /* Trabajo selecto (escritorio): el margen superior del panel es igual al de los lados (el inferior deja libre la píldora). */
 @media (min-width: 901px) { .sticky-in.work-in { padding-top: var(--edge); } }
+
+/* ======================================================================================================
+   Padding vertical de las secciones: 120px en escritorio, 62px en tablet (≤900px) y 48px en móvil (≤650px).
+   --pill-clear = espacio que necesita la píldora de navegación fija (≈78px + margen) en las secciones que
+   quedan fijas en pantalla: ahí el padding inferior es max(--sec-py, --pill-clear) para que no tape nada.
+   ====================================================================================================== */
+:root { --sec-py: 120px; --pill-clear: 90px; --header-h: 105px; }
+@media (max-width: 900px) { :root { --sec-py: 62px; } }
+@media (max-width: 650px) { :root { --sec-py: 48px; --header-h: 86px; } }
+
+/* secciones normales */
+.sec:not(.sticky-sec), .sec.clients, .clients, .sec.contact, .contact { padding-top: var(--sec-py); padding-bottom: var(--sec-py); }
+#audiencia.sec, #contacto.sec { padding-top: var(--sec-py); padding-bottom: var(--sec-py); }
+
+/* secciones fijas (pinned): arriba exacto; abajo deja libre la píldora */
+/* --pin-py = --sec-py exacto mientras el contenido quepa (pantallas de ≥860px de alto); en pantallas más bajas
+   baja lo justo (mínimo 48px) para que el contenido de la sección fija no se recorte */
+:root { --pin-py: clamp(48px, calc((100svh - 620px) / 2), var(--sec-py)); }
+.sticky-in, .sticky-in.services-in, .sticky-in.work-in, .sticky-in.process-in { padding-top: var(--pin-py); padding-bottom: max(var(--pin-py), var(--pill-clear)); }
+@media (min-width: 901px) {
+  .sticky-in.work-in, .sticky-in.process-in, .sticky-in.services-in { padding-top: var(--pin-py); padding-bottom: max(var(--pin-py), var(--pill-clear)); }
+}
+
+/* hero: abajo la variable; arriba lo necesario para librar el encabezado fijo */
+.hero-in { padding-top: max(var(--sec-py), calc(var(--header-h) + 14px)); padding-bottom: var(--sec-py); }
+@media (min-width: 901px) { .hero { height: auto; min-height: 100svh; } .hero-in { height: auto; min-height: 100svh; box-sizing: border-box; } }
+
+/* tablet y móvil: Frase, Proceso e IA son secciones estáticas (no fijas) → padding exacto en ambos lados */
+@media (max-width: 900px) {
+  #propuesta .phrase-in, #proceso .process-in, #ia .ai-in { padding-top: var(--sec-py); padding-bottom: var(--sec-py); }
+}
+/* IA (escritorio): las tarjetas se ajustan al alto que queda entre los dos paddings */
+@media (min-width: 901px) { .ai-in .aa-row { --aa-h: clamp(300px, calc(100svh - 530px), 640px); } }
+
+/* ======================================================================================================
+   Servicios: cada servicio es un .svc.
+   Escritorio: solo se ve el activo (dos columnas: texto + ilustración) y los pasos de abajo lo cambian.
+   Tablet y móvil (≤900px): sección estática con los 4 servicios como tarjetas.
+   ====================================================================================================== */
+.services-body { display: grid; grid-template-columns: 1fr; gap: 0; align-items: center; }
+.svc { display: none; }
+.svc.is-active { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
+.services-intro, .svc-n { display: none; }
+
+@media (max-width: 900px) {
+  #servicios { height: auto !important; }
+  #servicios .services-in { position: static; height: auto; overflow: visible; justify-content: flex-start; gap: 0; padding-top: var(--sec-py); padding-bottom: var(--sec-py); }
+  #servicios .scroll-hint, #servicios .tabs { display: none !important; }
+  #servicios .services-body { display: flex; flex-direction: column; gap: 14px; flex: none; }
+  #servicios .services-intro { display: block; margin: 0 0 6px; text-transform: none; letter-spacing: 0; font-family: inherit; font-size: .95rem; opacity: .75; max-width: 32em; text-wrap: balance; }
+  #servicios .svc, #servicios .svc.is-active { display: block; position: relative; padding: 22px; border-radius: 22px; border: 1px solid color-mix(in srgb, var(--fg) 14%, transparent); background: color-mix(in srgb, var(--fg) 4%, transparent); }
+  #servicios .services-copy > * { animation: none; }
+  #servicios .services-copy .eyebrow { display: none; }
+  #servicios .svc-n { display: block; margin-bottom: 10px; font-size: .75rem; opacity: .6; }
+  #servicios .services-copy .display { font-size: 1.55rem; line-height: 1.05; margin: 0 76px 10px 0; letter-spacing: -.04em; }
+  #servicios .services-copy .lead { font-size: .98rem; opacity: .8; margin: 0 0 14px; }
+  #servicios .services-shape { position: absolute; top: 16px; right: 16px; width: 64px; height: 64px; animation: none; display: block; }
+  #servicios .services-shape .shape { width: 100%; height: 100%; max-width: none; max-height: none; }
+}
+
+/* Sobre mí (tablet y móvil): las tecnologías pasan a un carrusel de 2 filas que se desliza en horizontal */
+@media (max-width: 900px) {
+  .about .chips { display: grid; grid-auto-flow: column; grid-template-rows: repeat(2, auto); grid-auto-columns: max-content; gap: 10px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    margin-inline: calc(var(--gutter) * -1); padding: 4px var(--gutter) 10px; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); }
+  .about .chips::-webkit-scrollbar { display: none; }
+  .about .chips li { scroll-snap-align: start; white-space: nowrap; padding: 9px 16px; font-size: .9rem; }
+}
+/* la columna no debe ensancharse al ancho del carrusel: el desborde lo absorbe el propio carrusel */
+@media (max-width: 900px) { .about-grid { grid-template-columns: minmax(0, 1fr); } .about-grid > * { min-width: 0; } }
