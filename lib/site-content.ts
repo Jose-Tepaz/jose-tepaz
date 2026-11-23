@@ -74,30 +74,30 @@ export const problems = [
   {
     shape: 'gap',
     label: 'Brecha',
-    title: 'Negocio y técnica no se hablan',
+    title: 'Negocio y tecnología no se entienden',
     description:
-      'Negocio pide una cosa y el equipo construye otra. Sin un puente, el producto se desvía.',
+      'Negocio pide una cosa, el equipo construye otra y nadie lo nota hasta tarde. Sin un puente, el producto se desvía.',
   },
   {
     shape: 'misfit',
     label: 'Genérico',
     title: 'Soluciones que no encajan',
     description:
-      'Software genérico que no se adapta a tus procesos, tus sistemas ni tus datos. Termina sin usarse.',
+      'Software genérico que no se adapta a tus procesos, tus sistemas ni tus datos. Se compra, se instala y termina sin usarse.',
   },
   {
     shape: 'islands',
     label: 'Aislado',
     title: 'Sistemas que no se conectan',
     description:
-      'APIs, datos y herramientas sueltas. Sin integración, la solución no funciona en tu entorno real.',
+      'APIs, datos y herramientas, cada una por su lado. Sin integración, la solución no funciona en tu entorno real.',
   },
   {
     shape: 'stuck',
     label: 'Estancado',
     title: 'Proyectos que no llegan a producción',
     description:
-      'Prototipos que lucen bien en la demo y nunca salen: faltan entornos, despliegue y alguien que responda por el resultado.',
+      'Prototipos que lucen bien en la demo y nunca salen: faltan entornos, despliegue y alguien que se haga cargo del resultado.',
   },
 ] as const
 
