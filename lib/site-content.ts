@@ -102,8 +102,8 @@ export const problems = [
 ] as const
 
 export const phrase = {
-  lead: 'Para eso existo yo.',
-  rest: 'Soy el puente que se integra a tu equipo y lleva la solución del problema a producción.',
+  lead: 'Ahí entro yo.',
+  rest: 'Me integro a tu equipo, traduzco entre negocio y tecnología y llevo la solución hasta producción.',
 }
 
 export const steps = [
