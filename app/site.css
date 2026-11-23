@@ -395,7 +395,7 @@ body { background: var(--canvas); color: var(--fg); }
 .aa-tags { display:flex; flex-wrap:wrap; gap:6px 14px; font-size:13px; opacity:.9; }
 /* Dentro de la sección fija, las tarjetas se ajustan a la altura de la pantalla */
 .ai-in { justify-content: center; }
-.ai-in .aa-row { --aa-h: clamp(320px, calc(100svh - 400px), 640px); margin-top: 24px; }
+.ai-in .aa-row { --aa-h: clamp(320px, calc(100svh - 450px), 620px); margin-top: 24px; }
 .ai-in .ai-title { margin-bottom: 16px; }
 @media (max-width:900px) {
   .ai-in .aa-card.is-active { height: max(220px, calc(100svh - 560px)); }
@@ -660,4 +660,32 @@ body { background: var(--canvas); color: var(--fg); }
   .work-grid { flex: none; align-content: start; padding: 22px 18px 30px; gap: 20px; }
   .work-title { font-size: 2.6rem; }
   .work-text { font-size: 1rem; }
+}
+
+/* ---------- Textos descriptivos más grandes (se leen mejor en pantallas grandes) ---------- */
+.lead { font-size: clamp(1.1rem, 1.6vw, 1.6rem); }
+.eyebrow { font-size: .85rem; opacity: .7; }
+.hero-sub { font-size: clamp(1.05rem, 1.4vw, 1.4rem); opacity: .85; max-width: 36em; }
+.hero-loc { font-size: .95rem; }
+.about-p { font-size: clamp(1.1rem, 1.5vw, 1.45rem); }
+.about-p2 { font-size: clamp(1.05rem, 1.35vw, 1.3rem); opacity: .75; }
+.about-stat dd { font-size: clamp(.95rem, 1.1vw, 1.15rem); opacity: .75; }
+.problem-tag { font-size: .8rem; opacity: .65; }
+.problem-card h3 { font-size: clamp(1.4rem, 2.2vw, 2.1rem); }
+.problem-card p { font-size: clamp(1rem, 1.15vw, 1.2rem); opacity: .75; }
+.services-copy .eyebrow { font-size: 1.05rem; opacity: .75; }
+.chips li { font-size: .92rem; padding: 7px 15px; }
+.work-meta { font-size: .85rem; opacity: .75; }
+.work-text { font-size: clamp(1.05rem, 1.6vw, 1.5rem); }
+.aa-desc { font-size: clamp(17px, 1.5vw, 24px); }
+.aa-tags { font-size: 15px; }
+.aud-list p { font-size: clamp(1rem, 1.2vw, 1.25rem); opacity: .8; }
+.stack-item-role { font-size: .95rem; }
+.contact-note { font-size: .95rem; opacity: .65; }
+.t-link { font-size: 1.05rem; }
+@media (min-width: 901px) {
+  .tabs-text .tab-n { font-size: .85rem; }
+  .tabs-text .tab-t { font-size: clamp(1.25rem, 1.5vw, 1.8rem); }
+  .tabs-text .tab-d { font-size: clamp(1rem, 1.1vw, 1.2rem); opacity: .8; max-width: 28em; }
+  .tabs-text .tab-tags { font-size: .8rem; }
 }

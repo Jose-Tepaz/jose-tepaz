@@ -47,7 +47,7 @@ export default function Hero() {
         </h1>
         <div className="hero-row">
         <p className="hero-sub">
-          Me integro a tu equipo, entiendo cómo funciona tu negocio y construyo la solución contigo: del primer prototipo hasta que la usan personas reales.
+          Desarrollo web apps, integraciones, automatización con IA y e-commerce. Me integro a tu equipo, entiendo tu negocio y construyo la solución contigo, hasta que la usan personas reales.
         </p>
         <div className="hero-cta">
           <a className="btn btn-blue" href={CALENDLY} target="_blank" rel="noopener noreferrer">
