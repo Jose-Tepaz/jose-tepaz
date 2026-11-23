@@ -110,7 +110,7 @@ export default function Chrome() {
           <rect x="3" y="4.5" width="18" height="16.5" rx="3" />
           <path d="M8 2.5v4M16 2.5v4M3 10h18" />
         </svg>
-        <span className="fab-label">Agenda una llamada</span>
+        <span className="fab-label">Llamada gratuita</span>
       </a>
     </div>
   )

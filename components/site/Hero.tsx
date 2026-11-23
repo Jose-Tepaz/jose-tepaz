@@ -51,7 +51,7 @@ export default function Hero() {
         </p>
         <div className="hero-cta">
           <a className="btn btn-blue" href={CALENDLY} target="_blank" rel="noopener noreferrer">
-            Agenda una llamada de 30 min
+            Agenda una llamada gratuita
           </a>
           <a className="t-link" href="#trabajo">
             <span className="link-text">Ver mi trabajo</span> <span className="t-arrow" aria-hidden="true">↘</span>
