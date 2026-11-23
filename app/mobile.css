@@ -74,33 +74,42 @@
   /* ---------- 6) Proceso: pulso y título fijos arriba, tarjetas que cruzan de derecha a izquierda con el scroll ----------
      (las variables --p, --plen y --pos las calcula Process.tsx según el progreso del scroll) */
   #proceso { height: 340vh !important; }
-  #proceso .process-in { position: sticky; height: 100svh; overflow: hidden; justify-content: flex-start; gap: 20px; padding-top: var(--m-proceso-top); padding-bottom: var(--m-pad); }
+  #proceso .process-in { position: sticky; height: 100svh; overflow: hidden; justify-content: flex-start; gap: 20px; padding-top: var(--m-proceso-top); padding-bottom: max(var(--m-pad), var(--pill-clear)); }
   #proceso .process-top { gap: 12px; }
   #proceso .process-top .pulse { max-height: min(130px, 16svh); }
   #proceso .pulse-line { stroke-dashoffset: calc(var(--plen, 0) * 1px * (1 - var(--p, 1))) !important; }
   #proceso .pulse-dot { display: inline !important; }
 
+  /* Las tarjetas se apilan: cada una sube desde abajo y tapa a la anterior, a ancho completo (respetando el padding de la
+     página). --pos (0 a 3) lo calcula Process.tsx según el progreso del scroll; --i es el número de la tarjeta (0 a 3). */
   #proceso .tabs {
-    --cw: min(80vw, 340px);
-    --gap: 24px;
-    display: flex; flex-wrap: nowrap; gap: var(--gap);
-    transform: translate3d(calc(var(--pos, 0) * -1 * (var(--cw) + var(--gap))), 0, 0);
-    will-change: transform;
+    display: block; position: relative; flex: 1 1 auto; min-height: 270px; max-height: 340px;
+    margin-top: 12px; padding: 0; transform: none;
   }
   #proceso .tabs-text > li {
-    flex: 0 0 var(--cw); min-width: 0;
+    --i: 0;
+    --t: clamp(0, calc(var(--pos, 0) - var(--i) + 1), 1);   /* cuánto ha subido (0 = abajo, 1 = en su lugar) */
+    --d: clamp(0, calc(var(--pos, 0) - var(--i)), 3);        /* cuántas tarjetas la cubren ya */
+    position: absolute; top: 0; bottom: 0; left: var(--gutter); right: var(--gutter); min-width: 0;
+    z-index: calc(var(--i) + 1);
     padding: 20px 20px 22px;
-    background: color-mix(in srgb, var(--fg) 5%, transparent);
+    background: color-mix(in srgb, var(--fg) 5%, #14171d);
     border: 1px solid color-mix(in srgb, var(--fg) 14%, transparent);
     border-radius: 22px;
+    transform-origin: 50% 0;
+    transform: translate3d(0, calc((1 - var(--t)) * 112% - var(--d) * 10px), 0) scale(calc(1 - var(--d) * .04));
+    filter: brightness(calc(1 - var(--d) * .2));   /* las cubiertas se oscurecen (sin transparentar lo que tienen detrás) */
+    will-change: transform;
   }
-  #proceso .tab { opacity: .5 !important; pointer-events: auto; transition: opacity .3s; }
-  #proceso .tab.is-cur { opacity: 1 !important; }
+  #proceso .tabs-text > li:nth-child(2) { --i: 1; }
+  #proceso .tabs-text > li:nth-child(3) { --i: 2; }
+  #proceso .tabs-text > li:nth-child(4) { --i: 3; }
+  #proceso .tab { opacity: 1 !important; pointer-events: auto; display: flex; flex-direction: column; height: 100%; text-align: left; }
   #proceso .tab .tab-bar { background: currentColor; opacity: .25; margin-bottom: 14px; }
   #proceso .tab.is-on .tab-bar { background: var(--blue); opacity: 1; }
-  #proceso .tab .tab-t { font-size: 1.3rem; line-height: 1.15; margin-bottom: 8px; }
-  #proceso .tab .tab-d { font-size: .95rem; line-height: 1.45; opacity: .8; }
-  #proceso .tab .tab-tags { margin-top: 12px; }
+  #proceso .tab .tab-t { font-size: 1.45rem; line-height: 1.15; margin-bottom: 10px; }
+  #proceso .tab .tab-d { font-size: 1rem; line-height: 1.5; opacity: .8; }
+  #proceso .tab .tab-tags { margin-top: auto; padding-top: 12px; }
 
   /* ---------- 5) IA: los íconos de las tarjetas suben y bajan suavemente ---------- */
   #ia .aa-card .aa-icon,
@@ -108,6 +117,11 @@
   #ia .aa-card:nth-child(2) .aa-icon { animation-delay: -.9s; }
   #ia .aa-card:nth-child(3) .aa-icon { animation-delay: -1.8s; }
   #ia .aa-card:nth-child(4) .aa-icon { animation-delay: -2.7s; }
+}
+
+/* Tablet (pantalla alta): el bloque de Proceso se centra en vertical para repartir el espacio sobrante arriba y abajo */
+@media (min-width: 651px) and (max-width: 900px) {
+  #proceso .process-in { justify-content: center; }
 }
 
 /* Teléfono en horizontal (poco alto): la foto no puede ser más alta que la pantalla */
