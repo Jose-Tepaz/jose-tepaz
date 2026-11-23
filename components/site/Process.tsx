@@ -46,12 +46,12 @@ export default function Process() {
             <circle cx={dot.x} cy={dot.y} r="9" className="pulse-dot" />
           </svg>
           <div>
-            <p className="eyebrow">(06) Mi proceso</p>
+            <p className="eyebrow">Mi proceso</p>
             <h2 className="display big">
               Cómo llevo tu problema <span className="blue">hasta producción</span>
             </h2>
             <p className="lead process-lead">
-              Dentro de tu equipo, con entregas continuas y visibilidad total en cada etapa.
+              Dentro de tu equipo, con entregas continuas y claridad en cada etapa: siempre sabes en qué punto estamos.
             </p>
           </div>
         </div>

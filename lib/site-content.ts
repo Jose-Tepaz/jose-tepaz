@@ -108,24 +108,24 @@ export const phrase = {
 
 export const steps = [
   {
-    title: 'Inmersión y definición',
-    text: 'Me integro a tu equipo y entiendo tus procesos, usuarios y datos. Definimos el problema real y qué significa el éxito, sin suposiciones.',
-    tags: ['Discovery', 'Stakeholders', 'Alcance'],
+    title: 'Entiendo tu problema',
+    text: 'Me integro a tu equipo y conozco tus procesos, usuarios y datos. Definimos juntos qué problema resolver y cómo se mide el éxito.',
+    tags: ['Descubrimiento', 'Usuarios', 'Alcance'],
   },
   {
-    title: 'Diseño de la solución',
-    text: 'Diseño la arquitectura y un prototipo rápido junto a tu equipo, y lo valido en tu entorno real antes de comprometer el desarrollo.',
+    title: 'Diseño la solución contigo',
+    text: 'Propongo la arquitectura y un prototipo rápido, y lo pruebo en tu entorno real antes de comprometer el desarrollo.',
     tags: ['Arquitectura', 'Prototipo', 'UX'],
   },
   {
-    title: 'Construcción e integración',
-    text: 'Construyo y conecto la solución con tus sistemas y datos. Aceleramos con IA y automatización, con entregas incrementales para que veas el avance en tiempo real.',
+    title: 'Construyo e integro',
+    text: 'Desarrollo la solución y la conecto con tus sistemas y datos, apoyado en IA y automatización. Entrego por etapas para que veas el avance.',
     tags: ['Desarrollo', 'Integraciones', 'Automatización'],
   },
   {
-    title: 'Producción y resultados',
-    text: 'Despliego en tu entorno, capacito a tu equipo y mido resultados. Me quedo hasta que la solución funciona para usuarios reales.',
-    tags: ['Deploy', 'Capacitación', 'Métricas'],
+    title: 'Lanzo y me quedo',
+    text: 'Despliego en tu entorno, capacito a tu equipo y mido resultados. No me voy hasta que funciona para usuarios reales.',
+    tags: ['Despliegue', 'Capacitación', 'Métricas'],
   },
 ]
 
