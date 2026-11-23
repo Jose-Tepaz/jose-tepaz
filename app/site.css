@@ -769,12 +769,13 @@ p, li, dd, figcaption, blockquote, .hero-sub { text-wrap: pretty; }
   #servicios .services-in { position: static; height: auto; overflow: visible; justify-content: flex-start; gap: 0; padding-top: var(--sec-py); padding-bottom: var(--sec-py); }
   #servicios .scroll-hint, #servicios .tabs { display: none !important; }
   #servicios .services-body { display: flex; flex-direction: column; gap: 14px; flex: none; }
-  #servicios .svc, #servicios .svc.is-active { display: block; position: relative; padding: 22px; border-radius: 22px; border: 1px solid color-mix(in srgb, var(--fg) 14%, transparent); background: color-mix(in srgb, var(--fg) 4%, transparent); }
+  #servicios .svc, #servicios .svc.is-active { display: flex; flex-direction: column; gap: 0; align-items: stretch; position: relative; padding: 22px; border-radius: 22px; border: 1px solid color-mix(in srgb, var(--fg) 14%, transparent); background: color-mix(in srgb, var(--fg) 4%, transparent); }
   #servicios .services-copy > * { animation: none; }
-  #servicios   #servicios .svc-n { display: block; margin-bottom: 10px; font-size: .75rem; opacity: .6; }
-  #servicios .services-copy .display { font-size: 1.55rem; line-height: 1.05; margin: 0 76px 10px 0; letter-spacing: -.04em; }
+  #servicios .svc-n { display: block; margin-bottom: 10px; font-size: .75rem; opacity: .6; }
+  #servicios .services-copy .display { font-size: 1.55rem; line-height: 1.05; margin: 0 0 10px; letter-spacing: -.04em; }
   #servicios .services-copy .lead { font-size: .98rem; opacity: .8; margin: 0 0 14px; }
-  #servicios .services-shape { position: absolute; top: 16px; right: 16px; width: 64px; height: 64px; animation: none; display: block; }
+  /* el icono va arriba del título */
+  #servicios .services-shape { order: -1; position: static; flex: none; align-self: flex-start; width: 64px; height: 64px; min-height: 64px; margin: 0 0 16px; animation: none; display: block; }
   #servicios .services-shape .shape { width: 100%; height: 100%; max-width: none; max-height: none; }
 }
 
