@@ -25,7 +25,9 @@ export default function AICards({ active, onSelect }: { active: number; onSelect
           >
             <span className="aa-num">{String(i + 1).padStart(2, '0')}</span>
             <span className="aa-dot" aria-hidden="true" />
-            <h3 className="aa-title">{c.title}</h3>
+            {/* cerrada: una sola línea en vertical · abierta: horizontal, de 1 a 2 líneas según el espacio */}
+            <span className="aa-title aa-title--v" aria-hidden="true">{c.title}</span>
+            <h3 className="aa-title aa-title--h">{c.title}</h3>
             <Icon className="aa-icon" strokeWidth={1} aria-hidden="true" />
             <div className="aa-body">
               <p className="aa-desc">{c.description}</p>

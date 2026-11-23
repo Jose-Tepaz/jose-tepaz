@@ -48,13 +48,27 @@ export default function Stack() {
       })
       setOpen(best)
     }
+    // solo medir mientras la sección está cerca de la pantalla
+    let near = true
     const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update)
+      if (near && !raf) raf = requestAnimationFrame(update)
     }
+    const sec = items.current[0]?.closest('section')
+    const io = sec
+      ? new IntersectionObserver(
+          ([e]) => {
+            near = e.isIntersecting
+            if (!raf) raf = requestAnimationFrame(update)
+          },
+          { rootMargin: '100% 0px' },
+        )
+      : null
+    if (sec) io?.observe(sec)
     update()
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onScroll)
     return () => {
+      io?.disconnect()
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onScroll)
       if (raf) cancelAnimationFrame(raf)

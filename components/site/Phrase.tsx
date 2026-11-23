@@ -10,7 +10,7 @@ const words = [
 
 /** La frase se enciende palabra por palabra con el scroll. */
 export default function Phrase() {
-  const { ref, progress } = useStickyProgress(1)
+  const { ref, progress } = useStickyProgress(1, true)
 
   return (
     <section

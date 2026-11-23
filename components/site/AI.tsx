@@ -2,7 +2,7 @@
 
 import { aiCapabilities } from '@/lib/site-content'
 import AICards from './AICards'
-import { ScrollHint, useStickyProgress } from './ui'
+import { ScrollHint, STEP_VH, useStickyProgress } from './ui'
 
 /** La sección se queda fija y, al hacer scroll, las tarjetas se abren una por una. */
 export default function AI() {
@@ -15,7 +15,7 @@ export default function AI() {
       data-section="ia"
       ref={ref}
       className="sec sec-dark sticky-sec"
-      style={{ height: `${aiCapabilities.length * 90 + 30}vh` }}
+      style={{ height: `${aiCapabilities.length * STEP_VH + 100}vh` }}
     >
       <div className="sticky-in ai-in">
         <div className="wrap">

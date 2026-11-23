@@ -8,7 +8,7 @@ const PULSE =
   'M0 120 H110 L128 104 L146 120 H200 L216 150 L246 12 L276 208 L294 120 H356 L372 104 L388 120 H452 L470 96 L488 120 H600'
 
 export default function Process() {
-  const { ref, progress, active, goTo } = useStickyProgress(steps.length)
+  const { ref, progress, active, goTo } = useStickyProgress(steps.length, true)
   const path = useRef<SVGPathElement>(null)
   const [len, setLen] = useState(0)
   const [dot, setDot] = useState({ x: 0, y: 120 })
@@ -48,7 +48,7 @@ export default function Process() {
           <div>
             <p className="eyebrow">(06) Mi proceso</p>
             <h2 className="display big">
-              Cómo llevo tu problema <span className="blue">hasta producción</span>
+              Cómo llevo tu problema <span className="blue">hasta producción</span>
             </h2>
             <p className="lead process-lead">
               Embebido en tu equipo, con entregas continuas y visibilidad total en cada etapa.
