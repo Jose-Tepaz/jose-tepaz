@@ -83,8 +83,8 @@
   /* Las tarjetas se apilan: cada una sube desde abajo y tapa a la anterior, a ancho completo (respetando el padding de la
      página). --pos (0 a 3) lo calcula Process.tsx según el progreso del scroll; --i es el número de la tarjeta (0 a 3). */
   #proceso .tabs {
-    display: block; position: relative; flex: 1 1 auto; min-height: 270px; max-height: 340px;
-    margin-top: 12px; padding: 0; transform: none;
+    display: block; position: relative; flex: 1 1 auto; min-height: 240px; max-height: 300px;
+    margin-top: 40px;   /* aire entre el texto y la pila: las tarjetas cubiertas asoman hasta 36px por arriba */ padding: 0; transform: none;
   }
   #proceso .tabs-text > li {
     --i: 0;
@@ -97,7 +97,7 @@
     border: 1px solid color-mix(in srgb, var(--fg) 14%, transparent);
     border-radius: 22px;
     transform-origin: 50% 0;
-    transform: translate3d(0, calc((1 - var(--t)) * 112% - var(--d) * 10px), 0) scale(calc(1 - var(--d) * .04));
+    transform: translate3d(0, calc((1 - var(--t)) * 112% - var(--d) * 12px), 0) scale(calc(1 - var(--d) * .04));
     filter: brightness(calc(1 - var(--d) * .2));   /* las cubiertas se oscurecen (sin transparentar lo que tienen detrás) */
     will-change: transform;
   }
@@ -117,6 +117,12 @@
   #ia .aa-card:nth-child(2) .aa-icon { animation-delay: -.9s; }
   #ia .aa-card:nth-child(3) .aa-icon { animation-delay: -1.8s; }
   #ia .aa-card:nth-child(4) .aa-icon { animation-delay: -2.7s; }
+}
+
+/* Teléfono bajo (≈ 667px de alto o menos): el pulso se achica para que la pila de tarjetas no se monte sobre la píldora */
+@media (max-width: 650px) and (max-height: 700px) {
+  #proceso .process-top .pulse { max-height: 11svh; }
+  #proceso .process-in { gap: 14px; }
 }
 
 /* Tablet (pantalla alta): el bloque de Proceso se centra en vertical para repartir el espacio sobrante arriba y abajo */
