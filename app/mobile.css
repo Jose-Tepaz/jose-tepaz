@@ -38,6 +38,13 @@
   /* Sin la ilustración, el texto (y los chips) quedaban pegados a las pestañas: 32 px de separación. */
   .services-body { margin-bottom: 32px; }
 
+  /* ---------- 3d) Sobre mí: la foto centrada (antes quedaba pegada a la izquierda) ---------- */
+  .about-photo { width: 100%; margin-left: auto; margin-right: auto; }
+
+  /* ---------- 3e) Stack: línea de tiempo con más aire entre herramientas.
+     Antes cada paso medía 18vh, que en un teléfono en horizontal son ~70 px y quedaba todo pegado. ---------- */
+  .stack .stack-list li { min-height: max(18vh, 120px); gap: 10px; }
+
   /* ---------- 3c) Stack: la tira de íconos centrada, en 6 columnas iguales (12 íconos = 2 filas completas) ---------- */
   .stack-strip { display: grid; grid-template-columns: repeat(6, 1fr); justify-items: center; align-items: center; gap: 28px 0; }
 
@@ -102,6 +109,11 @@
   #ia .aa-card:nth-child(2) .aa-icon { animation-delay: -.9s; }
   #ia .aa-card:nth-child(3) .aa-icon { animation-delay: -1.8s; }
   #ia .aa-card:nth-child(4) .aa-icon { animation-delay: -2.7s; }
+}
+
+/* Teléfono en horizontal (poco alto): la foto no puede ser más alta que la pantalla */
+@media (max-width: 900px) and (orientation: landscape) and (max-height: 600px) {
+  .about-photo { max-width: min(420px, 64vh); }
 }
 
 @keyframes m-icon-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
