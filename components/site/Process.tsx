@@ -31,7 +31,15 @@ export default function Process() {
       data-section="proceso"
       ref={ref}
       className="sec sec-dark sticky-sec"
-      style={{ height: `${steps.length * 80 + 20}vh` }}
+      style={
+        {
+          height: `${steps.length * 80 + 20}vh`,
+          // Solo las usa el CSS móvil (mobile.css): progreso del pulso y posición del carrusel de tarjetas.
+          '--p': p,
+          '--plen': len,
+          '--pos': Math.min(steps.length - 1, Math.max(0, progress * steps.length - 0.5)),
+        } as CSSProperties
+      }
     >
       <div className="sticky-in process-in">
         <div className="wrap process-top">
@@ -46,12 +54,12 @@ export default function Process() {
             <circle cx={dot.x} cy={dot.y} r="9" className="pulse-dot" />
           </svg>
           <div>
-            <p className="eyebrow">(06) Mi proceso</p>
+            <p className="eyebrow">Mi proceso</p>
             <h2 className="display big">
               Cómo llevo tu problema <span className="blue">hasta producción</span>
             </h2>
             <p className="lead process-lead">
-              Embebido en tu equipo, con entregas continuas y visibilidad total en cada etapa.
+              Dentro de tu equipo, con entregas continuas y claridad en cada etapa: siempre sabes en qué punto estamos.
             </p>
           </div>
         </div>

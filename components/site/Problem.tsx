@@ -11,7 +11,7 @@ export default function Problem() {
           La mayoría de proyectos técnicos <span className="blue">se pierden entre negocio y código</span>
         </Reveal>
         <Reveal as="p" className="lead problem-lead" delay={0.1}>
-          No es falta de talento. Es falta de alguien que entienda el problema del cliente y la tecnología, y lleve la solución hasta producción.
+          No es falta de talento: falta alguien que hable los dos idiomas, el del negocio y el de la tecnología, y que lleve la solución hasta producción.
         </Reveal>
 
         <ol className="problem-grid">

@@ -402,7 +402,7 @@ body { background: var(--canvas); color: var(--fg); }
 .aa-tags { display:flex; flex-wrap:wrap; gap:6px 14px; font-size:13px; opacity:.9; }
 /* Dentro de la sección fija, las tarjetas se ajustan a la altura de la pantalla */
 .ai-in { justify-content: center; }
-.ai-in .aa-row { --aa-h: clamp(320px, calc(100svh - 450px), 640px); margin-top: 24px; }
+.ai-in .aa-row { --aa-h: clamp(320px, calc(100svh - 450px), 620px); margin-top: 24px; }
 .ai-in .ai-title { margin-bottom: 16px; }
 @media (max-width:900px) {
   .ai-in .aa-card.is-active { height: max(220px, calc(100svh - 560px)); }
@@ -669,6 +669,34 @@ body { background: var(--canvas); color: var(--fg); }
   .work-text { font-size: 1rem; }
 }
 
+/* ---------- Textos descriptivos más grandes (se leen mejor en pantallas grandes) ---------- */
+.lead { font-size: clamp(1.1rem, 1.6vw, 1.6rem); }
+.eyebrow { font-size: .85rem; opacity: .7; }
+.hero-sub { font-size: clamp(1.05rem, 1.4vw, 1.4rem); opacity: .85; max-width: 36em; }
+.hero-loc { font-size: .95rem; }
+.about-p { font-size: clamp(1.1rem, 1.5vw, 1.45rem); }
+.about-p2 { font-size: clamp(1.05rem, 1.35vw, 1.3rem); opacity: .75; }
+.about-stat dd { font-size: clamp(.95rem, 1.1vw, 1.15rem); opacity: .75; }
+.problem-tag { font-size: .8rem; opacity: .65; }
+.problem-card h3 { font-size: clamp(1.4rem, 2.2vw, 2.1rem); }
+.problem-card p { font-size: clamp(1rem, 1.15vw, 1.2rem); opacity: .75; }
+.services-copy .eyebrow { font-size: 1.05rem; opacity: .75; }
+.chips li { font-size: .92rem; padding: 7px 15px; }
+.work-meta { font-size: .85rem; opacity: .75; }
+.work-text { font-size: clamp(1.05rem, 1.6vw, 1.5rem); }
+.aa-desc { font-size: clamp(17px, 1.5vw, 24px); }
+.aa-tags { font-size: 15px; }
+.aud-list p { font-size: clamp(1rem, 1.2vw, 1.25rem); opacity: .8; }
+.stack-item-role { font-size: .95rem; }
+.contact-note { font-size: .95rem; opacity: .65; }
+.t-link { font-size: 1.05rem; }
+@media (min-width: 901px) {
+  .tabs-text .tab-n { font-size: .85rem; }
+  .tabs-text .tab-t { font-size: clamp(1.25rem, 1.5vw, 1.8rem); }
+  .tabs-text .tab-d { font-size: clamp(1rem, 1.1vw, 1.2rem); opacity: .8; max-width: 28em; }
+  .tabs-text .tab-tags { font-size: .8rem; }
+}
+
 /* Botones del navbar con la misma animación que .btn: un relleno sube desde abajo y el texto cambia de color. */
 .jn-nav > .jn-contact, .jn-bottom a { position: relative; overflow: hidden; isolation: isolate; transition: color .4s, scale .2s; }
 .jn-contact::after, .jn-bottom a::after { content: ''; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background: var(--fill, var(--fg)); transform: translateY(101%); transition: transform .55s cubic-bezier(.22, 1, .36, 1); pointer-events: none; }
@@ -752,7 +780,7 @@ p, li, dd, figcaption, blockquote, .hero-sub { text-wrap: pretty; }
   #propuesta .phrase-in, #proceso .process-in, #ia .ai-in { padding-top: var(--sec-py); padding-bottom: var(--sec-py); }
 }
 /* IA (escritorio): las tarjetas se ajustan al alto que queda entre los dos paddings */
-@media (min-width: 901px) { .ai-in .aa-row { --aa-h: clamp(300px, calc(100svh - 530px), 640px); } }
+@media (min-width: 901px) { .ai-in .aa-row { --aa-h: clamp(300px, calc(100svh - 570px), 620px); } }
 
 /* ======================================================================================================
    Servicios: cada servicio es un .svc.
@@ -762,12 +790,14 @@ p, li, dd, figcaption, blockquote, .hero-sub { text-wrap: pretty; }
 .services-body { display: grid; grid-template-columns: 1fr; gap: 0; align-items: center; }
 .svc { display: none; }
 .svc.is-active { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
-.svc-n { display: none; }
+.services-intro, .svc-n { display: none; }
 
 @media (max-width: 900px) {
   #servicios { height: auto !important; }
   #servicios .services-in { position: static; height: auto; overflow: visible; justify-content: flex-start; gap: 0; padding-top: var(--sec-py); padding-bottom: var(--sec-py); }
   #servicios .scroll-hint, #servicios .tabs { display: none !important; }
+  #servicios .services-intro { display: block; margin: 0 0 6px; text-transform: none; letter-spacing: 0; font-family: inherit; font-size: .95rem; opacity: .75; }
+  #servicios .services-copy .eyebrow { display: none; }
   #servicios .services-body { display: flex; flex-direction: column; gap: 14px; flex: none; }
   #servicios .svc, #servicios .svc.is-active { display: flex; flex-direction: column; gap: 0; align-items: stretch; position: relative; padding: 22px; border-radius: 22px; border: 1px solid color-mix(in srgb, var(--fg) 14%, transparent); background: color-mix(in srgb, var(--fg) 4%, transparent); }
   #servicios .services-copy > * { animation: none; }
@@ -781,3 +811,14 @@ p, li, dd, figcaption, blockquote, .hero-sub { text-wrap: pretty; }
   #servicios .services-shape .shape { width: 100%; height: 100%; max-width: none; max-height: none; }
 }
 
+/* Trabajo selecto (escritorio): la imagen se alinea al borde derecho del contenido, mismo padding que el izquierdo. */
+@media (min-width: 901px) { .work-stage { justify-self: end; } }
+
+/* Proceso (escritorio): con los textos más largos y grandes que trae la rama de revisión, el bloque necesita menos hueco
+   y, en pantallas bajas, un título proporcional al alto para que quepa entre los paddings sin recortarse. */
+@media (min-width: 901px) {
+  .sticky-in.process-in { gap: clamp(20px, 3vh, 80px); }
+}
+@media (min-width: 901px) and (max-height: 880px) {
+  .process-top .display.big { font-size: min(clamp(2.6rem, 7vw, 6rem), 10.2svh); }
+}
