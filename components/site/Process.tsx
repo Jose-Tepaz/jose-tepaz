@@ -31,7 +31,15 @@ export default function Process() {
       data-section="proceso"
       ref={ref}
       className="sec sec-dark sticky-sec"
-      style={{ height: `${steps.length * 80 + 20}vh` }}
+      style={
+        {
+          height: `${steps.length * 80 + 20}vh`,
+          // Solo las usa el CSS móvil (mobile.css): progreso del pulso y posición del carrusel de tarjetas.
+          '--p': p,
+          '--plen': len,
+          '--pos': Math.min(steps.length - 1, Math.max(0, progress * steps.length - 0.5)),
+        } as CSSProperties
+      }
     >
       <div className="sticky-in process-in">
         <div className="wrap process-top">

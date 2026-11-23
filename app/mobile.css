@@ -1,0 +1,110 @@
+/*
+ * Ajustes SOLO para móvil (<= 900px, el mismo corte que usa site.css).
+ * Se carga después de site.css y se mantiene en un archivo aparte para que los
+ * cambios móviles no se crucen con los de escritorio al hacer merge.
+ * Regla de oro: nada aquí fuera de un @media (max-width: 900px).
+ */
+
+@media (max-width: 900px) {
+  :root {
+    --m-pad: 48px;            /* padding vertical de todas las secciones en móvil */
+    --m-hero-top: 132px;      /* hero: espacio para el header cuando está visible */
+    --m-proceso-top: 16px;    /* Mi proceso: padding superior (la diferencia con 48 se suma al final de "Para eso existo yo") */
+    --m-nav-bottom: max(14px, env(safe-area-inset-bottom, 0px)); /* igual que la píldora .jn-bottom */
+  }
+
+  /* ---------- 1) Hero ---------- */
+  .hero-in { padding-top: var(--m-hero-top); }
+
+  /* ---------- 2) Padding de 48 px arriba y abajo en TODAS las secciones ---------- */
+  .sec:not(.sticky-sec) { padding-top: var(--m-pad); padding-bottom: var(--m-pad); }
+  .sticky-in,
+  .sticky-in.services-in,
+  .sticky-in.work-in { padding-top: var(--m-pad); padding-bottom: var(--m-pad); }
+  #propuesta .phrase-in,
+  #proceso .process-in,
+  #ia .ai-in { padding-top: var(--m-pad); padding-bottom: var(--m-pad); }
+  /* "Hecho para quienes…": 48 arriba y 48 abajo (antes 96 / 40). Contacto sigue sin padding superior. */
+  #audiencia { padding-top: var(--m-pad); padding-bottom: var(--m-pad); }
+  /* Contacto contiene el footer: su padding inferior se queda como estaba (96) para que el botón del calendario
+     y la barra flotante no tapen la frase final. */
+  #contacto { padding-top: 0; padding-bottom: 96px; }
+
+  /* ---------- 3) Soluciones a la medida: sin ilustración (oculta, no eliminada) y sin flecha de scroll ----------
+     El padding inferior deja las 4 pestañas por encima del botón del calendario (flotante, abajo a la derecha). */
+  .services-shape { display: none; }
+  #servicios .scroll-hint { display: none !important; }
+  .sticky-in.services-in { padding-bottom: calc(var(--m-nav-bottom) + 118px); }
+  /* Sin la ilustración, el texto (y los chips) quedaban pegados a las pestañas: 32 px de separación. */
+  .services-body { margin-bottom: 32px; }
+
+  /* ---------- 3c) Stack: la tira de íconos centrada, en 6 columnas iguales (12 íconos = 2 filas completas) ---------- */
+  .stack-strip { display: grid; grid-template-columns: repeat(6, 1fr); justify-items: center; align-items: center; gap: 28px 0; }
+
+  /* ---------- 3b) Separación de 24 px entre tarjetas ---------- */
+  .problem-grid { gap: 24px; }
+  #ia .aa-row { gap: 24px; }
+
+  /* ---------- 4) Flecha de scroll: siempre a la misma distancia sobre la píldora de navegación ----------
+     Se ancla al alto VISIBLE de la pantalla (dvh), igual que la píldora (position: fixed),
+     así no cambia cuando el navegador oculta o muestra su barra de direcciones. */
+  .scroll-hint {
+    bottom: auto;
+    top: calc(100dvh - var(--m-nav-bottom) - 50px - 10px - 34px);
+  }
+
+  /* ---------- 7) "Para eso existo yo": estática (no queda fija ni ocupa toda la pantalla), pero con el efecto de
+     desktop: las palabras se encienden y cambian de color según el scroll. Los valores los calcula Phrase.tsx.
+     Arriba 48. Abajo: 48 + lo que le falta a Proceso de arriba (48 - 16 = 32) = 80, para que el espacio entre
+     ambas secciones quede completo. El párrafo lleva un margen inferior propio para que las palabras que aún
+     no se encienden (desplazadas 10 px hacia abajo) y las colas de las letras no se salgan del contenedor. */
+  #propuesta .phrase-in { padding-top: var(--m-pad); padding-bottom: calc(var(--m-pad) + (var(--m-pad) - var(--m-proceso-top))); }
+  #propuesta .phrase-text { padding-bottom: 14px; }
+  #propuesta .phrase-text span {
+    opacity: var(--wo, 1) !important;
+    transform: translateY(calc(10px * (1 - var(--wt, 1)))) !important;
+  }
+
+  /* ---------- 6) Proceso: pulso y título fijos arriba, tarjetas que cruzan de derecha a izquierda con el scroll ----------
+     (las variables --p, --plen y --pos las calcula Process.tsx según el progreso del scroll) */
+  #proceso { height: 340vh !important; }
+  #proceso .process-in { position: sticky; height: 100svh; overflow: hidden; justify-content: flex-start; gap: 20px; padding-top: var(--m-proceso-top); padding-bottom: var(--m-pad); }
+  #proceso .process-top { gap: 12px; }
+  #proceso .process-top .pulse { max-height: min(130px, 16svh); }
+  #proceso .pulse-line { stroke-dashoffset: calc(var(--plen, 0) * 1px * (1 - var(--p, 1))) !important; }
+  #proceso .pulse-dot { display: inline !important; }
+
+  #proceso .tabs {
+    --cw: min(80vw, 340px);
+    --gap: 24px;
+    display: flex; flex-wrap: nowrap; gap: var(--gap);
+    transform: translate3d(calc(var(--pos, 0) * -1 * (var(--cw) + var(--gap))), 0, 0);
+    will-change: transform;
+  }
+  #proceso .tabs-text > li {
+    flex: 0 0 var(--cw); min-width: 0;
+    padding: 20px 20px 22px;
+    background: color-mix(in srgb, var(--fg) 5%, transparent);
+    border: 1px solid color-mix(in srgb, var(--fg) 14%, transparent);
+    border-radius: 22px;
+  }
+  #proceso .tab { opacity: .5 !important; pointer-events: auto; transition: opacity .3s; }
+  #proceso .tab.is-cur { opacity: 1 !important; }
+  #proceso .tab .tab-bar { background: currentColor; opacity: .25; margin-bottom: 14px; }
+  #proceso .tab.is-on .tab-bar { background: var(--blue); opacity: 1; }
+  #proceso .tab .tab-t { font-size: 1.3rem; line-height: 1.15; margin-bottom: 8px; }
+  #proceso .tab .tab-d { font-size: .95rem; line-height: 1.45; opacity: .8; }
+  #proceso .tab .tab-tags { margin-top: 12px; }
+
+  /* ---------- 5) IA: los íconos de las tarjetas suben y bajan suavemente ---------- */
+  #ia .aa-card .aa-icon,
+  #ia .aa-card.is-active .aa-icon { animation: m-icon-bob 3.6s ease-in-out infinite; will-change: transform; }
+  #ia .aa-card:nth-child(2) .aa-icon { animation-delay: -.9s; }
+  #ia .aa-card:nth-child(3) .aa-icon { animation-delay: -1.8s; }
+  #ia .aa-card:nth-child(4) .aa-icon { animation-delay: -2.7s; }
+}
+
+@keyframes m-icon-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+@media (prefers-reduced-motion: reduce) {
+  @media (max-width: 900px) { #ia .aa-card .aa-icon, #ia .aa-card.is-active .aa-icon { animation: none; } }
+}

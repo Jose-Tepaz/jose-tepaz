@@ -4,6 +4,7 @@ import { MotionProvider, ScrollProgress } from '@/components/motion'
 import { IntroProvider } from '@/components/intro-context'
 import './globals.css'
 import './site.css'
+import './mobile.css'
 
 const sans = Inter_Tight({
   subsets: ['latin'],
