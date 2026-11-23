@@ -19,13 +19,10 @@ export default function Services() {
     >
       <div className="sticky-in services-in">
         <div className="wrap services-body">
-          {/* móvil: una frase de introducción sobre las tarjetas (en escritorio va dentro de cada servicio) */}
-          <p className="eyebrow services-intro">Trabajo embebido contigo: de entender el problema a mantener la solución viva.</p>
           {/* escritorio: solo el servicio activo en dos columnas · móvil: los 4 como tarjetas */}
           {services.map((s, i) => (
             <article key={s.title} className={`svc${i === active ? ' is-active' : ''}`}>
               <div className="services-copy">
-                <p className="eyebrow">Trabajo embebido contigo: de entender el problema a mantener la solución viva.</p>
                 <span className="svc-n mono" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
                 <h2 className="display big">{s.title}</h2>
                 <p className="lead">{s.description}</p>

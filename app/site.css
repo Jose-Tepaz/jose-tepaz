@@ -109,7 +109,6 @@ body { background: var(--canvas); color: var(--fg); }
 /* ---------- Hero ---------- */
 .hero { position: relative; height: 100vh; height: 100svh; min-height: 560px; overflow: hidden; }
 .hero-in { height: 100%; display: flex; flex-direction: column; justify-content: flex-end; gap: clamp(28px, 5vh, 56px); padding: 130px var(--edge) 64px; }
-.services-copy .eyebrow { font-family: inherit; }
 .hero-loc { display: flex; align-items: center; gap: 18px; z-index: 3; font-size: .85rem; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.14); }
 .hero-loc div { display: grid; gap: 2px; }
 .hero-loc strong { font-weight: 600; }
@@ -227,7 +226,6 @@ body { background: var(--canvas); color: var(--fg); }
 .services-copy .display { margin: 14px 0 22px; animation-delay: .05s; }
 .services-copy .lead { opacity: .75; animation-delay: .12s; margin-bottom: 24px; }
 .services-copy .chips { animation-delay: .18s; }
-.services-copy .eyebrow { text-transform: none; letter-spacing: 0; font-size: .85rem; font-family: inherit; max-width: 34em; text-wrap: balance; }
 .services-shape { animation: fade .7s both; justify-self: center; width: min(100%, 400px); color: var(--fg); }
 .shape { width: 100%; height: auto; }
 
@@ -764,18 +762,16 @@ p, li, dd, figcaption, blockquote, .hero-sub { text-wrap: pretty; }
 .services-body { display: grid; grid-template-columns: 1fr; gap: 0; align-items: center; }
 .svc { display: none; }
 .svc.is-active { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
-.services-intro, .svc-n { display: none; }
+.svc-n { display: none; }
 
 @media (max-width: 900px) {
   #servicios { height: auto !important; }
   #servicios .services-in { position: static; height: auto; overflow: visible; justify-content: flex-start; gap: 0; padding-top: var(--sec-py); padding-bottom: var(--sec-py); }
   #servicios .scroll-hint, #servicios .tabs { display: none !important; }
   #servicios .services-body { display: flex; flex-direction: column; gap: 14px; flex: none; }
-  #servicios .services-intro { display: block; margin: 0 0 6px; text-transform: none; letter-spacing: 0; font-family: inherit; font-size: .95rem; opacity: .75; max-width: 32em; text-wrap: balance; }
   #servicios .svc, #servicios .svc.is-active { display: block; position: relative; padding: 22px; border-radius: 22px; border: 1px solid color-mix(in srgb, var(--fg) 14%, transparent); background: color-mix(in srgb, var(--fg) 4%, transparent); }
   #servicios .services-copy > * { animation: none; }
-  #servicios .services-copy .eyebrow { display: none; }
-  #servicios .svc-n { display: block; margin-bottom: 10px; font-size: .75rem; opacity: .6; }
+  #servicios   #servicios .svc-n { display: block; margin-bottom: 10px; font-size: .75rem; opacity: .6; }
   #servicios .services-copy .display { font-size: 1.55rem; line-height: 1.05; margin: 0 76px 10px 0; letter-spacing: -.04em; }
   #servicios .services-copy .lead { font-size: .98rem; opacity: .8; margin: 0 0 14px; }
   #servicios .services-shape { position: absolute; top: 16px; right: 16px; width: 64px; height: 64px; animation: none; display: block; }
