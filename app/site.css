@@ -881,4 +881,6 @@ p, li, dd, figcaption, blockquote, .hero-sub { text-wrap: pretty; }
 /* Trabajo selecto e IA: al llegar desde arriba, el scroll se asienta (snap suave) justo cuando la sección queda fija y centrada;
    las tarjetas empiezan a abrirse solo a partir de ahí. "proximity" = solo ayuda cuando te quedas cerca; no frena el scroll. */
 html { scroll-snap-type: y proximity; }
-#trabajo, #ia { scroll-snap-align: start; }
+#trabajo { scroll-snap-align: start; }
+/* En móvil IA es estática (tarjetas apiladas, no se fija): ahí no hay nada que centrar */
+@media (min-width: 901px) { #ia { scroll-snap-align: start; } }
