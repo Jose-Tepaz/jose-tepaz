@@ -827,18 +827,37 @@ p, li, dd, figcaption, blockquote, .hero-sub { text-wrap: pretty; }
 /* IA (escritorio): en la tarjeta abierta el título y el texto fluyen en columna, así nunca se pisan.
    El título baja de tamaño según el alto de la tarjeta y el texto aprovecha más ancho. */
 @media (min-width: 901px) {
-  .aa-card.is-active { display: flex; flex-direction: column; justify-content: space-between; gap: 14px; padding: 56px clamp(22px,2.6vw,36px) clamp(20px,2.2vw,32px); }
-  .aa-card.is-active .aa-title--h { position: static; flex: 0 0 auto; font-size: min(clamp(34px,5vw,80px), calc(var(--aa-h) * .15)); }
-  .aa-card.is-active .aa-body { position: static; flex: 0 0 auto; max-width: min(520px, 62%); gap: 12px; }
-  .aa-card.is-active .aa-desc { font-size: clamp(14px, min(1.5vw, calc(var(--aa-h) * .055)), 22px); }
+  .aa-card { display: flex; flex-direction: column; justify-content: space-between; gap: 14px; padding: 56px clamp(22px,2.6vw,36px) clamp(20px,2.2vw,32px); }
+  .aa-card .aa-title--h { position: static; flex: 0 0 auto; font-size: min(clamp(34px,5vw,80px), calc(var(--aa-h) * .15)); }
+  .aa-card .aa-body { position: static; flex: 0 0 auto; max-width: min(520px, 62%); gap: 12px; }
+  .aa-card .aa-desc { font-size: clamp(14px, min(1.5vw, calc(var(--aa-h) * .055)), 22px); }
 }
 
 /* IA (escritorio): el texto de la tarjeta abierta se maqueta con el ancho FINAL (no el que lleva la tarjeta a mitad de la
    animación) y aparece cuando la tarjeta ya casi terminó de abrirse. Así no se reacomoda ni se pisa al abrir. */
 @media (min-width: 901px) {
-  .aa-card.is-active .aa-body { width: min(520px, calc((100cqw - 36px) * .36)); max-width: none; box-sizing: border-box; }
-  .aa-card.is-active .aa-title--h { width: calc((100cqw - 36px) * .408); }
+  .aa-card .aa-body { width: min(520px, calc((100cqw - 36px) * .36)); max-width: none; box-sizing: border-box; }
+  .aa-card .aa-title--h { width: calc((100cqw - 36px) * .408); }
   .aa-card.is-active .aa-title--h,
   .aa-card.is-active .aa-body,
   .aa-card.is-active .aa-icon { transition-delay: .85s; }
+}
+
+/* IA (escritorio): todo el contenido de la tarjeta abierta se ancla a la izquierda con medidas basadas en el ancho FINAL
+   de la tarjeta (--W), no en el que lleva a mitad de la animación. El icono tiene su sitio reservado, así título, texto e
+   icono nunca se pisan en ningún tamaño de pantalla. */
+@media (min-width: 901px) {
+  .aa-row { --W: calc((100cqw - 36px) * .583); --pad: clamp(22px, 2.6vw, 36px); --ic: clamp(80px, 11vw, 200px); --ir: clamp(20px, 4vw, 64px); --tw: calc(var(--W) - var(--pad) - var(--ic) - var(--ir) - 24px); }
+  .aa-icon { width: var(--ic); height: var(--ic); right: auto; left: calc(var(--W) - var(--ir) - var(--ic)); }
+  .aa-card .aa-title--h { width: var(--tw); font-size: min(clamp(34px, 5vw, 80px), calc(var(--aa-h) * .15), calc(var(--tw) / 7.6)); }
+  .aa-card .aa-body { width: min(520px, var(--tw)); }
+}
+
+/* IA, pantallas medianas (901–1100px): la tarjeta abierta es estrecha, así que el icono pasa arriba a la derecha (pequeño)
+   y el texto usa casi todo el ancho de la tarjeta. */
+@media (min-width: 901px) and (max-width: 1100px) {
+  .aa-row { --ic: 64px; --tw: calc(var(--W) - var(--pad) * 2 - var(--ic) - 28px); }
+  .aa-icon { top: 46px; bottom: auto; }
+  .aa-card .aa-body { width: min(520px, calc(var(--W) - var(--pad) * 2)); }
+  .aa-card .aa-desc { font-size: clamp(13px, calc(var(--aa-h) * .05), 16px); }
 }
