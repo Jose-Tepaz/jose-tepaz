@@ -867,11 +867,11 @@ p, li, dd, figcaption, blockquote, .hero-sub { text-wrap: pretty; }
 
 /* "Llamada gratuita" integrada en la píldora de navegación (antes era un botón flotante aparte).
    Escritorio: icono + texto. Móvil: solo el icono, para que la píldora siga cabiendo. */
-.jn-bottom .jn-cta { gap: 8px; margin-left: 4px; background-color: var(--ink, #0b0e13); color: #fff; }
+.jn-bottom .jn-cta { gap: 8px; margin-left: 10px; background-color: var(--ink, #0b0e13); color: #fff; }
 .jn-bottom .jn-cta svg { flex: none; }
 @media (max-width: 900px) {
-  .jn-bottom .jn-cta { margin-left: 2px; padding: 0; width: 40px; min-height: 40px; flex: none; }
-  .jn-bottom a:not(.jn-cta) { padding-inline: 11px; }
+  .jn-bottom .jn-cta { margin-left: 8px; padding: 0; width: 40px; min-height: 40px; flex: none; }
+  .jn-bottom a:not(.jn-cta) { padding-inline: 10px; }
   .jn-bottom .jn-cta-label { display: none; }
 }
 
@@ -884,3 +884,5 @@ html { scroll-snap-type: y proximity; }
 #trabajo { scroll-snap-align: start; }
 /* En móvil IA es estática (tarjetas apiladas, no se fija): ahí no hay nada que centrar */
 @media (min-width: 901px) { #ia { scroll-snap-align: start; } }
+
+@media (max-width: 340px) { .jn-bottom .jn-cta { margin-left: 5px; } .jn-bottom a:not(.jn-cta) { padding-inline: 8px; } }

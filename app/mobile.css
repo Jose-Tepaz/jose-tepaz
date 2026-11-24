@@ -151,5 +151,9 @@
   /* Trabajo selecto: la imagen ocupa siempre todo el ancho útil (respeta el padding de la tarjeta). Si la pantalla es baja,
      recorta un poco arriba/abajo en vez de encogerse hacia los lados. Más aire entre la imagen y la información. */
   .work-grid { gap: 30px; }
-  .work-stage { width: 100%; min-width: 0; justify-self: stretch; max-height: calc(100svh - 500px); min-height: 150px; }
+  /* Altura EXPLÍCITA (sin aspect-ratio + max-height, que en Safari/iPhone hacía que la imagen se pintara más alta que su fila y
+     tapara el título). 76px = márgenes laterales de la página + padding de la tarjeta; .7534 = proporción 1168/880 de la imagen. */
+  .work-stage { width: 100%; min-width: 0; justify-self: stretch; aspect-ratio: auto; max-height: none; min-height: 0;
+    height: max(150px, min(calc((100vw - 76px) * .7534), calc(100svh - 500px))); }
+  .work-grid { row-gap: 32px; }
 }
