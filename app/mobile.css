@@ -142,4 +142,12 @@
 @keyframes m-icon-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
 @media (prefers-reduced-motion: reduce) {
   @media (max-width: 900px) { #ia .aa-card .aa-icon, #ia .aa-card.is-active .aa-icon { animation: none; } }
+
+}
+
+@media (max-width: 900px) {
+  /* Trabajo selecto: la imagen ocupa siempre todo el ancho útil (respeta el padding de la tarjeta). Si la pantalla es baja,
+     recorta un poco arriba/abajo en vez de encogerse hacia los lados. Más aire entre la imagen y la información. */
+  .work-grid { gap: 30px; }
+  .work-stage { width: 100%; min-width: 0; justify-self: stretch; max-height: calc(100svh - 500px); min-height: 150px; }
 }
