@@ -79,9 +79,12 @@ export function useStickyProgress(count: number, continuous = false, paced = fal
       const wait = Math.max(0, PACE_MS - (performance.now() - lastChange))
       timer = window.setTimeout(() => {
         timer = 0
-        shown += target > shown ? 1 : -1
-        lastChange = performance.now()
-        setActive(shown)
+        // el objetivo pudo cambiar mientras esperábamos (p. ej. el usuario regresó): nunca salirse de 0..count-1
+        if (shown !== target) {
+          shown = Math.min(count - 1, Math.max(0, shown + (target > shown ? 1 : -1)))
+          lastChange = performance.now()
+          setActive(shown)
+        }
         kick()
       }, wait)
     }
