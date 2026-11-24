@@ -6,7 +6,7 @@ import { projects } from '@/lib/site-content'
 import { ScrollHint, STEP_VH, useStickyProgress } from './ui'
 
 export default function Work() {
-  const { ref, active, goTo } = useStickyProgress(projects.length, false, true)
+  const { ref, active, goTo, ready } = useStickyProgress(projects.length, false, true)
   const p = projects[active]
   const tilt = useRef<HTMLDivElement>(null)
 
@@ -31,7 +31,7 @@ export default function Work() {
       data-theme="dark"
       data-section="trabajo"
       ref={ref}
-      className="sec sec-dark sticky-sec"
+      className={`sec sec-dark sticky-sec${ready ? '' : ' no-anim'}`}
       style={{ height: `${projects.length * STEP_VH + 100}vh` }}
     >
       <div className="sticky-in work-in">

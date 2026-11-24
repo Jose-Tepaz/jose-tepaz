@@ -6,7 +6,7 @@ import { ScrollHint, STEP_VH, useStickyProgress } from './ui'
 
 /** La sección se queda fija y, al hacer scroll, las tarjetas se abren una por una. */
 export default function AI() {
-  const { ref, active, goTo } = useStickyProgress(aiCapabilities.length, false, true)
+  const { ref, active, goTo, ready } = useStickyProgress(aiCapabilities.length, false, true)
 
   return (
     <section
@@ -14,7 +14,7 @@ export default function AI() {
       data-theme="dark"
       data-section="ia"
       ref={ref}
-      className="sec sec-dark sticky-sec"
+      className={`sec sec-dark sticky-sec${ready ? '' : ' no-anim'}`}
       style={{ height: `${aiCapabilities.length * STEP_VH + 100}vh` }}
     >
       <div className="sticky-in ai-in">

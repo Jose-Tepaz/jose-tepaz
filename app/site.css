@@ -874,3 +874,6 @@ p, li, dd, figcaption, blockquote, .hero-sub { text-wrap: pretty; }
   .jn-bottom a:not(.jn-cta) { padding-inline: 11px; }
   .jn-bottom .jn-cta-label { display: none; }
 }
+
+/* Primera carga de Trabajo selecto / IA: colocar el estado inicial sin animar (evita el cruce brusco al recargar a mitad de sección) */
+.no-anim, .no-anim *, .no-anim *::before, .no-anim *::after { transition: none !important; }

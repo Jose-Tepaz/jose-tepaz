@@ -63,6 +63,9 @@ export function useStickyProgress(count: number, continuous = false, paced = fal
   const ref = useRef<HTMLElement>(null)
   const [progress, setProgress] = useState(0)
   const [active, setActive] = useState(0)
+  // false hasta que se hizo la primera medición y se pintó: así el estado inicial (p. ej. al recargar a mitad de la sección)
+  // se coloca de golpe, sin animar un cruce entre tarjetas.
+  const [ready, setReady] = useState(false)
 
   useEffect(() => {
     const el = ref.current
@@ -121,11 +124,16 @@ export function useStickyProgress(count: number, continuous = false, paced = fal
     )
     io.observe(el)
     update()
+    let r1 = 0
+    let r2 = 0
+    r1 = requestAnimationFrame(() => { r2 = requestAnimationFrame(() => setReady(true)) })
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onScroll)
     return () => {
       io.disconnect()
       cancelAnimationFrame(raf)
+      cancelAnimationFrame(r1)
+      cancelAnimationFrame(r2)
       clearTimeout(timer)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onScroll)
@@ -143,7 +151,7 @@ export function useStickyProgress(count: number, continuous = false, paced = fal
     window.scrollTo({ top: top + ((i + 0.5) / count) * total, behavior: 'smooth' })
   }
 
-  return { ref, progress, active, goTo }
+  return { ref, progress, active, goTo, ready }
 }
 
 /** Flecha que avisa (solo en celular) que la sección sigue cambiando al hacer scroll. */
