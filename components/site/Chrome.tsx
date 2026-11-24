@@ -113,7 +113,7 @@ export default function Chrome() {
               </a>
             ))}
           <a className="jn-contact" href="#contacto">
-            Hablemos <span aria-hidden="true">↗</span>
+            Hablemos
           </a>
         </nav>
       </header>
