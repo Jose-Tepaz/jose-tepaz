@@ -832,3 +832,13 @@ p, li, dd, figcaption, blockquote, .hero-sub { text-wrap: pretty; }
   .aa-card.is-active .aa-body { position: static; flex: 0 0 auto; max-width: min(520px, 62%); gap: 12px; }
   .aa-card.is-active .aa-desc { font-size: clamp(14px, min(1.5vw, calc(var(--aa-h) * .055)), 22px); }
 }
+
+/* IA (escritorio): el texto de la tarjeta abierta se maqueta con el ancho FINAL (no el que lleva la tarjeta a mitad de la
+   animación) y aparece cuando la tarjeta ya casi terminó de abrirse. Así no se reacomoda ni se pisa al abrir. */
+@media (min-width: 901px) {
+  .aa-card.is-active .aa-body { width: min(520px, calc((100cqw - 36px) * .36)); max-width: none; box-sizing: border-box; }
+  .aa-card.is-active .aa-title--h { width: calc((100cqw - 36px) * .408); }
+  .aa-card.is-active .aa-title--h,
+  .aa-card.is-active .aa-body,
+  .aa-card.is-active .aa-icon { transition-delay: .85s; }
+}
