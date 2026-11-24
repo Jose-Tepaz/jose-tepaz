@@ -47,9 +47,9 @@ export function Reveal({
 
 /** Cuánto hay que bajar (en alto de pantalla) para pasar al siguiente paso de una sección fija: un solo scroll. */
 /** Alto de scroll (vh) que ocupa cada paso en Trabajo selecto e IA: más alto = hay que desplazar más para pasar al siguiente. */
-export const STEP_VH = 40
+export const STEP_VH = 50
 /** Tiempo mínimo (ms) que se muestra cada paso antes de pasar al siguiente, aunque el scroll sea muy brusco. */
-const PACE_MS = 1200
+const PACE_MS = 900
 
 /**
  * Progreso (0–1) de una sección "pegajosa": 0 cuando su tope llega al borde superior,
@@ -66,31 +66,16 @@ export function useStickyProgress(count: number, continuous = false, paced = fal
   // false hasta que se hizo la primera medición y se pintó: así el estado inicial (p. ej. al recargar a mitad de la sección)
   // se coloca de golpe, sin animar un cruce entre tarjetas.
   const [ready, setReady] = useState(false)
+  const freeUntil = useRef(0)   // hasta cuándo un clic en una tarjeta puede saltar directo a su paso
 
   useEffect(() => {
     const el = ref.current
     if (!el) return
     let raf = 0
-    // Modo "paced": el paso activo avanza de uno en uno (nunca se salta ninguno) con un tiempo mínimo entre cambios,
-    // así un scroll muy brusco igual deja ver cada elemento en orden.
+    // Modo "paced": el paso activo cambia SOLO cuando el usuario hace scroll, de uno en uno (nunca se salta ninguno) y con un
+    // tiempo mínimo entre cambios. No hay temporizadores: si dejas de hacer scroll, nada se sigue abriendo solo.
     let shown = -1
-    let target = 0
-    let timer = 0
     let lastChange = 0
-    const kick = () => {
-      if (timer || shown === target) return
-      const wait = Math.max(0, PACE_MS - (performance.now() - lastChange))
-      timer = window.setTimeout(() => {
-        timer = 0
-        // el objetivo pudo cambiar mientras esperábamos (p. ej. el usuario regresó): nunca salirse de 0..count-1
-        if (shown !== target) {
-          shown = Math.min(count - 1, Math.max(0, shown + (target > shown ? 1 : -1)))
-          lastChange = performance.now()
-          setActive(shown)
-        }
-        kick()
-      }, wait)
-    }
     const update = () => {
       raf = 0
       const r = el.getBoundingClientRect()
@@ -102,13 +87,21 @@ export function useStickyProgress(count: number, continuous = false, paced = fal
         setActive((prev) => (prev === a ? prev : a))
         return
       }
-      target = a
-      if (shown < 0) {
-        shown = a   // primera medición: sin animación de pasos
-        setActive(a)
+      const now = performance.now()
+      if (shown < 0 || now < freeUntil.current) {
+        // primera medición o salto pedido por un clic (goTo): se coloca directo
+        if (shown !== a) {
+          shown = a
+          lastChange = now
+          setActive(a)
+        }
         return
       }
-      kick()
+      if (a !== shown && now - lastChange >= PACE_MS) {
+        shown = Math.min(count - 1, Math.max(0, shown + (a > shown ? 1 : -1)))
+        lastChange = now
+        setActive(shown)
+      }
     }
     // solo medir mientras la sección está cerca de la pantalla; al entrar o salir se ajusta una vez
     let near = true
@@ -134,7 +127,6 @@ export function useStickyProgress(count: number, continuous = false, paced = fal
       cancelAnimationFrame(raf)
       cancelAnimationFrame(r1)
       cancelAnimationFrame(r2)
-      clearTimeout(timer)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onScroll)
     }
@@ -148,6 +140,7 @@ export function useStickyProgress(count: number, continuous = false, paced = fal
     if (pinned && getComputedStyle(pinned).position !== 'sticky') return
     const top = el.getBoundingClientRect().top + window.scrollY
     const total = el.offsetHeight - window.innerHeight
+    freeUntil.current = performance.now() + 1500
     window.scrollTo({ top: top + ((i + 0.5) / count) * total, behavior: 'smooth' })
   }
 
