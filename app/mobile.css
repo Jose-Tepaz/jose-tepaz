@@ -17,8 +17,8 @@
   .hero-in { padding-top: var(--m-hero-top); }
   /* Título y descripción centrados (el CTA ya ocupa el ancho completo) */
   .hero h1, .hero-sub { text-align: center; }
-  /* Mismo tamaño que los títulos de las demás secciones (1.9rem) */
-  .hero h1 { font-size: min(1.9rem, 8.2vw); }
+  /* Mismo tamaño que el título de "El problema" y demás secciones grandes (2.6rem) */
+  .hero h1 { font-size: 2.6rem; }
   .hero-row { align-items: center; }
   .hero-sub { margin-inline: auto; }
 
