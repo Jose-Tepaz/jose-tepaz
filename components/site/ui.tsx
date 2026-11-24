@@ -49,7 +49,7 @@ export function Reveal({
 /** Alto de scroll (vh) que ocupa cada paso en Trabajo selecto e IA: más alto = hay que desplazar más para pasar al siguiente. */
 export const STEP_VH = 40
 /** Tiempo mínimo (ms) que se muestra cada paso antes de pasar al siguiente, aunque el scroll sea muy brusco. */
-const PACE_MS = 650
+const PACE_MS = 1200
 
 /**
  * Progreso (0–1) de una sección "pegajosa": 0 cuando su tope llega al borde superior,

@@ -379,7 +379,7 @@ body { background: var(--canvas); color: var(--fg); }
 
 /* IA y automatización: acordeón de tarjetas (estilo "Apps of my own"). */
 .aa-row { --aa-h: clamp(480px,72vh,680px); display:flex; gap:12px; height:var(--aa-h); margin-top:32px; }
-.aa-card { position:relative; flex:1 1 0; min-width:0; overflow:hidden; border:1px solid color-mix(in srgb, var(--fg) 16%, transparent); border-radius:18px; cursor:pointer; color:#fff; transition:flex-grow 1.25s cubic-bezier(.45,.05,.2,1), background .9s ease, border-color .9s ease; }
+.aa-card { position:relative; flex:1 1 0; min-width:0; overflow:hidden; border:1px solid color-mix(in srgb, var(--fg) 16%, transparent); border-radius:18px; cursor:pointer; color:#fff; transition:flex-grow 1.1s cubic-bezier(.4,0,.15,1), background 1.1s ease, border-color 1.1s ease; }
 .aa-card.is-active { flex-grow:4.2; background:var(--blue); border-color:transparent; cursor:default; }
 .aa-num { position:absolute; left:22px; top:20px; font-size:13px; opacity:.75; font-family:ui-monospace,monospace; }
 .aa-dot { position:absolute; right:22px; top:22px; width:9px; height:9px; border-radius:50%; background:var(--blue); }
