@@ -124,6 +124,13 @@ export default function Chrome() {
             {l.label}
           </a>
         ))}
+        <a className="jn-cta" href={CALENDLY} target="_blank" rel="noopener noreferrer" aria-label="Agenda una llamada gratuita">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <rect x="3" y="4.5" width="18" height="16.5" rx="3" />
+            <path d="M8 2.5v4M16 2.5v4M3 10h18" />
+          </svg>
+          <span className="jn-cta-label">Llamada gratuita</span>
+        </a>
       </nav>
 
       <div className="sidelabel" aria-hidden="true">
@@ -131,13 +138,6 @@ export default function Chrome() {
         ({active.n}) {active.label}
       </div>
 
-      <a className="fab" href={CALENDLY} target="_blank" rel="noopener noreferrer" aria-label="Agenda una llamada gratuita">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <rect x="3" y="4.5" width="18" height="16.5" rx="3" />
-          <path d="M8 2.5v4M16 2.5v4M3 10h18" />
-        </svg>
-        <span className="fab-label">Llamada gratuita</span>
-      </a>
     </div>
   )
 }
