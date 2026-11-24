@@ -877,3 +877,8 @@ p, li, dd, figcaption, blockquote, .hero-sub { text-wrap: pretty; }
 
 /* Primera carga de Trabajo selecto / IA: colocar el estado inicial sin animar (evita el cruce brusco al recargar a mitad de sección) */
 .no-anim, .no-anim *, .no-anim *::before, .no-anim *::after { transition: none !important; }
+
+/* Trabajo selecto e IA: al llegar desde arriba, el scroll se asienta (snap suave) justo cuando la sección queda fija y centrada;
+   las tarjetas empiezan a abrirse solo a partir de ahí. "proximity" = solo ayuda cuando te quedas cerca; no frena el scroll. */
+html { scroll-snap-type: y proximity; }
+#trabajo, #ia { scroll-snap-align: start; }
