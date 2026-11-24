@@ -16,7 +16,8 @@
   /* ---------- 1) Hero ---------- */
   .hero-in { padding-top: var(--m-hero-top); }
   /* Título: más pequeño para que cada frase (3 líneas) quepa sin partirse en 6 */
-  .hero h1 { font-size: clamp(1.5rem, 8vw, 3.4rem); }
+  .hero h1 { font-size: clamp(1.5rem, 8.8vw, 3.4rem); }
+  @media (max-width: 340px) { .hero h1 { font-size: 8.2vw; } }
   /* Título y descripción centrados (el CTA ya ocupa el ancho completo) */
   .hero h1, .hero-sub { text-align: center; }
   .hero-row { align-items: center; }
