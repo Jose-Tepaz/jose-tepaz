@@ -6,7 +6,7 @@ import { projects } from '@/lib/site-content'
 import { ScrollHint, STEP_VH, useStickyProgress } from './ui'
 
 export default function Work() {
-  const { ref, active, goTo } = useStickyProgress(projects.length)
+  const { ref, active, goTo } = useStickyProgress(projects.length, false, true)
   const p = projects[active]
   const tilt = useRef<HTMLDivElement>(null)
 
