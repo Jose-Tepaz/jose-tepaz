@@ -42,8 +42,8 @@ export default function Hero() {
       <div className="hero-copy">
         <h1 className="display">
           <span className="line"><span>Convierto problemas</span></span>
-          <span className="line"><span>de negocio en software</span></span>
-          <span className="line"><span className="blue">que funciona de verdad.</span></span>
+          <span className="line"><span>en software</span></span>
+          <span className="line"><span className="blue">que funciona.</span></span>
         </h1>
         <div className="hero-row">
         <p className="hero-sub">
