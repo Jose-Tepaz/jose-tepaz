@@ -15,6 +15,10 @@
 
   /* ---------- 1) Hero ---------- */
   .hero-in { padding-top: var(--m-hero-top); }
+  /* Título y descripción centrados (el CTA ya ocupa el ancho completo) */
+  .hero h1, .hero-sub { text-align: center; }
+  .hero-row { align-items: center; }
+  .hero-sub { margin-inline: auto; }
 
   /* ---------- 2) Padding de 48 px arriba y abajo en TODAS las secciones ---------- */
   .sec:not(.sticky-sec) { padding-top: var(--m-pad); padding-bottom: var(--m-pad); }
