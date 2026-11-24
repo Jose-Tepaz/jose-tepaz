@@ -7,7 +7,6 @@ import Phrase from '@/components/site/Phrase'
 import Process from '@/components/site/Process'
 import Services from '@/components/site/Services'
 import AI from '@/components/site/AI'
-import Stack from '@/components/site/Stack'
 import Audience from '@/components/site/Audience'
 import About from '@/components/site/About'
 import Contact from '@/components/site/Contact'
@@ -25,7 +24,6 @@ export default function Home() {
       <Process />
       <Services />
       <AI />
-      <Stack />
       <Audience />
       <Contact />
     </main>

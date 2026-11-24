@@ -21,9 +21,8 @@ export const sectionsIndex = [
   { id: 'proceso', n: '06', label: 'Mi proceso' },
   { id: 'servicios', n: '07', label: 'Servicios' },
   { id: 'ia', n: '08', label: 'IA y automatización' },
-  { id: 'stack', n: '09', label: 'Stack tecnológico' },
-  { id: 'audiencia', n: '10', label: 'Para quién trabajo' },
-  { id: 'contacto', n: '11', label: 'Contacto' },
+  { id: 'audiencia', n: '09', label: 'Para quién trabajo' },
+  { id: 'contacto', n: '10', label: 'Contacto' },
 ]
 
 export const stats = [
